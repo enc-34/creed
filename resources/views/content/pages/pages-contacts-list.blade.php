@@ -111,9 +111,12 @@ text-align: right;
       <div class="btn-group">
         <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Action</button>
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="javascript:void(0);">Action</a></li>
-          <li><a class="dropdown-item" href="javascript:void(0);">Another action</a></li>
-          <li><a class="dropdown-item" href="javascript:void(0);">Something else here</a></li>
+          <li><a class="dropdown-item" href="javascript:void(0);">Delete</a></li>
+          <li><a class="dropdown-item" href="javascript:void(0);">Import a list</a></li>
+          <li><a class="dropdown-item" href="javascript:void(0);">Dupliquate</a></li>
+          <li><a class="dropdown-item" href="javascript:void(0);">Rename</a></li>
+          <li><a class="dropdown-item" href="javascript:void(0);">Copy/paste</a></li>
+          <li><a class="dropdown-item" href="javascript:void(0);">Add a contact</a></li>
           <li>
             <hr class="dropdown-divider">
           </li>

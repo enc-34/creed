@@ -96,13 +96,13 @@
       "submenu": [
         {
           "url": "/pages/contacts-list",
-          "name": " List",
+          "name": " List and folder",
           "slug": "pages-contacts-list",
           "target": "_blank"
         },
         {
           "url": "/pages/contacts-folder",
-          "name": "Folder",
+          "name": "contact",
           "slug": "pages-contacts-folder",
           "target": "_blank"
         }
