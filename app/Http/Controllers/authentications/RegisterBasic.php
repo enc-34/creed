@@ -1,14 +1,156 @@
 <?php
 
 namespace App\Http\Controllers\authentications;
-
+use App\Models\Account;
+use App\Models\User1;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterBasic extends Controller
 {
-  public function index()
+  
+  public function index(Request $request)
   {
-    return view('content.authentications.auth-register-basic');
+     $request->session()->forget(['currentUsersAccount', 'currentUser','account','firstName','lastName']);
+     return view('content.authentications.auth-create-step-one');
+  } 
+  public function createStepOne(Request $request)
+  {
+
+    return view('content.authentications.auth-create-step-two');
+  }
+  public function postCreateStepOne(Request $request)
+  {
+    session(['firstName' => $request->input('firstName')]);
+    session(['lastName' => $request->input('lastName')]);
+  return view('content.authentications.auth-create-step-two');
+  }
+  public function createStepTwo(Request $request)
+  {
+    return view('content.authentications.auth-create-step-three');
+  }
+  public function postCreateStepTwo(Request $request)
+  {
+  $account = new Account();
+  if($request->input('password')==$request->input('passwordConfirmation')and $request->input('username')!=
+  '' and $request->input('email')!=''){
+    $account->userName= $request->input('username');
+    $account->email= $request->input('email');
+    $account-> password= $request->input('password');
+    $account-> userPhoneNumber= $request->input('userPhoneNumber');
+  }
+  $account-> isActive= true;
+  $account-> isPremiumAccount= true;
+  $account-> role='Admin';
+    if(empty($request->session()->get('account'))){ 
+      //$product->fill($validatedData);
+      $request->session()->put('account', $account);
+    }else{
+      $account = $request->session()->get('account');
+      //$product->fill($validatedData);
+      $request->session()->put('account', $account);
+    }
+  return view('content.authentications.auth-create-step-three');
+
+  }
+  public function createStepThree(Request $request)
+  {
+    return view('content.authentications.auth-create-step-three');
+  }
+  public function postCreateStepThree(Request $request)
+  {
+        $account = $request->session()->get('account');
+        $currentUser1 = $request->session()->get('user1');
+
+        //dd($account);
+        $account = Account::create([
+        'userName'=> $account->userName,
+        'email'=> $account->email,
+        'password'=> $account->password,
+        'userPhoneNumber'=> $account->userPhoneNumber,
+        'isActive'=> true,
+        'isPremiumAccount'=> false,
+        'role'=> 'Admin',
+        'modelUser'=> '',
+      ]);
+        //dd($currentUser1->phoneNumber);
+        $user = User1::create([
+          'campanyActivity'=> $request->input('campanyActivity'),
+          'companyName'=> $request->input('companyName'),
+          'companyUrl'=> $request->input('companyUrl'),
+          'picture'=> $request->input('picture'),
+          'professionalCode'=> $request->input('professionalCode'),
+          'postalCode'=> $request->input('postalCode'),
+          'country'=> $request->input('country'),
+          'firstName'=> $request->session()->get('firstName'),
+          'lastName'=> $request->session()->get('lastName'),
+          'businessPhoneNumber'=> $request->input('businessPhoneNumber'),
+          'address'=> $request->input('address'),
+          'accountId'=> $account->id,
+        ]);
+        //dd($account->id);
+        $request->session()->regenerate();
+        session(['currentUsersAccount' => $account]);
+        session(['currentUser' => $user]);
+            return redirect()->route('dashboard-analytics')
+            ->withSuccess('You have successfully registered & logged in!');
+  } 
+
+  public function store(Request $request)
+ 
+  {  
+   /* table->boolean('isPremiumAccount');
+            $table->string('role');
+            $table->string('modelUser');
+            $table->string('userName');
+            $table->string('password');
+            $table->boolean('isActive');
+            */
+    /* $table->id();
+            $table->unsignedBigInteger('accountId');
+            $table->foreign('accountId')->references('id')->on('accounts');
+            $table->string('campanyActivity');
+            $table->string('companyName');
+            $table->string('companyUrl');
+            $table->string('picture');
+            $table->string('professionalCode');
+            $table->string('postalCode');
+            $table->string('country');
+            $table->string('firstName');
+            $table->string('lastName');
+            $table->string('phoneNumber');
+            $table->string('address');
+            */
+    
+    /* $account = Account::create([
+      'userName'=> $request->input('username'),
+      'email'=> $request->input('email'),
+      'password'=> $request->input('password'),
+      'isActive'=> true,
+      'isPremiumAccount'=> false,
+      'role'=> 'Admin',
+      'modelUser'=> '',
+    ]); 
+    $user = User1::create([
+      'campanyActivity'=> $request->input('campanyActivity'),
+      'companyName'=> $request->input('companyName'),
+      'companyUrl'=> $request->input('companyUrl'),
+      'picture'=> $request->input('picture'),
+      'professionalCode'=> $request->input('professionalCode'),
+      'postalCode'=> $request->input('postalCode'),
+      'country'=> $request->input('country'),
+      'firstName'=> $request->input('firstName'),
+      'lastName'=> $request->input('lastName'),
+      'phoneNumber'=> $request->input('phoneNumber'),
+      'address'=> $request->input('address'),
+      'accountId'=> $account->id,
+    ]);  */
+    /* $request->session()->regenerate();
+    session(['currentUsersAccount' => $account]);
+        return redirect()->route('dashboard-analytics')
+        ->withSuccess('You have successfully registered & logged in!'); */
+    
   }
 }

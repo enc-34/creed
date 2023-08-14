@@ -76,39 +76,59 @@
         <div class="mt-3">
           <!-- Button trigger modal -->
           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter">
-          Creer une campagne
+          <i  class='bx  bx-plus'></i>            Creer une campagne
           </button>
 
           <!-- Modal -->
+          <form action="{{route('pages-campagne-bord-log')}}" method="post">
           <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-header">
+                  
+                  @csrf
                   <h5 class="modal-title" id="modalCenterTitle">Creer une campagne</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                   <div class="row">
                     <div class="col mb-3">
-                      <label for="nameWithTitle" class="form-label">Name</label>
-                      <input type="text" id="nameWithTitle" class="form-control" placeholder="Enter Name">
+                      <label for="nameWithTitle" class="form-label">campaignName</label>
+                      <input type="text" name="campaignName"  id="nameWithTitle" class="form-control" placeholder="Enter Name">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col mb-3">
+                      <label for="nameWithTitle" class="form-label">campaignContenue</label>
+                      <input type="text" name="contenue"  id="nameWithTitle" class="form-control" placeholder="Enter contenue">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col mb-3">
+                      <label for="nameWithTitle" class="form-label">campaignObjectif</label>
+                      <input type="text" name="objectif"  id="nameWithTitle" class="form-control" placeholder="Enter objectif">
                     </div>
                   </div>
                   <div class="row g-2">
+                  <label class="form-label" for="basic-icon-default-message">userlist</label>
+            <div class="input-group input-group-merge">
+              <select class="form-select form-select-lg" id="inlineFormCustomSelect" name="userList">
+                @foreach($user1s as $itemuser)
+                  <option value="{{$itemuser->id}}">{{$itemuser->accountId}}</option>
+                @endforeach
+              </select>
+            </div>
                     <div class="col mb-0">
-                      <label for="emailWithTitle" class="form-label">Email</label>
-                      <input type="text" id="emailWithTitle" class="form-control" placeholder="xxxx@xxx.xx">
-                    </div>
-                    <div class="col mb-0">
-                      <label for="dobWithTitle" class="form-label">DOB</label>
-                      <input type="text" id="dobWithTitle" class="form-control" placeholder="DD / MM / YY">
+                      <label for="dobWithTitle" class="form-label">planning</label>
+                      <input type="date" name="planning" id="dobWithTitle" class="form-control" placeholder="DD / MM / YY">
                     </div>
                   </div>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
+                  <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
+                </form>
               </div>
             </div>
           </div>
@@ -121,7 +141,7 @@
             <div class="card bg-c-blue order-card">
                 <div class="card-block">
                     <h6 class="m-b-20">Contacts au total</h6>
-                    <h2 class="text-right"><span>486</span></h2>
+                    <h2 class="text-right"><i class="fa fa-rocket f-left"></i><span>0</span></h2>
                     <p class="m-b-0">Completed Orders<span class="f-right">351</span></p>
                     
                 </div>
@@ -160,5 +180,89 @@
 	</div>
 </div>
   </div>
+</div>
+<div class="card">
+
+ 
+ <div class="table-responsive text-nowrap">
+   <table class="table">
+     <thead>
+       <tr class="text-nowrap">
+         <th><div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+  <label class="form-check-label" for="flexCheckDefault">
+  </label>Campaign</th>
+         <th>Name</th>
+         <th>Objectifs</th>
+         <th>Contenue</th>
+         <th>Planning</th>
+         <th>Contactlist</th>
+ 
+       </tr>
+     </thead>
+     <tbody>
+     @foreach($campaigns as $campaign)
+       <tr>
+         <th scope="row"><div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+  <label class="form-check-label" for="flexCheckDefault">
+  </label></th>
+        
+         <td>{{$campaign->campaignName}}</td>
+         <td>{{$campaign->compaignObjective}}</td>
+         <td>{{$campaign->campaignContenu}}</td>
+         <td>{{$campaign->planning}}</td>
+         <td>{{$campaign->userList}}</td>
+       
+        
+       </tr>
+      
+       @endforeach
+       <tr>
+         <th scope="row"></th>
+        
+         
+         <td></td>
+         <td>Ligne par page</td>
+         <td><div class="btn-group dropup">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  10
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="javascript:void(0);">20</a></li>
+                  <li><a class="dropdown-item" href="javascript:void(0);">50</a></li>
+                  <li><a class="dropdown-item" href="javascript:void(0);">100</a></li>
+                 
+                </ul>
+              </div></td>
+         <td></td>
+         <td><nav aria-label="Page navigation">
+            <ul class="pagination">
+              <li class="page-item first">
+                <a class="page-link" href="javascript:void(0);"><i class="tf-icon bx bx-chevrons-left"></i></a>
+              </li>
+              <li class="page-item prev">
+                <a class="page-link" href="javascript:void(0);"><i class="tf-icon bx bx-chevron-left"></i></a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="javascript:void(0);">1</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="javascript:void(0);">2</a>
+              </li>
+             
+              <li class="page-item next">
+                <a class="page-link" href="javascript:void(0);"><i class="tf-icon bx bx-chevron-right"></i></a>
+              </li>
+              <li class="page-item last">
+                <a class="page-link" href="javascript:void(0);"><i class="tf-icon bx bx-chevrons-right"></i></a>
+              </li>
+            </ul>
+          </nav></td>
+     
+       </tr>
+     </tbody>
+   </table>
+ </div>
 </div>
 @endsection

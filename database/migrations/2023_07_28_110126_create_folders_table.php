@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('folders', function (Blueprint $table) {
             $table->id();
-            $table->string('userList');
-            $table->string('name');
+            $table->string('description');
+            $table->string('FolderName');
             $table->string('contactList');
             $table->timestamps();
         });

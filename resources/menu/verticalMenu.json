@@ -43,7 +43,7 @@
       "menuHeader": "Contact Manager"
     },
     {
-      "name": "Campagne",
+      "name": "Campaign",
       "icon": "menu-icon tf-icons bx bx bx-dock-top",
       "slug": "pages-campagne",
       "submenu": [
@@ -61,6 +61,11 @@
           "url": "/pages/campagne-whatsapp",
           "name": "Whatsapp",
           "slug": "pages-campagne-whatsapp"
+        },
+        {
+          "url": "/pages/campagne-message",
+          "name": "Message",
+          "slug": "pages-campagne-message"
         }
       ]
     },
@@ -95,15 +100,15 @@
       "slug": "pages-contacts",
       "submenu": [
         {
-          "url": "/pages/contacts-list",
+          "url": "/pages/contacts-list-folder",
           "name": " List and folder",
-          "slug": "pages-contacts-list",
+          "slug": "pages-contacts-list-folder",
           "target": "_blank"
         },
         {
-          "url": "/pages/contacts-folder",
+          "url": "/pages/contacts-contact",
           "name": "contact",
-          "slug": "pages-contacts-folder",
+          "slug": "pages-contacts-contact",
           "target": "_blank"
         }
       ]

@@ -18,12 +18,10 @@ class ListContactBlogFactory extends Factory
     public function definition()
     {
         return [
-            'folderList'=>"",
-            'userList'=>"",
-            'updateAd'=>new DateTime(),
-            'createAd'=>new DateTime(),
             'listName'=>"LISTE 1",
-            'numberContact'=>12,
+            'folderList'=>"",
+            'description'=>"",
+            
         ];
     }
 }

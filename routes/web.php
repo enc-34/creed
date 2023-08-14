@@ -18,6 +18,7 @@ $controller_path = 'App\Http\Controllers';
 // Main Page Route
 Route::get('/', $controller_path . '\authentications\LoginBasic@index')->name('dashboard-analytics');
 Route::get('/dashboard-analytics', $controller_path . '\dashboard\Analytics@index')->name('dashboard-analytics');
+Route::get('/layouts/navbar', $controller_path . '\dashboard\Analytics@logout')->name('dashboard-analytics-logout');
 
 // layout
 Route::get('/layouts/without-menu', $controller_path . '\layouts\WithoutMenu@index')->name('layouts-without-menu');
@@ -28,14 +29,32 @@ Route::get('/layouts/blank', $controller_path . '\layouts\Blank@index')->name('l
 
 // pages
 Route::get('/pages/campagne-bord', $controller_path . '\pages\CampagneBord@index')->name('pages-campagne-bord');
+Route::post('/pages/campagne-bord', $controller_path . '\pages\CampagneBord@store')->name('pages-campagne-bord-log');
 Route::get('/pages/campagne-email', $controller_path . '\pages\CampagneEmail@index')->name('pages-campagne-email');
 Route::get('/pages/campagne-whatsapp', $controller_path . '\pages\CampagneWhatsapp@index')->name('pages-campagne-whatsapp');
-Route::get('/pages/contacts-list', $controller_path . '\pages\ContactsList@index')->name('pages-contacts-list');
-Route::get('/pages/contacts-folder', $controller_path . '\pages\ContactsFolder@index')->name('pages-contacts-folder');
+Route::get('/pages/campagne-message', $controller_path . '\pages\CampagneMessage@index')->name('pages-campagne-message');
 
-// authentication
+Route::get('/pages/contacts-list-folder', $controller_path . '\pages\ContactsListFolder@index')->name('pages-contacts-list-folder');
+Route::post('/pages/contacts-list-folder', $controller_path . '\pages\ContactsListFolder@store')->name('pages-contacts-list-folder-log');
+
+Route::get('/pages/contacts-contact', $controller_path . '\pages\ContactsContact@index')->name('pages-contacts-contact');
+Route::post('/pages/contacts-contact', $controller_path . '\pages\ContactsContact@store')->name('pages-contacts-contact-GET');
+
+/// authentication
 Route::get('/auth/login-basic', $controller_path . '\authentications\LoginBasic@index')->name('auth-login-basic');
+Route::post('/auth/login-basic', $controller_path . '\authentications\LoginBasic@authenticate')->name('auth-login');
+
 Route::get('/auth/register-basic', $controller_path . '\authentications\RegisterBasic@index')->name('auth-register-basic');
+
+Route::get('/auth/create-step-one', $controller_path . '\authentications\RegisterBasic@createStepOne')->name('auth-register-basic-create-step-one');
+Route::post('/auth/create-step-one', $controller_path . '\authentications\RegisterBasic@postCreateStepOne')->name('auth-register-basic-create-step-one-post');
+
+Route::get('/auth/create-step-two', $controller_path . '\authentications\RegisterBasic@createStepTwo')->name('auth-register-basic-create-step-two');
+Route::post('/auth/create-step-two', $controller_path . '\authentications\RegisterBasic@postCreateStepTwo')->name('auth-register-basic-create-step-two-post');
+
+Route::get('/auth/create-step-three', $controller_path . '\authentications\RegisterBasic@createStepThree')->name('auth-register-basic-create-step-three');
+Route::post('/auth/create-step-three', $controller_path . '\authentications\RegisterBasic@postCreateStepThree')->name('auth-register-basic-create-step-three-post');
+
 Route::get('/auth/forgot-password-basic', $controller_path . '\authentications\ForgotPasswordBasic@index')->name('auth-reset-password-basic');
 
 // cards

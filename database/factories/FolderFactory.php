@@ -17,9 +17,9 @@ class FolderFactory extends Factory
     public function definition()
     {
         return [
-            'userList'=>"",
-            'name'=>"MAKE LIST",
-            'contactList'=>"[]",
+            'description'=>"",
+            'FolderName'=>"MAKE LIST",
+            'contactList'=>"652478912",
         ];
     }
 }

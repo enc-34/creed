@@ -32,8 +32,7 @@ class ContactFactory extends Factory
             'phoneNumber'=>"+237690861311",
             'whatsapp'=>"+237681978368",
             'email'=>"dreamsmartitservices@gmail.com",
-            'updateAd'=>new DateTime(),
-            'createAd'=>new DateTime(),
+           
         ];
     }
 }

@@ -18,13 +18,10 @@ class CampaignFactory extends Factory
     public function definition()
     {
         return [
-            'userList'=>"[]",
             'planning'=>new DateTime(),
-            'createAd'=>new DateTime(),
-            'updateAd'=>new DateTime(),
             'campaignContenu'=>"GOOD TO GREAT WITH CREED",
             'compaignObjective'=>"Booster le CA par des ventes",
-            'contactList'=>"[]",
+            'userList'=>"[]",
             'campaignName'=>"Let's GO",
         ];
     }

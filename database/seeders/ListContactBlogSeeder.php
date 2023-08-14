@@ -15,6 +15,6 @@ class ListContactBlogSeeder extends Seeder
      */
     public function run()
     {
-        ListContactBlog::factory()->count(10)->create();
+        ListContactBlog::factory()->count(1)->create();
     }
 }

@@ -12,4 +12,14 @@ class account extends Model
     public function user1s(){
         return $this->hasMany('App\Models\User1');
     }
+    protected $fillable = [
+        'userName',
+        'email',
+        'password',
+        'userPhoneNumber',
+        'isActive',
+        'isPremiumAccount',
+        'role',
+        'modelUser',
+      ];
 }

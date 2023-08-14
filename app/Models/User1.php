@@ -11,14 +11,28 @@ class user1 extends Model
     use HasFactory;
     
     public function campaigns(){
-        return $this->hasMany('App\Models\Campaign');
+        return $this->belongsToMany('App\Models\Campaign');
     }
       
     public function folders(){
-        return $this->belongsTo('App\Models\Folder');
+        return $this->belongsToMany('App\Models\Folder');
     }
       
     public function accounts(){
         return $this->belongsTo('App\Models\Account');
     }
+    protected $fillable = [
+        'campanyActivity',
+        'companyName',
+        'companyUrl',
+        'picture',
+        'professionalCode',
+        'postalCode',
+        'country',
+        'firstName',
+        'lastName',
+        'businessPhoneNumber',
+        'address',
+        'accountId',
+    ];
 }

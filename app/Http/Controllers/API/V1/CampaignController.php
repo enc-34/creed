@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API\V1;
 
-use App\Models\User1;
-use App\Http\Requests\StoreUser1Request;
-use App\Http\Requests\UpdateUser1Request;
+use App\Models\campaign;
+use App\Http\Requests\StorecampaignRequest;
+use App\Http\Requests\UpdatecampaignRequest;
+use App\Http\Controllers\Controller;
 
-class User1Controller extends Controller
+class CampaignController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,7 @@ class User1Controller extends Controller
      */
     public function index()
     {
-        //
+        return Campaign::all();
     }
 
     /**
@@ -31,10 +32,10 @@ class User1Controller extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreUser1Request  $request
+     * @param  \App\Http\Requests\StorecampaignRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreUser1Request $request)
+    public function store(StorecampaignRequest $request)
     {
         //
     }
@@ -42,10 +43,10 @@ class User1Controller extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User1  $user1
+     * @param  \App\Models\campaign  $campaign
      * @return \Illuminate\Http\Response
      */
-    public function show(User1 $user1)
+    public function show(campaign $campaign)
     {
         //
     }
@@ -53,10 +54,10 @@ class User1Controller extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\User1  $user1
+     * @param  \App\Models\campaign  $campaign
      * @return \Illuminate\Http\Response
      */
-    public function edit(User1 $user1)
+    public function edit(campaign $campaign)
     {
         //
     }
@@ -64,11 +65,11 @@ class User1Controller extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateUser1Request  $request
-     * @param  \App\Models\User1  $user1
+     * @param  \App\Http\Requests\UpdatecampaignRequest  $request
+     * @param  \App\Models\campaign  $campaign
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateUser1Request $request, User1 $user1)
+    public function update(UpdatecampaignRequest $request, campaign $campaign)
     {
         //
     }
@@ -76,10 +77,10 @@ class User1Controller extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User1  $user1
+     * @param  \App\Models\campaign  $campaign
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User1 $user1)
+    public function destroy(campaign $campaign)
     {
         //
     }

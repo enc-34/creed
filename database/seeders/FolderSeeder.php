@@ -15,6 +15,6 @@ class FolderSeeder extends Seeder
      */
     public function run()
     {
-        Folder::factory()->count(10)->create();
+        Folder::factory()->count(2)->create();
     }
 }

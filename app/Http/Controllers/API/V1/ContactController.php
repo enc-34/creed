@@ -1,12 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API\V1;
 
-use App\Models\ListContactBlog;
-use App\Http\Requests\StoreListContactBlogRequest;
-use App\Http\Requests\UpdateListContactBlogRequest;
+use App\Http\Controllers\API\V1\Post;
+use App\Models\contact;
+use App\Http\Requests\StorecontactRequest;
+use App\Http\Requests\UpdatecontactRequest;
+use App\Http\Controllers\Controller;
 
-class ListContactBlogController extends Controller
+
+class ContactController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +18,7 @@ class ListContactBlogController extends Controller
      */
     public function index()
     {
-        //
+        return Contact::all();
     }
 
     /**
@@ -31,21 +34,21 @@ class ListContactBlogController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreListContactBlogRequest  $request
+     * @param  \App\Http\Requests\StorecontactRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreListContactBlogRequest $request)
+    public function store(StorecontactRequest $request)
     {
-        //
+      
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\ListContactBlog  $listContactBlog
+     * @param  \App\Models\contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function show(ListContactBlog $listContactBlog)
+    public function show(contact $contact)
     {
         //
     }
@@ -53,10 +56,10 @@ class ListContactBlogController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\ListContactBlog  $listContactBlog
+     * @param  \App\Models\contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function edit(ListContactBlog $listContactBlog)
+    public function edit(contact $contact)
     {
         //
     }
@@ -64,11 +67,11 @@ class ListContactBlogController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateListContactBlogRequest  $request
-     * @param  \App\Models\ListContactBlog  $listContactBlog
+     * @param  \App\Http\Requests\UpdatecontactRequest  $request
+     * @param  \App\Models\contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateListContactBlogRequest $request, ListContactBlog $listContactBlog)
+    public function update(UpdatecontactRequest $request, contact $contact)
     {
         //
     }
@@ -76,10 +79,10 @@ class ListContactBlogController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\ListContactBlog  $listContactBlog
+     * @param  \App\Models\contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ListContactBlog $listContactBlog)
+    public function destroy(contact $contact)
     {
         //
     }

@@ -13,15 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('contacts', function (Blueprint $table) {
+        Schema::create('contact_list_contact_blog', function (Blueprint $table) {
             $table->id();
-            $table->string('list')->nullable()->default(null);
-            $table->string('contactName')->nullable()->default(null);
-            $table->string('phoneNumber')->nullable()->default(null);
-            $table->string('whatsapp')->nullable()->default(null);
-            $table->string('email')->index();
+
+            $table->unsignedBigInteger('contact_id');
+            $table->foreign('contact_id')->references('id')->on('contacts');
+
+            $table->unsignedBigInteger('list_contact_blog_id');
+            $table->foreign('list_contact_blog_id')->references('id')->on('list_contact_blogs');
+
             $table->timestamps();
         });
+
     }
 
     /**
@@ -29,10 +32,10 @@ return new class extends Migration
      *
      * @return void
      */
-    
+    /*
     public function down()
     {
-        Schema::dropIfExists('contacts');
+        Schema::dropIfExists('contact_list_contact_blog');
     }
-    
+    */
 };

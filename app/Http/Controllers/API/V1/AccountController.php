@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API\V1;
 
-use App\Models\contact;
-use App\Http\Requests\StorecontactRequest;
-use App\Http\Requests\UpdatecontactRequest;
+use App\Models\account;
+use App\Http\Requests\StoreaccountRequest;
+use App\Http\Requests\UpdateaccountRequest;
+use App\Http\Controllers\Controller;
 
-class ContactController extends Controller
+class AccountController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        return Account::all();
     }
 
     /**
@@ -31,10 +32,10 @@ class ContactController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StorecontactRequest  $request
+     * @param  \App\Http\Requests\StoreaccountRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorecontactRequest $request)
+    public function store(StoreaccountRequest $request)
     {
         //
     }
@@ -42,10 +43,10 @@ class ContactController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\contact  $contact
+     * @param  \App\Models\account  $account
      * @return \Illuminate\Http\Response
      */
-    public function show(contact $contact)
+    public function show(account $account)
     {
         //
     }
@@ -53,10 +54,10 @@ class ContactController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\contact  $contact
+     * @param  \App\Models\account  $account
      * @return \Illuminate\Http\Response
      */
-    public function edit(contact $contact)
+    public function edit(account $account)
     {
         //
     }
@@ -64,11 +65,11 @@ class ContactController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatecontactRequest  $request
-     * @param  \App\Models\contact  $contact
+     * @param  \App\Http\Requests\UpdateaccountRequest  $request
+     * @param  \App\Models\account  $account
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatecontactRequest $request, contact $contact)
+    public function update(UpdateaccountRequest $request, account $account)
     {
         //
     }
@@ -76,10 +77,10 @@ class ContactController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\contact  $contact
+     * @param  \App\Models\account  $account
      * @return \Illuminate\Http\Response
      */
-    public function destroy(contact $contact)
+    public function destroy(account $account)
     {
         //
     }

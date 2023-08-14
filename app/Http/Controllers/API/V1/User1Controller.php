@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API\V1;
 
-use App\Models\campaign;
-use App\Http\Requests\StorecampaignRequest;
-use App\Http\Requests\UpdatecampaignRequest;
+use App\Models\User1;
+use App\Http\Requests\StoreUser1Request;
+use App\Http\Requests\UpdateUser1Request;
+use App\Http\Controllers\Controller;
+use PhpParser\Node\Stmt\Return_;
 
-class CampaignController extends Controller
+class User1Controller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +17,7 @@ class CampaignController extends Controller
      */
     public function index()
     {
-        //
+        return User1::all();
     }
 
     /**
@@ -31,10 +33,10 @@ class CampaignController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StorecampaignRequest  $request
+     * @param  \App\Http\Requests\StoreUser1Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorecampaignRequest $request)
+    public function store(StoreUser1Request $request)
     {
         //
     }
@@ -42,10 +44,10 @@ class CampaignController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\campaign  $campaign
+     * @param  \App\Models\User1  $user1
      * @return \Illuminate\Http\Response
      */
-    public function show(campaign $campaign)
+    public function show(User1 $user1)
     {
         //
     }
@@ -53,10 +55,10 @@ class CampaignController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\campaign  $campaign
+     * @param  \App\Models\User1  $user1
      * @return \Illuminate\Http\Response
      */
-    public function edit(campaign $campaign)
+    public function edit(User1 $user1)
     {
         //
     }
@@ -64,11 +66,11 @@ class CampaignController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatecampaignRequest  $request
-     * @param  \App\Models\campaign  $campaign
+     * @param  \App\Http\Requests\UpdateUser1Request  $request
+     * @param  \App\Models\User1  $user1
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatecampaignRequest $request, campaign $campaign)
+    public function update(UpdateUser1Request $request, User1 $user1)
     {
         //
     }
@@ -76,10 +78,10 @@ class CampaignController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\campaign  $campaign
+     * @param  \App\Models\User1  $user1
      * @return \Illuminate\Http\Response
      */
-    public function destroy(campaign $campaign)
+    public function destroy(User1 $user1)
     {
         //
     }

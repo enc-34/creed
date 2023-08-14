@@ -15,12 +15,9 @@ return new class extends Migration
     {
         Schema::create('list_contact_blogs', function (Blueprint $table) {
             $table->id();
-            $table->string('folderList');
-            $table->string('userList');
-            $table->dateTime('updateAd');
-            $table->dateTime('createAd');
-            $table->string('listName');
-            $table->integer('numberContact');
+            $table->string('listName')->nullable();
+            $table->string('folderList')->nullable();
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

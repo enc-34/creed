@@ -22,12 +22,11 @@ class AccountFactory extends Factory
         return [
             'isPremiumAccount'=>true,
             'role'=>"administrateur",
-            'createAd'=>new DateTime(),
+            'userPhoneNumber'=>"699999999",
             'modelUser'=>"",
             'userName'=>"admin",
             'password'=>"nhrkdhfuef25663e3dgegydhbe",
             'isActive'=>true,
-            'updateAd'=>new DateTime(),
-        ];
+                ];
     }
 }

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\form_layouts;
+namespace App\Http\Controllers\pages;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class VerticalForm extends Controller
+class CampagneMessage extends Controller
 {
   public function index(Request $request)
   {
@@ -17,6 +17,6 @@ class VerticalForm extends Controller
          $currentUser = session('currentUser');
       }
      }
-    return view('content.form-layout.form-layouts-vertical')->with('currentUsersAccount',$currentUsersAccount)->with('currentUser',$currentUser);
+    return view('content.pages.pages-campagne-message')->with('currentUsersAccount',$currentUsersAccount)->with('currentUser',$currentUser);
   }
 }

@@ -15,13 +15,10 @@ return new class extends Migration
     {
         Schema::create('campaigns', function (Blueprint $table) {
             $table->id();
-            $table->string('userList');
             $table->dateTime('planning');
-            $table->dateTime('updateAd');
-            $table->dateTime('createAd');
             $table->string('campaignContenu');
             $table->string('compaignObjective');
-            $table->string('contactList');
+            $table->string('userList');
             $table->string('campaignName');
             $table->timestamps();
         });

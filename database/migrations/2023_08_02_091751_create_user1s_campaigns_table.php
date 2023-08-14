@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\campaign;
+use App\Models\user1;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,13 +15,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('contacts', function (Blueprint $table) {
+        Schema::create('user1s_campaigns', function (Blueprint $table) {
             $table->id();
-            $table->string('list')->nullable()->default(null);
-            $table->string('contactName')->nullable()->default(null);
-            $table->string('phoneNumber')->nullable()->default(null);
-            $table->string('whatsapp')->nullable()->default(null);
-            $table->string('email')->index();
+            $table->unsignedBigInteger('user1Id');
+            $table->foreign('user1Id')->references('id')->on('user1s');
+
+            $table->unsignedBigInteger('campaignId');
+            $table->foreign('campaignId')->references('id')->on('campaigns');
+
             $table->timestamps();
         });
     }
@@ -29,10 +32,8 @@ return new class extends Migration
      *
      * @return void
      */
-    
     public function down()
     {
-        Schema::dropIfExists('contacts');
+        Schema::dropIfExists('user1s_campaigns');
     }
-    
 };

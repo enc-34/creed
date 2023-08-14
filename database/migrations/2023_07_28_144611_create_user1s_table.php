@@ -15,19 +15,19 @@ return new class extends Migration
     {
         Schema::create('user1s', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('accountId');
+            $table->unsignedBigInteger('accountId')->nullable(false)->default();
             $table->foreign('accountId')->references('id')->on('accounts');
-            $table->string('campanyActivity');
-            $table->string('companyName');
-            $table->string('companyUrl');
-            $table->string('picture');
-            $table->string('professionalCode');
-            $table->string('postalCode');
-            $table->string('country');
-            $table->string('firstName');
-            $table->string('lastName');
-            $table->string('phoneNumber');
-            $table->string('address');
+            $table->string('campanyActivity')->nullable(false)->default();
+            $table->string('companyName')->nullable(false)->default();
+            $table->string('companyUrl')->nullable()->default();
+            $table->string('picture')->nullable()->default();
+            $table->string('professionalCode')->nullable(false)->default();
+            $table->string('postalCode')->nullable()->default();
+            $table->string('country')->nullable(false)->default();
+            $table->string('firstName')->nullable(false)->default();
+            $table->string('lastName')->nullable()->default();
+            $table->string('businessPhoneNumber')->nullable(false)->default();
+            $table->string('address')->nullable()->default();
             $table->timestamps();
         });
     }
