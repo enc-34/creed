@@ -28,56 +28,96 @@
           <p class="mb-4">Make your app management easy and fun!</p>
           <form action="{{ route('auth-register-basic-create-step-three-post') }}" method="POST">
                 @csrf
+                
                 <div class="card">
                     <div class="card-header">Step 3: company</div>
+                    @if($errors->any())
+                        {!! implode('', $errors->all('<div class="text-red">:message</div>')) !!}
+                    @endif
   
                     <div class="card-body">
   
-                            @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
-  
+                           
                         <div class="mb-3">
                             <label for="campanyActivity" class="form-label">Campany Activity</label>
-                            <input type="text" class="form-control" id="campanyActivity" name="campanyActivity" placeholder="Enter your Company Activity" autofocus>
+                            <input type="text" class="form-control @error('campanyActivity') is-invalid @enderror" id="campanyActivity" name="campanyActivity" value="{{ old('campanyActivity') }}" placeholder="Enter your Company Activity" autofocus >
+                            @error('campanyActivity')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                         </div>
                         <div class="mb-3">
                             <label for="companyName" class="form-label">Company Name</label>
-                            <input type="text" class="form-control" id="companyName" name="companyName" placeholder="Enter your Business Name" autofocus>
+                            <input type="text" class="form-control @error('companyName') is-invalid @enderror" id="companyName" name="companyName" value="{{ old('companyName') }}" placeholder="Enter your Business Name" autofocus >
+                            @error('companyName')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                         </div>
                         <div class="mb-3">
                             <label for="companyUrl" class="form-label">Site Web URL</label>
-                            <input type="text" class="form-control" id="companyUrl" name="companyUrl" placeholder="Enter your business site web url" autofocus>
+                            <input type="text" class="form-control @error('companyUrl') is-invalid @enderror" id="companyUrl" name="companyUrl" value="{{ old('companyUrl') }}" placeholder="Enter your business site web url" autofocus >
+                            @error('companyUrl')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                         </div>
                         <div class="mb-3">
                             <label for="professionalCode" class="form-label">Profesionnal Email</label>
-                            <input type="text" class="form-control" id="professionalCode" name="professionalCode" placeholder="Enter your Business Email" autofocus>
+                            <input type="text" class="form-control @error('professionalCode') is-invalid @enderror" id="professionalCode" name="professionalCode" value="{{ old('professionalCode') }}" placeholder="Enter your Business Email" autofocus >
+                            @error('professionalCode')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                         </div>
                         <div class="mb-3">
                             <label for="businessPhoneNumber" class="form-label">Business Phone Number</label>
-                            <input type="text" class="form-control" id="businessPhoneNumber" name="businessPhoneNumber" placeholder="Enter your Business number" autofocus>
+                            <input type="text" class="form-control @error('businessPhoneNumber') is-invalid @enderror" id="businessPhoneNumber" name="businessPhoneNumber" value="{{ old('businessPhoneNumber') }}" placeholder="Enter your Business number" autofocus >
+                            @error('businessPhoneNumber')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                         </div>
                           <div class="mb-3">
                               <label for="postalCode" class="form-label">Postal Code</label>
-                              <input type="text" class="form-control" id="postalCode" name="postalCode" placeholder="Enter your Business Postal code" autofocus>
+                              <input type="text" class="form-control @error('postalCode') is-invalid @enderror" id="postalCode" name="postalCode" value="{{ old('postalCode') }}" placeholder="Enter your Business Postal code" autofocus >
+                              @error('postalCode')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                             </div> 
                             <div class="mb-3">
                             <label for="country" class="form-label">Country</label>
-                            <input type="text" class="form-control" id="username" name="country" placeholder="Enter your Business Country" autofocus>
+                            <input type="text" class="form-control @error('country') is-invalid @enderror" id="country" name="country" value="{{ old('country') }}" placeholder="Enter your Business Country" autofocus >
+                            @error('country')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                         </div>
                         <div class="mb-3">
                             <label for="address" class="form-label">Address</label>
-                            <input type="text" class="form-control" id="address" name="address" placeholder="Enter your Business address" autofocus>
+                            <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}" placeholder="Enter your Business address" autofocus >
+                            @error('address')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                         </div>          
                             <div class="mb-3">
                                 <label for="picture" class="form-label">User Picture</label>
-                                <input type="text" class="form-control" id="picture" name="picture" placeholder="" autofocus>
+                                <input type="text" class="form-control @error('picture') is-invalid @enderror" id="picture" name="picture" value="{{ old('picture') }}" placeholder="" autofocus>
+                                @error('picture')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                             </div>       
   
                         </div>
@@ -115,4 +155,11 @@
         </div>
     </div>
 </div>
+<script>
+   const phoneInputField = document.querySelector("#businessPhoneNumber");
+   const phoneInput = window.intlTelInput(phoneInputField, {
+     utilsScript:
+       "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+   });
+ </script>
 @endsection

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\user_interface;
+namespace App\Http\Controllers\pages;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class Accordion extends Controller
+class AccountSettingsAccount extends Controller
 {
   public function index(Request $request)
   {
@@ -17,6 +17,6 @@ class Accordion extends Controller
          $currentUser = session('currentUser');
       }
      }
-    return view('content.user-interface.ui-accordion')->with('currentUsersAccount',$currentUsersAccount)->with('currentUser',$currentUser);
+    return view('content.pages.pages-account-settings-account')->with('currentUsersAccount',$currentUsersAccount)->with('currentUser',$currentUser);
   }
 }

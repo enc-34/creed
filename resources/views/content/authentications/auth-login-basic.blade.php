@@ -27,9 +27,17 @@
 
           <form id="formAuthentication" class="mb-3" action="{{route('auth-login')}}" method="post">
             @csrf
+            @if($errors->any())
+                        {!! implode('', $errors->all('<div class="text-red">:message</div>')) !!}
+                    @endif
             <div class="mb-3">
               <label for="email" class="form-label">Email OR userName</label>
-              <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email or username" autofocus>
+              <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" placeholder="Enter your email or username" autofocus >
+              @error('email')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+              @enderror
             </div>
             <div class="mb-3 form-password-toggle">
               <div class="d-flex justify-content-between">
@@ -39,7 +47,12 @@
                 </a>
               </div>
               <div class="input-group input-group-merge">
-                <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
+                <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password"  value="{{ old('password') }}" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
+                @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                @enderror
                 <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
               </div>
             </div>

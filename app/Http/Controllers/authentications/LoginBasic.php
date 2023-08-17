@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rules\Password;
+
 
 class LoginBasic extends Controller
 {
@@ -25,10 +27,15 @@ class LoginBasic extends Controller
  }
  public function authenticate(Request $request)
     {
-     /*$this->validate($request, [
-        'email'           => 'required|max:255|email',
-        'password'           => 'required|confirmed',
-    ]);*/
+      $validated = $request->validate([
+        'email' => ['required','email'],
+        'password' => ['required', Password::min(8)
+        ->letters()
+        ->mixedCase()
+        ->numbers()
+        ->symbols()
+        ->uncompromised()],
+    ]);
      // dd($request->input('email'));
      $account=DB::select('select * from accounts where email="'.$request->email.'"'.'or userName="'.$request->email.'"');
      if(count($account) > 0) {

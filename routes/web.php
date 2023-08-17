@@ -28,6 +28,9 @@ Route::get('/layouts/container', $controller_path . '\layouts\Container@index')-
 Route::get('/layouts/blank', $controller_path . '\layouts\Blank@index')->name('layouts-blank');
 
 // pages
+Route::get('/pages/account-settings-account', $controller_path . '\pages\AccountSettingsAccount@index')->name('pages-account-settings-account');
+Route::get('/pages/account-settings-notifications', $controller_path . '\pages\AccountSettingsNotifications@index')->name('pages-account-settings-notifications');
+Route::get('/pages/account-settings-connections', $controller_path . '\pages\AccountSettingsConnections@index')->name('pages-account-settings-connections');
 Route::get('/pages/campagne-bord', $controller_path . '\pages\CampagneBord@index')->name('pages-campagne-bord');
 Route::post('/pages/campagne-bord', $controller_path . '\pages\CampagneBord@store')->name('pages-campagne-bord-log');
 Route::get('/pages/campagne-email', $controller_path . '\pages\CampagneEmail@index')->name('pages-campagne-email');
