@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
 
             $table->unsignedBigInteger('contact_id');
-            $table->foreign('contact_id')->references('id')->on('contacts');
+            $table->foreign('contact_id')->references('id')->on('contacts')->onDelete('cascade');
 
             $table->unsignedBigInteger('list_contact_blog_id');
-            $table->foreign('list_contact_blog_id')->references('id')->on('list_contact_blogs');
+            $table->foreign('list_contact_blog_id')->references('id')->on('list_contact_blogs')->onDelete('cascade');
 
             $table->timestamps();
         });

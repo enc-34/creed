@@ -63,15 +63,24 @@
 }
 </style>
 
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+    @foreach ($errors->all() as $error)
+                {{ $error }}
+    @endforeach
+    </div>
+@endif
+
 <div class="row">
   <div class="col-md-12">
-    <ul class="nav nav-pills flex-column flex-md-row mb-3">
+   <ul class="nav nav-pills flex-column flex-md-row mb-3">
       <li class="nav-item"><a class="nav-link" href="{{url('pages/account-settings-account')}}"><i class="bx bx-user me-1"></i> Account</a></li>
       <li class="nav-item"><a class="nav-link" href="{{url('pages/account-settings-notifications')}}"><i class="bx bx-bell me-1"></i> Notifications</a></li>
       <li class="nav-item"><a class="nav-link active" href="javascript:void(0);"><i class="bx bx-link-alt me-1"></i> Connections</a></li>
     </ul>
-   <br><br>
-<div class="button">
+    <br><br>
+    <div class="button">
 
         <div class="mt-3">
           <!-- Button trigger modal -->
@@ -94,33 +103,45 @@
                   <div class="row">
                     <div class="col mb-3">
                       <label for="nameWithTitle" class="form-label">campaignName</label>
-                      <input type="text" name="campaignName"  id="nameWithTitle" class="form-control" placeholder="Enter Name">
+                      <input type="text" name="campaignName"  id="nameWithTitle" class="@error('campaignName') is-invalid @enderror form-control" placeholder="Enter Name">
+                      @error('campaignName')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                      @enderror
                     </div>
                   </div>
                   <div class="row">
                     <div class="col mb-3">
                       <label for="nameWithTitle" class="form-label">campaignContenue</label>
-                      <input type="text" name="contenue"  id="nameWithTitle" class="form-control" placeholder="Enter contenue">
+                      <input type="text" name="contenue"  id="nameWithTitle" class="@error('contenue') is-invalid @enderror form-control" placeholder="Enter contenue">
+                      @error('contenue')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                       @enderror
                     </div>
                   </div>
                   <div class="row">
                     <div class="col mb-3">
                       <label for="nameWithTitle" class="form-label">campaignObjectif</label>
-                      <input type="text" name="objectif"  id="nameWithTitle" class="form-control" placeholder="Enter objectif">
+                      <input type="text" name="objectif"  id="nameWithTitle" class="@error('objectif') is-invalid @enderror form-control" placeholder="Enter objectif">
+                      @error('objectif')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                      @enderror
                     </div>
                   </div>
                   <div class="row g-2">
-                  <label class="form-label" for="basic-icon-default-message">userlist</label>
+                  <label class="form-label" for="basic-icon-default-message">Contactlist</label>
             <div class="input-group input-group-merge">
               <select class="form-select form-select-lg" id="inlineFormCustomSelect" name="userList">
-                @foreach($user1s as $itemuser)
-                  <option value="{{$itemuser->id}}">{{$itemuser->accountId}}</option>
+              @foreach($listContactBlogs as $itemList)
+                  <option value="{{$itemList->id}}">{{$itemList->listName}}</option>
                 @endforeach
               </select>
             </div>
                     <div class="col mb-0">
                       <label for="dobWithTitle" class="form-label">planning</label>
-                      <input type="date" name="planning" id="dobWithTitle" class="form-control" placeholder="DD / MM / YY">
+                      <input type="date" name="planning" id="dobWithTitle" class="@error('planning') is-invalid @enderror form-control" placeholder="DD / MM / YY">
+                      @error('planning')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                      @enderror
                     </div>
                   </div>
                 </div>
@@ -128,10 +149,11 @@
                   <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
                   <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
-                </form>
+                
               </div>
             </div>
           </div>
+      </form>
         </div>
       </div><hr class="m-0" /><br>
       

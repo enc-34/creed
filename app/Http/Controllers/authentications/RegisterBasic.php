@@ -18,7 +18,6 @@ class RegisterBasic extends Controller
   } 
   public function createStepOne(Request $request)
   {
-
     return view('content.authentications.auth-create-step-two');
   }
   public function postCreateStepOne(Request $request)
@@ -61,21 +60,19 @@ class RegisterBasic extends Controller
   }
   public function postCreateStepThree(Request $request)
   {
-        $account = $request->session()->get('account');
+        $accountInsession = $request->session()->get('account');
         $currentUser1 = $request->session()->get('user1');
 
-        //dd($account);
         $account = Account::create([
-        'userName'=> $account->userName,
-        'email'=> $account->email,
-        'password'=> $account->password,
-        'userPhoneNumber'=> $account->userPhoneNumber,
+        'userName'=> $accountInsession->userName,
+        'email'=> $accountInsession->email,
+        'password'=> $accountInsession->password,
+        'userPhoneNumber'=> $accountInsession->userPhoneNumber,
         'isActive'=> true,
         'isPremiumAccount'=> false,
         'role'=> 'Admin',
         'modelUser'=> '',
       ]);
-        //dd($currentUser1->phoneNumber);
         $user = User1::create([
           'campanyActivity'=> $request->input('campanyActivity'),
           'companyName'=> $request->input('companyName'),

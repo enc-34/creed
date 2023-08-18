@@ -23,15 +23,21 @@ class ContactsContact extends Controller
          $currentUser = session('currentUser');
       }
      }
-
-    $contacts = DB::select('select *from contacts');
-    $listContactsBlogs = DB::select('select *from list_contact_blogs');
+    $contacts = DB::select ('select *from contacts');
+    $listContactsBlogs = DB::select ('select *from list_contact_blogs');
 
     return view('content.pages.pages-contacts-contact')->with('contacts',$contacts)->with('listContactBlogs',$listContactsBlogs)->with('currentUsersAccount',$currentUsersAccount)->with('currentUser',$currentUser);
   
   }
   public function store(Request $request)
   {
+    $request->validate([
+      'whatsapp' =>['required'],
+      'email' => ['required'],
+      'sms' => ['required'],
+      'contactName' => ['required'],
+    ]);
+
     $contact=new contact();
     $contact = contact::create([
       'email' =>$request->input('email'),
@@ -43,8 +49,7 @@ class ContactsContact extends Controller
     $contact->listcontactblogs()->attach($idlist);
 
   // Pour terminer, on affiche "Bonjour, Homer !";
-  return back()->with('success', 'Les données ont été enregistrées avec succès.');
-
+  return redirect()->back()->with('success', 'your message,here'); 
   }
  
 }

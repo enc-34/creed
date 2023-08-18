@@ -23,10 +23,19 @@ class CampagneBord extends Controller
 
     $campaigns = DB::select('select *from campaigns');
     $user1s = DB::select('select *from user1s');
-    return view('content.pages.pages-campagne-bord')->with('campaigns',$campaigns)->with('user1s',$user1s)->with('currentUsersAccount',$currentUsersAccount)->with('currentUser',$currentUser);
+    $listContactsBlogs = DB::select ('select *from list_contact_blogs');
+    return view('content.pages.pages-campagne-bord')->with('campaigns',$campaigns)->with('user1s',$user1s)->with('listContactBlogs',$listContactsBlogs)->with('currentUsersAccount',$currentUsersAccount)->with('currentUser',$currentUser);
   }
   public function store(Request $request)
   {
+
+    $request->validate([
+      'planning' => ['required'],
+      'contenue' => ['required'],
+      'objectif' => ['required'],
+      'userList' => ['required'],
+      'campaignName' => ['required'],
+  ]);
     $campaign = campaign::create([
       'planning' =>new DateTime(),
       'campaignContenu' =>$request->input('contenue'),
@@ -35,8 +44,12 @@ class CampagneBord extends Controller
       'campaignName'=>$request->input('campaignName'),
      
     ]);
-    $iduser=$request->input('select');
-    $campaign->user1s()->attach($iduser);
+
+    $idlist=$request->input('userList');
+    $campaign->listcontactblogs()->attach($idlist);
+    $currentUser = session('currentUser');
+    $iduser=$currentUser->id;
+   // $campaign->user1s()->attach($iduser);
       
   // Pour terminer, on affiche "Bonjour, Homer !";
   return back()->with('success', 'Les données ont été enregistrées avec succès.');

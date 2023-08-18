@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('user1s_folders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user1Id');
-            $table->foreign('user1Id')->references('id')->on('user1s');
+            $table->foreign('user1Id')->references('id')->on('user1s')->onDelete('cascade');
 
             $table->unsignedBigInteger('folderId');
-            $table->foreign('folderId')->references('id')->on('folders');
+            $table->foreign('folderId')->references('id')->on('folders')->onDelete('cascade');
             $table->timestamps();
         });
     }

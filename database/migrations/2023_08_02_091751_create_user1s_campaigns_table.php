@@ -18,10 +18,10 @@ return new class extends Migration
         Schema::create('user1s_campaigns', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user1Id');
-            $table->foreign('user1Id')->references('id')->on('user1s');
+            $table->foreign('user1Id')->references('id')->on('user1s')->onDelete('cascade');
 
             $table->unsignedBigInteger('campaignId');
-            $table->foreign('campaignId')->references('id')->on('campaigns');
+            $table->foreign('campaignId')->references('id')->on('campaigns')->onDelete('cascade');
 
             $table->timestamps();
         });

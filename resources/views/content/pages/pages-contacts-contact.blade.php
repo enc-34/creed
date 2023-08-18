@@ -34,7 +34,16 @@ body{
 
 
 
-<div class="first">  
+<div class="first"> 
+  
+@if ($errors->any())
+    <div class="alert alert-danger">
+    @foreach ($errors->all() as $error)
+                {{ $error }}
+    @endforeach
+    </div>
+@endif
+
         <div class="mt-3">
           <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBoth" aria-controls="offcanvasBoth"><i  class='bx  bx-plus'></i>Ajouter un contact</button>
           <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasBoth" aria-labelledby="offcanvasBothLabel">
@@ -51,22 +60,35 @@ body{
             <label class="form-label" for="basic-icon-default-fullname">contactName</label>
             <div class="input-group input-group-merge">
               <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-user"></i></span>
-              <input type="text" name="contactName" class="form-control" id="basic-icon-default-fullname" placeholder="M Jiofack CEO" aria-label="John Doe" aria-describedby="basic-icon-default-fullname2" required />
+              <input type="text" name="contactName"  class="@error('contactName') is-invalid @enderror form-control" id="basic-icon-default-fullname" placeholder="M Jiofack CEO" aria-label="John Doe" aria-describedby="basic-icon-default-fullname2"/>
+                
+              @error('contactName')
+                            <div class="alert alert-danger">{{ $message }}</div>
+              @enderror
+            
             </div>
           </div>
           <div class="mb-3">
             <label class="form-label" for="basic-icon-default-company">Company</label>
             <div class="input-group input-group-merge">
               <span id="basic-icon-default-company2" class="input-group-text"><i class="bx bx-buildings"></i></span>
-              <input type="text" name="company" id="basic-icon-default-company" class="form-control" placeholder="Dream Smart IT Services SAR." aria-label="ACME Inc." aria-describedby="basic-icon-default-company2" required />
+              <input type="text" name="company" id="basic-icon-default-company" class=" @error('company') is-invalid @enderror form-control" placeholder="Dream Smart IT Services SAR." aria-label="ACME Inc." aria-describedby="basic-icon-default-company2"  />
+            
+              @error('company')
+              <div class="alert alert-danger">{{ $message }}</div>
+          @enderror
             </div>
           </div>
           <div class="mb-3">
             <label class="form-label" for="basic-icon-default-email">Email</label>
             <div class="input-group input-group-merge">
               <span class="input-group-text"><i class="bx bx-envelope"></i></span>
-              <input type="text" name="email" id="basic-icon-default-email" class="form-control" placeholder="john.doe" aria-label="rh@creed.com" aria-describedby="basic-icon-default-email2" required />
+              <input type="text" name="email" id="basic-icon-default-email" class=" @error('email') is-invalid @enderror form-control" placeholder="john.doe" aria-label="rh@creed.com" aria-describedby="basic-icon-default-email2"  />
+              @error('email')
+              <div class="invalid-feedback">{{ $message }}</div>
+              @enderror
               <span id="basic-icon-default-email2" class="input-group-text">info@creed.com</span>
+          
             </div>
             <div class="form-text"> You can use letters, numbers & periods </div>
           </div>
@@ -74,12 +96,21 @@ body{
             <label class="form-label" for="basic-icon-default-phone">Phone number</label>
             <div class="input-group input-group-merge">
               <span id="basic-icon-default-phone2" class="input-group-text"><i class="bx bx-phone"></i></span>
-              <input type="text" name="sms" id="basic-icon-default-phone" class="form-control phone-mask" placeholder="+237690861311" aria-label="658 799 8941" aria-describedby="basic-icon-default-phone2" />
+              <input type="text" name="sms" id="basic-icon-default-phone" class="@error('email') is-invalid @enderror form-control phone-mask" placeholder="+237690861311" aria-label="658 799 8941" aria-describedby="basic-icon-default-phone2" />
+                 
+              @error('company')
+              <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
             </div>
             <label class="form-label" for="basic-icon-default-phone">WhatsApp</label>
             <div class="input-group input-group-merge">
               <span id="basic-icon-default-whatsapp" class="input-group-text"><i class="bx bx-phone"></i></span>
-              <input type="text" name="whatsapp" id="basic-icon-default-whatsapp" class="form-control phone-mask" placeholder="+237681978368" aria-label="658 799 8941" aria-describedby="basic-icon-default-phone2" required />
+              <input type="text" name="whatsapp" id="basic-icon-default-whatsapp" class="form-control phone-mask  @error('email') is-invalid @enderror" placeholder="+237681978368" aria-label="658 799 8941" aria-describedby="basic-icon-default-phone2" />
+              
+              @error('whatsapp')
+              <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
+            
             </div>
             
           </div>
@@ -87,7 +118,12 @@ body{
             <label class="form-label" for="basic-icon-default-message">Description</label>
             <div class="input-group input-group-merge">
               <span id="basic-icon-default-message2" class="input-group-text"><i class="bx bx-comment"></i></span>
-              <textarea id="basic-icon-default-message"  name="content1" class="form-control" placeholder="Hi, Do you have a moment to talk Joe?" aria-label="Hi, Do you have a moment to talk Joe?" aria-describedby="basic-icon-default-message2"></textarea>
+              <textarea id="basic-icon-default-message"  name="content1" class="form-control  @error('email') is-invalid @enderror" placeholder="Hi, Do you have a moment to talk Joe?" aria-label="Hi, Do you have a moment to talk Joe?" aria-describedby="basic-icon-default-message2"></textarea>
+               
+              @error('content1')
+              <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
+            
             </div>
             <label class="form-label" for="basic-icon-default-message">Choice list</label>
             <div class="input-group input-group-merge">

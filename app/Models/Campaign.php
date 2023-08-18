@@ -16,6 +16,9 @@ class Campaign extends Model
     public function user1s(){
         return $this->BelongsToMany('App\Models\User1');
     }
+    public function listcontactblogs(){
+        return $this->belongsToMany('App\Models\listcontactblog');
+    }
 
     /*
      * The attributes that are mass assignable.

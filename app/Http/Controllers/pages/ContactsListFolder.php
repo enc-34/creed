@@ -20,7 +20,6 @@ class ContactsListFolder extends Controller
          $currentUser = session('currentUser');
       }
      }
-
     $list_contact_blogs = DB::select('select *from list_contact_blogs');
     $folders = DB::select('select *from folders');
     return view('content.pages.pages-contacts-list-folder')->with('list_contact_blogs',$list_contact_blogs)->with('folders',$folders)->with('currentUsersAccount',$currentUsersAccount)->with('currentUser',$currentUser);
@@ -28,13 +27,18 @@ class ContactsListFolder extends Controller
 
   public function store(Request $request)
   {
+    //dd('bommmmm');
+    
     $contactListSaveEve =$request->input('submitContactListButtonSave');
     $contactFolderSaveEve =$request->input('submitFolderButtonSave');
    if (isset($contactListSaveEve))
     {
      # Publish-button was clicked
-
-
+     $validate=$request->validate([
+      'listName' => ['bail','required'],
+      'selectFolder' => ['required'],
+      'description' => ['required'],
+     ]);
      $list_contact_blog=new listContactBlog();
      $list_contact_blog= listContactBlog::create([
      'listName'=> $request->input('listName'),
@@ -42,14 +46,19 @@ class ContactsListFolder extends Controller
      'description'=> $request->input('description'),
      ]);
      $idfold=$request->input('selectFolder');
-    $list_contact_blog->folders()->attach($idfold);
+     $list_contact_blog->folders()->attach($idfold);
+
+
  
-     return back()->with('success', 'Les données ont été enregistrées avec succès.');
-    }
+     return redirect()->back()->with('success', 'your message,here');     }
 
    elseif (isset($contactFolderSaveEve)) {
      # Save-button was clicked
-
+     $validate=$request->validate([
+      'folderDescription' => ['required'],
+      'foldername' => ['required'],
+      'selectListContact' => ['required'],
+  ]);
      $folder=new folder();
      $folder= folder::create([
       'description'=> $request->input('folderDescription'),
@@ -59,7 +68,8 @@ class ContactsListFolder extends Controller
      $idlist=$request->input('selectListContact');
     $folder->listcontactblogs()->attach($idlist);
 
-     return back()->with('success', 'Les données ont été enregistrées avec succès.');
-    }
+    return redirect()->back()->with('success', 'your message,here');     }
   }
+
+  
 }

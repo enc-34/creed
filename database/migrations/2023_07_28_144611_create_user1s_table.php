@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('user1s', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('accountId')->nullable(false)->default();
-            $table->foreign('accountId')->references('id')->on('accounts');
+            $table->foreign('accountId')->references('id')->on('accounts')->onDelete('cascade');
             $table->string('campanyActivity')->nullable(false)->default();
             $table->string('companyName')->nullable(false)->default();
             $table->string('companyUrl')->nullable()->default();
