@@ -28,15 +28,23 @@ Route::get('/layouts/blank', $controller_path . '\layouts\Blank@index')->name('l
 
 // pages
 Route::get('/pages/campagne-bord', $controller_path . '\pages\CampagneBord@index')->name('pages-campagne-bord');
+Route::post('/pages/campagne-bord', $controller_path . '\pages\CampagneBord@store')->name('pages-campagne-bord-log');
 Route::get('/pages/campagne-email', $controller_path . '\pages\CampagneEmail@index')->name('pages-campagne-email');
 Route::get('/pages/campagne-whatsapp', $controller_path . '\pages\CampagneWhatsapp@index')->name('pages-campagne-whatsapp');
-Route::get('/pages/contacts-list', $controller_path . '\pages\ContactsList@index')->name('pages-contacts-list');
-Route::get('/pages/contacts-folder', $controller_path . '\pages\ContactsFolder@index')->name('pages-contacts-folder');
+Route::get('/pages/contacts-list-folder', $controller_path . '\pages\ContactsListFolder@index')->name('pages-contacts-list-folder');
+Route::post('/pages/contacts-list-folder', $controller_path . '\pages\ContactsListFolder@store')->name('pages-contacts-list-folder-log');
+Route::get('/pages/contacts-contact', $controller_path . '\pages\ContactsContact@index')->name('pages-contacts-contact');
+Route::post('/pages/contacts-contact', $controller_path . '\pages\ContactsContact@store')->name('pages-contacts-contact-data');
+Route::post('/pages/contacts-contact', $controller_path . '\pages\ContactsContact@storeImportContacts')->name('imports-contact-import');
+
 
 // authentication
 Route::get('/auth/login-basic', $controller_path . '\authentications\LoginBasic@index')->name('auth-login-basic');
+Route::post('/auth/login-basic', $controller_path . '\authentications\LoginBasic@authenticate')->name('auth-login');
 Route::get('/auth/register-basic', $controller_path . '\authentications\RegisterBasic@index')->name('auth-register-basic');
+Route::post('/auth/register-basic', $controller_path . '\authentications\RegisterBasic@store')->name('auth-register-basic-log');
 Route::get('/auth/forgot-password-basic', $controller_path . '\authentications\ForgotPasswordBasic@index')->name('auth-reset-password-basic');
+
 
 // cards
 Route::get('/cards/basic', $controller_path . '\cards\CardBasic@index')->name('cards-basic');
@@ -72,10 +80,14 @@ Route::get('/icons/SMS', $controller_path . '\icons\SMS@index')->name('icons-SMS
 // form elements
 Route::get('/forms/basic-inputs', $controller_path . '\form_elements\BasicInput@index')->name('forms-basic-inputs');
 Route::get('/forms/input-groups', $controller_path . '\form_elements\InputGroups@index')->name('forms-input-groups');
+Route::get('/forms/inscription', $controller_path . '\form_elements\ContactController@createUserForm')->name('form-inscription');;
+Route::post('/forms/inscription', $controller_path . '\form_elements\ContactController@UserForm');
 
 // form layouts
 Route::get('/form/layouts-vertical', $controller_path . '\form_layouts\VerticalForm@index')->name('form-layouts-vertical');
 Route::get('/form/layouts-horizontal', $controller_path . '\form_layouts\HorizontalForm@index')->name('form-layouts-horizontal');
 
+
 // tables
 Route::get('/tables/statistics', $controller_path . '\tables\Statistics@index')->name('tables-statistics');
+

@@ -10,7 +10,7 @@ class folder extends Model
 {
     use HasFactory;
     public function user1s(){
-        return $this->belongsTo('App\Models\User1');
+        return $this->belongsToMany('App\Models\User1');
     }
     public function listcontactblogs(){
         return $this->hasMany('App\Models\ListContactBlog');

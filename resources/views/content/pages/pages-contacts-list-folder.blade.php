@@ -1,5 +1,4 @@
 
-
 @extends('layouts/contentNavbarLayout')
 
 @section('title', 'list - Contact')
@@ -34,6 +33,7 @@ text-align: right;
   }
 </style>
 
+<div class="container mt-5">
 
 <div class="first">
 <div class="mt-3">
@@ -44,49 +44,38 @@ text-align: right;
             <div class="col-xl">
     <div class="card mb-4">
       <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="mb-0">Nouvelle liste</h5>
+        <h5 class="mb-0">Nouvelle Liste</h5>
       </div>
       <div class="card-body">
-        <form>
+        
           <div class="mb-3">
-            <label class="form-label" for="basic-icon-default-fullname">Full Name</label>
+            <form action="" method="post" action="{{route('pages-contacts-list-folder-log') }}">
+
+              @csrf
+            <label class="form-label" for="basic-icon-default-fullname">Contact List Name</label>
             <div class="input-group input-group-merge">
               <span id="basic-icon-default-fullname2" class="input-group-text"><i class="bx bx-user"></i></span>
-              <input type="text" class="form-control" id="basic-icon-default-fullname" placeholder="John Doe" aria-label="John Doe" aria-describedby="basic-icon-default-fullname2" />
+              <input type="text" name="listName" class="form-control" id="basic-icon-default-fullname" placeholder="DSIT list" aria-label="Name" aria-describedby="basic-icon-default-fullname2" />
             </div>
           </div>
+
           <div class="mb-3">
-            <label class="form-label" for="basic-icon-default-company">Company</label>
+            <label class="form-label" for="basic-icon-default-company">Folder List</label>
             <div class="input-group input-group-merge">
               <span id="basic-icon-default-company2" class="input-group-text"><i class="bx bx-buildings"></i></span>
-              <input type="text" id="basic-icon-default-company" class="form-control" placeholder="ACME Inc." aria-label="ACME Inc." aria-describedby="basic-icon-default-company2" />
+              <input type="text" name="folderList" id="basic-icon-default-company" class="form-control" placeholder="dossier1" aria-label="folder" aria-describedby="basic-icon-default-company2" />
             </div>
           </div>
+          
           <div class="mb-3">
-            <label class="form-label" for="basic-icon-default-email">Email</label>
-            <div class="input-group input-group-merge">
-              <span class="input-group-text"><i class="bx bx-envelope"></i></span>
-              <input type="text" id="basic-icon-default-email" class="form-control" placeholder="john.doe" aria-label="john.doe" aria-describedby="basic-icon-default-email2" />
-              <span id="basic-icon-default-email2" class="input-group-text">@example.com</span>
-            </div>
-            <div class="form-text"> You can use letters, numbers & periods </div>
-          </div>
-          <div class="mb-3">
-            <label class="form-label" for="basic-icon-default-phone">Phone No</label>
-            <div class="input-group input-group-merge">
-              <span id="basic-icon-default-phone2" class="input-group-text"><i class="bx bx-phone"></i></span>
-              <input type="text" id="basic-icon-default-phone" class="form-control phone-mask" placeholder="658 799 8941" aria-label="658 799 8941" aria-describedby="basic-icon-default-phone2" />
-            </div>
-          </div>
-          <div class="mb-3">
-            <label class="form-label" for="basic-icon-default-message">Message</label>
+            <label class="form-label" for="basic-icon-default-message">Description</label>
             <div class="input-group input-group-merge">
               <span id="basic-icon-default-message2" class="input-group-text"><i class="bx bx-comment"></i></span>
-              <textarea id="basic-icon-default-message" class="form-control" placeholder="Hi, Do you have a moment to talk Joe?" aria-label="Hi, Do you have a moment to talk Joe?" aria-describedby="basic-icon-default-message2"></textarea>
+              <textarea name="description" id="basic-icon-default-message" class="form-control" placeholder="Hi, Do you have a moment to talk DSIT" aria-label="Hi, Do you have a moment to talk Joe?" aria-describedby="basic-icon-default-message2"></textarea>
             </div>
           </div>
-          <button type="button" class="btn btn-primary mb-2 d-grid w-100">Create</button>
-              <button type="button" class="btn btn-outline-secondary d-grid w-100" data-bs-dismiss="offcanvas">Cancel</button
+          <button type="submit" value="submit" class="btn btn-primary mb-2 d-grid w-100">Create</button>
+              <button type="button" class="btn btn-outline-secondary d-grid w-100" data-bs-dismiss="offcanvas">Cancel</button>
         
         </form></div></div></div></div>
     
@@ -128,9 +117,15 @@ text-align: right;
 <div class="container">    
   
 <table class="table table-striped ">  
-  <tr><th>Id</th><th>Nom</th><th>Nombre de contact</th></tr>  
-  <tr><td>101</td><td>Raeskov</td><td>23</td></tr>  
-  <tr><td>102</td><td>Hadil</td><td>22</td></tr>  
+  <tr><th>Id</th><th>Name List</th><th>Folder List</th><th>Description</th></tr> 
+  @foreach ($list_contact_blogs as $list_contact_blogs) 
+    <tr>
+      <td>{{ $list_contact_blogs->id }}</td>
+      <td>{{ $list_contact_blogs->listName }}</td>
+      <td>{{ $list_contact_blogs->folderList }}</td>
+      <td>{{ $list_contact_blogs->description }}</td>
+    </tr>
+  @endforeach 
   
 </table>  
   

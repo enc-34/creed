@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('list_contact_blogs', function (Blueprint $table) {
+        Schema::create('user1s_folders', function (Blueprint $table) {
             $table->id();
-            $table->string('listName')->nullable()->default(null);
-            $table->string('folderList')->nullable()->default(null);
-            $table->string('description')->nullable()->default(null);
+            $table->unsignedBigInteger('user1Id');
+            $table->foreign('user1Id')->references('id')->on('user1s');
+
+            $table->unsignedBigInteger('folderId');
+            $table->foreign('folderId')->references('id')->on('folders');
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('list_contact_blogs');
+        Schema::dropIfExists('user1s_folders');
     }
 };

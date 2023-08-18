@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
-            $table->string('list');
-            $table->string('contactName');
-            $table->string('phoneNumber');
-            $table->string('whatsapp');
-            $table->string('email');
-            $table->dateTime('updateAd');
-            $table->dateTime('createAd');
+            $table->string('email')->nullable()->default(null); 
+            $table->string('phoneNumber')->nullable()->default(null);
+            $table->string('whatsapp')->nullable()->default(null);
+            $table->string('contactName')->nullable()->default(null); 
+            $table->dateTime('createAd')->nullable()->default(null);
+            $table->string('updateAd')->nullable()->default(null);
+            $table->string('list')->nullable()->default(null);
             $table->timestamps();
         });
     }

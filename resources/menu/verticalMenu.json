@@ -95,15 +95,15 @@
       "slug": "pages-contacts",
       "submenu": [
         {
-          "url": "/pages/contacts-list",
+          "url": "/pages/contacts-list-folder",
           "name": " List and folder",
-          "slug": "pages-contacts-list",
+          "slug": "pages-contacts-list-folder",
           "target": "_blank"
         },
         {
-          "url": "/pages/contacts-folder",
+          "url": "/pages/contacts-contact",
           "name": "contact",
-          "slug": "pages-contacts-folder",
+          "slug": "pages-contacts-contact",
           "target": "_blank"
         }
       ]

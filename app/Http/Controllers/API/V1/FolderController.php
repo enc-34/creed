@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API\V1;
 
 use App\Models\folder;
 use App\Http\Requests\StorefolderRequest;
 use App\Http\Requests\UpdatefolderRequest;
+use App\Http\Controllers\Controller;
 
 class FolderController extends Controller
 {
@@ -15,7 +16,7 @@ class FolderController extends Controller
      */
     public function index()
     {
-        //
+        return Folder::all();
     }
 
     /**

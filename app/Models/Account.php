@@ -10,6 +10,6 @@ class account extends Model
 {
     use HasFactory;
     public function user1s(){
-        return $this->hasMany('App\Models\User1');
+        return $this->hasOne('App\Models\User1');
     }
 }

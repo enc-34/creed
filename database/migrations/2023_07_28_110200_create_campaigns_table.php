@@ -15,14 +15,14 @@ return new class extends Migration
     {
         Schema::create('campaigns', function (Blueprint $table) {
             $table->id();
-            $table->string('userList');
-            $table->dateTime('planning');
-            $table->dateTime('updateAd');
-            $table->dateTime('createAd');
-            $table->string('campaignContenu');
-            $table->string('compaignObjective');
-            $table->string('contactList');
-            $table->string('campaignName');
+            $table->string('userList')->nullable()->default(null);
+            $table->dateTime('planning')->nullable()->default(null);
+            $table->dateTime('updateAd')->nullable()->default(null);
+            $table->dateTime('createAd')->nullable()->default(null);
+            $table->string('campaignContenu')->nullable()->default(null);
+            $table->string('compaignObjective')->nullable()->default(null);
+            $table->string('contactList')->nullable()->default(null);
+            $table->string('campaignName')->nullable()->default(null);
             $table->timestamps();
         });
     }

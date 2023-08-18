@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Factories;
-
+use App\Models\Campaign;
 use App\Models\Account;
 use Illuminate\Database\Eloquent\Factories\Factory;
 

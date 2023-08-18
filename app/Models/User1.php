@@ -15,10 +15,10 @@ class user1 extends Model
     }
       
     public function folders(){
-        return $this->belongsTo('App\Models\Folder');
+        return $this->belongsToMany('App\Models\Folder');
     }
       
     public function accounts(){
-        return $this->belongsTo('App\Models\Account');
+        return $this->hasMany('App\Models\Account');
     }
 }
