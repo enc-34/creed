@@ -4,22 +4,23 @@ namespace App\Http\Controllers\pages;
 
 use App\Http\Controllers\Controller;
 <<<<<<< HEAD
+<<<<<<< HEAD
 use Illuminate\Http\Client\Request as ClientRequest;
+=======
+>>>>>>> 914f0ddd7725c6f9bd6b1472f874ef3cbf9bb9ef
 use Illuminate\Http\Request;
-use PhpParser\Node\Stmt\Return_;
 use App\Models\contact;
-use App\Models\ListContactBlog;
-use DateTime;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ContactImport;
 
 class ContactsContact extends Controller
 {
   public function index(Request $request)
   {
-    if ($request->session()->has('currentUsersAccount')) {
-      // The key exists in the session.
-      if ($request->session()->has('currentUser')) {
+      if ($request->session()->has('currentUsersAccount')) {
         // The key exists in the session.
+<<<<<<< HEAD
         $currentUsersAccount = session('currentUsersAccount');
          $currentUser = session('currentUser');
       }
@@ -42,10 +43,21 @@ class ContactsContact extends Controller
     $contacts = DB::select('select *from contacts');
     return view('content.pages.pages-contacts-contact',['contacts'=>$contacts]);
 >>>>>>> 7605ca9b460b031e704798c1c8ca0f5d1c4f3359
+=======
+        if ($request->session()->has('currentUser')) {
+          // The key exists in the session.
+          $currentUsersAccount = session('currentUsersAccount');
+           $currentUser = session('currentUser');
+        }
+       }
+    $contacts = DB::select('select *from contacts');
+    return view('content.pages.pages-contacts-contact')->with('contacts',$contacts)->with('currentUsersAccount',$currentUsersAccount)->with('currentUser',$currentUser);
+>>>>>>> 914f0ddd7725c6f9bd6b1472f874ef3cbf9bb9ef
   
   }
   public function store(Request $request)
   {
+<<<<<<< HEAD
 <<<<<<< HEAD
     $request->validate([
       'whatsapp' =>['required'],
@@ -56,14 +68,17 @@ class ContactsContact extends Controller
 
     $contact=new contact();
     $contact = contact::create([
+=======
+
+    $post = contact::create([
+      'list' =>$request->input('content'),
+>>>>>>> 914f0ddd7725c6f9bd6b1472f874ef3cbf9bb9ef
       'email' =>$request->input('email'),
       'contactName' =>$request-> input('contactName'),
       'phoneNumber'=>$request->input('sms'),
-      'whatsapp'=>$request->input('whatsapp'),
+      'whatsapp'=>$request->input('whatsapp')
     ]);
-    $idlist=$request->input('select');
-    $contact->listcontactblogs()->attach($idlist);
-
+      
   // Pour terminer, on affiche "Bonjour, Homer !";
   return redirect()->back()->with('success', 'your message,here'); 
 =======
@@ -88,7 +103,10 @@ class ContactsContact extends Controller
   // Pour terminer, on affiche "Bonjour, Homer !";
   //return back()->with('success', 'Les données ont été enregistrées avec succès.');
 
+<<<<<<< HEAD
 >>>>>>> 7605ca9b460b031e704798c1c8ca0f5d1c4f3359
+=======
+>>>>>>> 914f0ddd7725c6f9bd6b1472f874ef3cbf9bb9ef
   }
  
 }

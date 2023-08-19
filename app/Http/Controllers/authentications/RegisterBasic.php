@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 
 class RegisterBasic extends Controller
 {
@@ -20,7 +21,11 @@ class RegisterBasic extends Controller
     return view('content.authentications.auth-create-step-two');
   }
   public function postCreateStepOne(Request $request)
-  {
+  { 
+    $validated = $request->validate([
+      'firstName' => 'required',
+      'lastName' => 'required',
+  ]);
     session(['firstName' => $request->input('firstName')]);
     session(['lastName' => $request->input('lastName')]);
   return view('content.authentications.auth-create-step-two');
@@ -31,13 +36,24 @@ class RegisterBasic extends Controller
   }
   public function postCreateStepTwo(Request $request)
   {
+    $validated = $request->validate([
+      'password'  => ['required','confirmed', Password::min(8)
+      ->letters()
+      ->mixedCase()
+      ->numbers()
+      ->symbols()
+      ->uncompromised()],
+      'username' => ['required', 'string', 'max:255', 'unique:accounts', 'regex:/^\S*$/u'],
+      'email'=> ['email:rfc','unique:accounts'],
+      'userPhoneNumber' => ['required','regex:/^([0-9\s\-\+\(\)]*)$/','min:5','unique:accounts'],
+  ]); 
   $account = new Account();
-  if($request->input('password')==$request->input('passwordConfirmation')and $request->input('username')!=
+  if($request->input('password')==$request->input('password_confirmation')and $request->input('username')!=
   '' and $request->input('email')!=''){
+    $account-> userPhoneNumber= $request->input('userPhoneNumber');
     $account->userName= $request->input('username');
     $account->email= $request->input('email');
-    $account-> password= $request->input('password');
-    $account-> userPhoneNumber= $request->input('userPhoneNumber');
+    $account-> password= $request->input('password'); 
   }
   $account-> isActive= true;
   $account-> isPremiumAccount= true;
@@ -59,7 +75,19 @@ class RegisterBasic extends Controller
   }
   public function postCreateStepThree(Request $request)
   {
+<<<<<<< HEAD
         $accountInsession = $request->session()->get('account');
+=======
+    $validated = $request->validate([
+      'campanyActivity' => 'required',
+      'companyName' => 'required',
+      'companyUrl' => 'required|url',
+      'professionalCode' => 'required',
+      'businessPhoneNumber' => ['required','regex:/^([0-9\s\-\+\(\)]*)$/','min:5'],
+      'address' => 'required',
+  ]);
+        $account = $request->session()->get('account');
+>>>>>>> 914f0ddd7725c6f9bd6b1472f874ef3cbf9bb9ef
         $currentUser1 = $request->session()->get('user1');
 
         $account = Account::create([

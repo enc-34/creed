@@ -28,29 +28,34 @@
                     <p class="mb-4">Make your app management easy and fun!</p>
                     <form action="{{ route('auth-register-basic-create-step-one-post') }}" method="POST">
                         @csrf
-    
+                        
                         <div class="card">
                             <div class="card-header">Step 1: Basic Info</div>
+                            @if($errors->any())
+                                {!! implode('', $errors->all('<div class="text-red">:message</div>')) !!}
+                             @endif
         
                             <div class="card-body">
         
-                                    @if ($errors->any())
-                                        <div class="alert alert-danger">
-                                            <ul>
-                                                @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    @endif
+                                   
         
                                     <div class="mb-3">
                                         <label for="firstName" class="form-label">First Name</label>
-                                        <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter User First Name" autofocus>
+                                        <input type="text" class="form-control @error('firstName') is-invalid @enderror" id="firstName" name="firstName" value="{{ old('firstName') }}" placeholder="Enter User First Name" autofocus >
+                                        @error('firstName')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label for="lastName" class="form-label">Last Name</label>
-                                        <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter User Last Name" autofocus>
+                                        <input type="text" class="form-control @error('lastName') is-invalid @enderror" id="lastName" name="lastName" value="{{ old('lastName') }}"  placeholder="Enter User Last Name" autofocus >
+                                        @error('lastName')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>                        
                                               
                                 </div>
