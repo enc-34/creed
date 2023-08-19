@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\API\V1;
 
-use App\Http\Controllers\API\V1\Post;
+
 use App\Models\contact;
 use App\Http\Requests\StorecontactRequest;
 use App\Http\Requests\UpdatecontactRequest;
-use App\Http\Controllers\Controller;
-
 
 class ContactController extends Controller
 {

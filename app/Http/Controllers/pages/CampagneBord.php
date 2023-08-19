@@ -12,6 +12,7 @@ class CampagneBord extends Controller
 {
   public function index(Request $request)
   {
+<<<<<<< HEAD
     if ($request->session()->has('currentUsersAccount')) {
       // The key exists in the session.
       if ($request->session()->has('currentUser')) {
@@ -50,6 +51,22 @@ class CampagneBord extends Controller
     $currentUser = session('currentUser');
     $iduser=$currentUser->id;
    // $campaign->user1s()->attach($iduser);
+=======
+
+    $campaigns = DB::select('select *from campaigns');
+    return view('content.pages.pages-campagne-bord',['campaigns'=>$campaigns]);
+  }
+  public function store(Request $request)
+  {
+    $post = campaign::create([
+      'planning' =>new DateTime(),
+      'campaignContenu' =>$request->input('contenue'),
+      'compaignObjective' =>$request-> input('objectif'),
+      'contactList'=>$request->input('contactList'),
+      'campaignName'=>$request->input('campaignName'),
+     
+    ]);
+>>>>>>> 7605ca9b460b031e704798c1c8ca0f5d1c4f3359
       
   // Pour terminer, on affiche "Bonjour, Homer !";
   return back()->with('success', 'Les données ont été enregistrées avec succès.');

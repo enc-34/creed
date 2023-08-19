@@ -10,46 +10,14 @@ use App\Models\ListContactBlog;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Contact extends Model
+
+class contact extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
-    
+    use HasFactory;
     public function user1s(){
-        return $this->hasMany(User1::class);
+        return $this->hasMany('App\Models\User1');
     }
     public function listcontactblogs(){
-        return $this->belongsToMany(ListContactBlog::class);
+        return $this->belongsTo('App\Models\ListContactBlog');
     }
-
-    /*
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'list',
-        'email',
-        'contactName',
-        'phoneNumber',
-        'whatsapp',
-    ];
-
-    /*
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    /*protected $hidden = [
-        'password',
-        'remember_token',
-    ];*/
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
 }

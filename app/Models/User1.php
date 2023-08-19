@@ -19,7 +19,7 @@ class user1 extends Model
     }
       
     public function accounts(){
-        return $this->belongsTo('App\Models\Account');
+        return $this->hasMany('App\Models\Account');
     }
     protected $fillable = [
         'campanyActivity',

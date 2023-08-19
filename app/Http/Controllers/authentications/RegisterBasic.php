@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\authentications;
-use App\Models\Account;
-use App\Models\User1;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -148,6 +147,21 @@ class RegisterBasic extends Controller
     session(['currentUsersAccount' => $account]);
         return redirect()->route('dashboard-analytics')
         ->withSuccess('You have successfully registered & logged in!'); */
+    
+  }
+  public function store(Request $request)
+ 
+  {  
+    
+    $post = User::create([
+      'name'=> $request->input('username'),
+      'email'=> $request->input('email'),
+      'password'=> $request->input('password'),
+      'slug'=> \Str::slug($request->input('email'))
+    ]); 
+    $request->session()->regenerate();
+        return redirect()->route('dashboard-analytics')
+        ->withSuccess('You have successfully registered & logged in!');
     
   }
 }

@@ -12,7 +12,11 @@ class folder extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
     public function user1s(){
+<<<<<<< HEAD
         return $this->belongsToMany(User1::class);
+=======
+        return $this->belongsToMany('App\Models\User1');
+>>>>>>> 7605ca9b460b031e704798c1c8ca0f5d1c4f3359
     }
     public function listcontactblogs(){
         return $this->belongsToMany(ListContactBlog::class);

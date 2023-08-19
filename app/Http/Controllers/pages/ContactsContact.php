@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\pages;
 
 use App\Http\Controllers\Controller;
+<<<<<<< HEAD
 use Illuminate\Http\Client\Request as ClientRequest;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\Return_;
@@ -27,10 +28,25 @@ class ContactsContact extends Controller
     $listContactsBlogs = DB::select ('select *from list_contact_blogs');
 
     return view('content.pages.pages-contacts-contact')->with('contacts',$contacts)->with('listContactBlogs',$listContactsBlogs)->with('currentUsersAccount',$currentUsersAccount)->with('currentUser',$currentUser);
+=======
+use Illuminate\Http\Request;
+use App\Models\contact;
+use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ContactImport;
+
+class ContactsContact extends Controller
+{
+  public function index()
+  {
+    $contacts = DB::select('select *from contacts');
+    return view('content.pages.pages-contacts-contact',['contacts'=>$contacts]);
+>>>>>>> 7605ca9b460b031e704798c1c8ca0f5d1c4f3359
   
   }
   public function store(Request $request)
   {
+<<<<<<< HEAD
     $request->validate([
       'whatsapp' =>['required'],
       'email' => ['required'],
@@ -50,6 +66,29 @@ class ContactsContact extends Controller
 
   // Pour terminer, on affiche "Bonjour, Homer !";
   return redirect()->back()->with('success', 'your message,here'); 
+=======
+
+    $post = contact::create([
+      'list' =>$request->input('content'),
+      'email' =>$request->input('email'),
+      'contactName' =>$request-> input('contactName'),
+      'phoneNumber'=>$request->input('sms'),
+      'whatsapp'=>$request->input('whatsapp')
+    ]);
+      
+  // Pour terminer, on affiche "Bonjour, Homer !";
+  return back()->with('success', 'Les données ont été enregistrées avec succès.');
+
+  }
+
+  public function storeImportContacts(Request $request)
+  {
+    Excel::import(new ContactImport, $request->file('contactFile'));
+    return redirect()->back()->with('success', 'L\'importation des contacts a été effectuée avec succès.');
+  // Pour terminer, on affiche "Bonjour, Homer !";
+  //return back()->with('success', 'Les données ont été enregistrées avec succès.');
+
+>>>>>>> 7605ca9b460b031e704798c1c8ca0f5d1c4f3359
   }
  
 }
