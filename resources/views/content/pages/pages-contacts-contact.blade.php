@@ -34,9 +34,13 @@ body{
 
 
 
-<div class="first">  
+<div class="first">
+ <button type="button" class="btn btn-icon btn-secondary">
+                <span class="tf-icons bx bx-bell"></span>
+              </button>
+              
         <div class="mt-3">
-          <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBoth" aria-controls="offcanvasBoth"><i  class='bx  bx-plus'></i>Ajouter un contact</button>
+          <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBoth" aria-controls="offcanvasBoth">Ajouter un contact</button>
           <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasBoth" aria-labelledby="offcanvasBothLabel">
           <div class="col-xl">
     <div class="card mb-4">
@@ -45,7 +49,7 @@ body{
         <small class="text-muted float-end"></small>
       </div>
       <div class="card-body">
-        <form  id="formcontact"  action="{{route('pages-contacts-contact-GET')}}" method="POST">
+        <form  id="formcontact"  action="" method="POST">
            @csrf
           <div class="mb-3">
             <label class="form-label" for="basic-icon-default-fullname">contactName</label>
@@ -89,13 +93,10 @@ body{
               <span id="basic-icon-default-message2" class="input-group-text"><i class="bx bx-comment"></i></span>
               <textarea id="basic-icon-default-message"  name="content1" class="form-control" placeholder="Hi, Do you have a moment to talk Joe?" aria-label="Hi, Do you have a moment to talk Joe?" aria-describedby="basic-icon-default-message2"></textarea>
             </div>
-            <label class="form-label" for="basic-icon-default-message">Choice list</label>
+            <label class="form-label" for="basic-icon-default-message">list</label>
             <div class="input-group input-group-merge">
-              <select class="form-select form-select-lg" id="inlineFormCustomSelect" name="select">
-                @foreach($listContactBlogs as $itemList)
-                  <option value="{{$itemList->id}}">{{$itemList->listName}}</option>
-                @endforeach
-              </select>
+              <span id="basic-icon-default-message2" class="input-group-text"><i class="bx bx-comment"></i></span>
+              <input id="basic-icon-default-message"name="content" class="form-control" placeholder="Hi, Do you have a moment to talk Joe?"  aria-describedby="basic-icon-default-message2" required/>
             </div>
           </div>
           <button type="submit" class="btn btn-primary">Send</button>
@@ -103,12 +104,73 @@ body{
       </div>
     </div>
   </div>
-          <select class="form-select" disabled>
-  <option>1</option>
-  <option>2</option>
-  <option>3</option>
-  <option>4</option>
-</select>
+          </div>
+          <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f2f2f2;
+                color: black;
+                font-size: small;
+            }
+            .container {
+                max-width: 500px;
+                margin: 0 auto;
+                padding: 150px;
+                background-color: #fff;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                
+            };
+    
+            .file-input {
+                margin-bottom: 20px;
+            }
+            .submit-btn {
+                background-color: #4CAF50;
+                color: white;
+                padding: 10px 15px;
+                border: none;
+                border-radius: 3px;
+                cursor: pointer;
+            }
+            .submit-btn:hover {
+                background-color: #45a049;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h2>Importation d'un fichier CSV</h2>
+            @if ($errors->any())
+            <h5 style="color:red">following errors exist in your excel file</h5>
+            <ol>
+              @foreach ($errors->all() as $error)
+              <li>{{$errors}}</li>
+              @endforeach
+            </ol>
+            @endif
+            <!-- import-contacts.blade.php -->
+            
+            <form action="{{ route('imports-contact-import') }}" method="post" enctype="multipart/form-data">
+              @csrf
+                <p>Téléchargez votre fichier :</p>
+                <input type="file" name="contactFile" accept=".csv, .xlsx, .txt" class="file-input" required>
+                
+                <p>Télécharger un fichier d'exemple : <a href="exemple.csv">exemple.csv</a></p>
+                
+                <p>Lire le tutoriel : <a href="tutoriel.html">Lien vers le tutoriel</a></p>
+                
+                <p>Sélectionnez ou glissez-déposez votre fichier ici :</p>
+                            
+                <input type="submit" value="Upload" class="submit-btn" ></button>
+                <a href="#" class="submit-btn" onclick="window.close();">Quitter</a>
+                 
+            </form>
+        </div>
+    </body>
+          <button type="button" class="btn btn-outline-dark">importer un contact</button>
+        </div>
+
 </div>
 <hr class="m-0" />
 <br> 
@@ -192,6 +254,7 @@ body{
          <td>{{$contact->contactName}}</td>
          <td>{{$contact->updated_at}}</td>
          <td>{{$contact->created_at}}</td>
+         
         
        </tr>
       

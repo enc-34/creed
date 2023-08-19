@@ -47,8 +47,8 @@ class RegisterBasic extends Controller
       ->uncompromised()],
       'username' => ['required', 'string', 'max:255', 'unique:accounts', 'regex:/^\S*$/u'],
       'email'=> ['email:rfc','unique:accounts'],
-      'userPhoneNumber' => ['required','regex:/^([0-9\s\-\+\(\)]*)$/','min:9','unique:accounts'],
-  ]);
+      'userPhoneNumber' => ['required','regex:/^([0-9\s\-\+\(\)]*)$/','min:5','unique:accounts'],
+  ]); 
   $account = new Account();
   if($request->input('password')==$request->input('password_confirmation')and $request->input('username')!=
   '' and $request->input('email')!=''){
@@ -82,7 +82,7 @@ class RegisterBasic extends Controller
       'companyName' => 'required',
       'companyUrl' => 'required|url',
       'professionalCode' => 'required',
-      'businessPhoneNumber' => ['required','regex:/^([0-9\s\-\+\(\)]*)$/','min:9'],
+      'businessPhoneNumber' => ['required','regex:/^([0-9\s\-\+\(\)]*)$/','min:5'],
       'address' => 'required',
   ]);
         $account = $request->session()->get('account');

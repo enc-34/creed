@@ -41,7 +41,8 @@ Route::get('/pages/contacts-list-folder', $controller_path . '\pages\ContactsLis
 Route::post('/pages/contacts-list-folder', $controller_path . '\pages\ContactsListFolder@store')->name('pages-contacts-list-folder-log');
 
 Route::get('/pages/contacts-contact', $controller_path . '\pages\ContactsContact@index')->name('pages-contacts-contact');
-Route::post('/pages/contacts-contact', $controller_path . '\pages\ContactsContact@store')->name('pages-contacts-contact-GET');
+Route::post('/pages/contacts-contact', $controller_path . '\pages\ContactsContact@store')->name('pages-contacts-contact-data');
+Route::post('/pages/contacts-contact', $controller_path . '\pages\ContactsContact@storeImportContacts')->name('imports-contact-import');
 
 /// authentication
 Route::get('/auth/login-basic', $controller_path . '\authentications\LoginBasic@index')->name('auth-login-basic');
