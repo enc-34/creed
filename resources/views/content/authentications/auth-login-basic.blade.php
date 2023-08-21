@@ -31,10 +31,6 @@
                         {!! implode('', $errors->all('<div class="text-red">:message</div>')) !!}
                     @endif
             <div class="mb-3">
-<<<<<<< HEAD
-              <label for="email" class="form-label">Email or Username</label>
-              <input type="text" class="form-control" id="email" name="email-username" placeholder="Enter your email or username" autofocus>
-=======
               <label for="email" class="form-label">Email OR userName</label>
               <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" placeholder="Enter your email or username" autofocus >
               @error('email')
@@ -42,7 +38,6 @@
                         <strong>{{ $message }}</strong>
                     </span>
               @enderror
->>>>>>> 914f0ddd7725c6f9bd6b1472f874ef3cbf9bb9ef
             </div>
             <div class="mb-3 form-password-toggle">
               <div class="d-flex justify-content-between">

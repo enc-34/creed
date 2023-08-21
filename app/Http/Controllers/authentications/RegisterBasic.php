@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\authentications;
-
+use App\Models\Account;
+use App\Models\User1;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,6 +19,7 @@ class RegisterBasic extends Controller
   } 
   public function createStepOne(Request $request)
   {
+
     return view('content.authentications.auth-create-step-two');
   }
   public function postCreateStepOne(Request $request)
@@ -75,9 +77,6 @@ class RegisterBasic extends Controller
   }
   public function postCreateStepThree(Request $request)
   {
-<<<<<<< HEAD
-        $accountInsession = $request->session()->get('account');
-=======
     $validated = $request->validate([
       'campanyActivity' => 'required',
       'companyName' => 'required',
@@ -87,19 +86,20 @@ class RegisterBasic extends Controller
       'address' => 'required',
   ]);
         $account = $request->session()->get('account');
->>>>>>> 914f0ddd7725c6f9bd6b1472f874ef3cbf9bb9ef
         $currentUser1 = $request->session()->get('user1');
 
+        //dd($account);
         $account = Account::create([
-        'userName'=> $accountInsession->userName,
-        'email'=> $accountInsession->email,
-        'password'=> $accountInsession->password,
-        'userPhoneNumber'=> $accountInsession->userPhoneNumber,
+        'userName'=> $account->userName,
+        'email'=> $account->email,
+        'password'=> $account->password,
+        'userPhoneNumber'=> $account->userPhoneNumber,
         'isActive'=> true,
         'isPremiumAccount'=> false,
         'role'=> 'Admin',
         'modelUser'=> '',
       ]);
+        //dd($currentUser1->phoneNumber);
         $user = User1::create([
           'campanyActivity'=> $request->input('campanyActivity'),
           'companyName'=> $request->input('companyName'),
@@ -175,21 +175,6 @@ class RegisterBasic extends Controller
     session(['currentUsersAccount' => $account]);
         return redirect()->route('dashboard-analytics')
         ->withSuccess('You have successfully registered & logged in!'); */
-    
-  }
-  public function store(Request $request)
- 
-  {  
-    
-    $post = User::create([
-      'name'=> $request->input('username'),
-      'email'=> $request->input('email'),
-      'password'=> $request->input('password'),
-      'slug'=> \Str::slug($request->input('email'))
-    ]); 
-    $request->session()->regenerate();
-        return redirect()->route('dashboard-analytics')
-        ->withSuccess('You have successfully registered & logged in!');
     
   }
 }

@@ -18,16 +18,10 @@ class ListContactBlogFactory extends Factory
     public function definition()
     {
         return [
-<<<<<<< HEAD
             'listName'=>"LISTE 1",
             'folderList'=>"",
             'description'=>"",
             
-=======
-            'listName'=>"",
-            'folderList'=>"",
-            'description'=>"",
->>>>>>> 7605ca9b460b031e704798c1c8ca0f5d1c4f3359
         ];
     }
 }

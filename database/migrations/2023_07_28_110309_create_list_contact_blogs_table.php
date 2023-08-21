@@ -15,15 +15,9 @@ return new class extends Migration
     {
         Schema::create('list_contact_blogs', function (Blueprint $table) {
             $table->id();
-<<<<<<< HEAD
             $table->string('listName')->nullable();
             $table->string('folderList')->nullable();
             $table->string('description')->nullable();
-=======
-            $table->string('listName')->nullable()->default(null);
-            $table->string('folderList')->nullable()->default(null);
-            $table->string('description')->nullable()->default(null);
->>>>>>> 7605ca9b460b031e704798c1c8ca0f5d1c4f3359
             $table->timestamps();
         });
     }

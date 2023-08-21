@@ -15,11 +15,7 @@
     "laravel/framework": "^9.0",
     "laravel/sanctum": "^2.14",
     "laravel/tinker": "^2.7",
-<<<<<<< HEAD
-    "maatwebsite/excel": "^3.1.48",
-=======
     "maatwebsite/excel": "^3.1",
->>>>>>> 914f0ddd7725c6f9bd6b1472f874ef3cbf9bb9ef
     "spatie/laravel-permission": "^5.8"
   },
   "require-dev": {

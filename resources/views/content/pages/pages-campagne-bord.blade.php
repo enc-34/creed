@@ -151,7 +151,6 @@
                 <div class="modal-footer">
                   <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
                   <button type="submit" class="btn btn-primary">Save changes</button>
-                  <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
                 
               </div>
@@ -167,7 +166,6 @@
             <div class="card bg-c-blue order-card">
                 <div class="card-block">
                     <h6 class="m-b-20">Contacts au total</h6>
-                    <h2 class="text-right"><i class="fa fa-rocket f-left"></i><span>0</span></h2>
                     <h2 class="text-right"><i class="fa fa-rocket f-left"></i><span>0</span></h2>
                     <p class="m-b-0">Completed Orders<span class="f-right">351</span></p>
                     

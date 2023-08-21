@@ -34,7 +34,6 @@ body{
 
 
 
-<<<<<<< HEAD
 <div class="first"> 
   
 @if ($errors->any())
@@ -45,13 +44,6 @@ body{
     </div>
 @endif
 
-=======
-<div class="first">
- <button type="button" class="btn btn-icon btn-secondary">
-                <span class="tf-icons bx bx-bell"></span>
-              </button>
-              
->>>>>>> 914f0ddd7725c6f9bd6b1472f874ef3cbf9bb9ef
         <div class="mt-3">
           <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBoth" aria-controls="offcanvasBoth">Ajouter un contact</button>
           <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasBoth" aria-labelledby="offcanvasBothLabel">
@@ -62,7 +54,7 @@ body{
         <small class="text-muted float-end"></small>
       </div>
       <div class="card-body">
-        <form  id="formcontact"  action="" method="POST">
+        <form  id="formcontact"  action="{{route('pages-contacts-contact-data')}}" method="POST">
            @csrf
           <div class="mb-3">
             <label class="form-label" for="basic-icon-default-fullname">contactName</label>
@@ -133,13 +125,16 @@ body{
           @enderror
             
             </div>
-            <label class="form-label" for="basic-icon-default-message">list</label>
+            <label class="form-label" for="basic-icon-default-message">Choice list</label>
             <div class="input-group input-group-merge">
-              <span id="basic-icon-default-message2" class="input-group-text"><i class="bx bx-comment"></i></span>
-              <input id="basic-icon-default-message"name="content" class="form-control" placeholder="Hi, Do you have a moment to talk Joe?"  aria-describedby="basic-icon-default-message2" required/>
+              <select class="form-select form-select-lg" id="inlineFormCustomSelect" name="select">
+                @foreach($listContactBlogs as $itemList)
+                  <option value="{{$itemList->id}}">{{$itemList->listName}}</option>
+                @endforeach
+              </select>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary">Send</button>
+          <button type="submit"  value="submitContactButtonSave" id="submitContactButtonSave" name="submitContactButtonSave" class="btn btn-primary">Send</button>
         </form>
       </div>
     </div>
@@ -191,7 +186,7 @@ body{
             @endif
             <!-- import-contacts.blade.php -->
             
-            <form action="{{ route('imports-contact-import') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('pages-contacts-contact-data') }}" method="post" enctype="multipart/form-data">
               @csrf
                 <p>Téléchargez votre fichier :</p>
                 <input type="file" name="contactFile" accept=".csv, .xlsx, .txt" class="file-input" required>
@@ -202,7 +197,7 @@ body{
                 
                 <p>Sélectionnez ou glissez-déposez votre fichier ici :</p>
                             
-                <input type="submit" value="Upload" class="submit-btn" ></button>
+                <input type="submit" value="Upload" id="Upload" name="Upload" class="submit-btn" >
                 <a href="#" class="submit-btn" onclick="window.close();">Quitter</a>
                  
             </form>
