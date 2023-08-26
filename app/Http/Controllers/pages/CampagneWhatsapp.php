@@ -58,10 +58,19 @@ class CampagneWhatsapp extends Controller
       $client = new \GuzzleHttp\Client();
       $url = "https://graph.facebook.com/v17.0/109528645513854/messages" ;
 
-       foreach($contactArray as $contact){
+      $selectListContact=$request->get('selectListContact');
+     // $selectListContact= implode(',', $selectListContact);
+     $listContactsFull =[];
+     foreach($selectListContact as $itemList){
+             $listContacts = DB::select ('select *from contacts as c, contact_list_contact_blog as clcb where c.id=clcb.contact_id and clcb.list_contact_blog_id='.$itemList);
+             $listContactsFull = array_merge($listContactsFull,$listContacts);
+     }
+
+      //dd($listContactsFull);
+       foreach($listContactsFull as $contact){
         $params = [
           "messaging_product" => "whatsapp",
-          "to" => $contact,
+          "to" => $contact->whatsapp,
           "type" => "template",
           "template" => [
           "name" =>$request->input('selectTemplate'),

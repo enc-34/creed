@@ -8,13 +8,13 @@
 </h4>
 
 <style>
-  
+
   .button{
     text-align: center;
     margin-right: auto;
     justify-content: right;
     text-align: right;
-  
+
   }
   .col-md-3{
     width: 50vh;
@@ -29,8 +29,8 @@
       <li class="nav-item"><a class="nav-link" href="{{url('pages/campagne-whatsapp')}}"><i class="bx bx-link-alt me-1"></i> Connections</a></li>
     </ul>
   </div>
-   
-  <div class="button">          
+
+  <div class="button">
   <div class="mt-3">
           <!-- Button trigger modal -->
           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal">
@@ -61,7 +61,7 @@
                       <label for="dobBasic" class="form-label">DOB</label>
                       <input type="text" id="dobBasic" class="form-control" placeholder="DD / MM / YY">
                     </div>
-                  
+
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
@@ -89,7 +89,7 @@
         </li>
       </ul>
       <div class="tab-content">
-        
+
         <div class="tab-pane fade" id="navs-pills-justified-profile" role="tabpanel">
         <div class="container">
        <div class="row">
@@ -126,7 +126,7 @@
                             <tr>
                                 <td>
                                     <ul class="action-list">
-                                        
+
                                         <li><a href="#" class="btn btn-danger"><i class="tf-icons bx bx-task"></i></a></li>
                                     </ul>
                                 </td>
@@ -161,7 +161,7 @@
                                 </td>
                                 <td>4</td>
                                 <td>Thank's sear</td>
-                                
+
                                 <td><a href="#" class="btn btn-sm btn-success"><i class="bx bx-purchase-tag-alt me-2"></i></a></td>
                             </tr>
                             <tr>
@@ -172,7 +172,7 @@
                                 </td>
                                 <td>5</td>
                                 <td>No, </td>
-                                
+
                                 <td><a href="#" class="btn btn-sm btn-success"><i class="bx bx-purchase-tag-alt me-2"></i></a></td>
                             </tr>
                         </tbody>
@@ -207,7 +207,7 @@
               </li>
             </ul>
           </nav>
-                           
+
                         </div>
                     </div>
                 </div>
@@ -219,7 +219,7 @@
   <div class="col-xl">
     <div class="card mb-4">
       <div class="card-header d-flex justify-content-between align-items-center">
-      
+
       <div class="mt-3">
           <!-- Button trigger modal -->
           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTop">
@@ -231,7 +231,7 @@
             <div class="modal-dialog">
               <form class="modal-content" action="{{route('pages-campagne-whatsapp-send-message')}}" method="post">
                 <div class="modal-header">
-                  
+
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -241,22 +241,22 @@
                       <input type="text" id="nameSlideTop" class="form-control" placeholder="Enter Name">
                     </div>
                   </div>
-                  
+
                     <div class="col mb-0">
                       <label for="emailSlideTop" class="form-label">Phone Number</label>
                       <input type="text" id="emailSlideTop" class="form-control" placeholder="237695458781">
                     </div>
                     <div class="col mb-0">
                       <label for="dobSlideTop" class="form-label">Template</label>
-                      
+
                         <select class="form-select form-select-lg" id="inlineFormCustomSelect" name="select">
                          @foreach($whatsappBusinessTemplate as $data)
                           <option value="{{$data['name']}}">{{$data['name']}}</option>
                          @endforeach
                         </select>
-          
+
                     </div>
-                  
+
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
@@ -266,8 +266,8 @@
             </div>
           </div>
         </div>
-      
-      
+
+
       <small class="text-muted float-end">Whatsapp automation</small>
       </div>
       <div class="card-body">
@@ -279,13 +279,13 @@
           </div>
           <div class="mb-3">
             <label class="form-label" for="basic-default-company">List contact</label>
-            <select class="form-select form-select-lg" id="inlineFormCustomSelect" name="selectListContact">
+            <select class="form-select form-select-lg" id="inlineFormCustomSelect" name="selectListContact[]" multiple="">
                 @foreach($listContactBlogs as $itemList)
                   <option value="{{$itemList->id}}">{{$itemList->listName}}</option>
                 @endforeach
               </select>
           </div>
-         
+
           <div class="mb-3">
             <label class="form-label" for="basic-default-company">Template</label>
                         <select class="form-select form-select-lg" id="inlineFormCustomSelect" name="selectTemplate">
@@ -294,7 +294,7 @@
                          @endforeach
                         </select>
           </div>
-          
+
           <button type="submit" class="btn btn-primary">Send</button>
         </form>
       </div>
@@ -304,17 +304,17 @@
       </div>
     </div>
   </div>
-    
+
 
   <hr class="m-0" />
   <div class="card-body">
     <div class="row gx-3 gy-2 align-items-center">
       <div class="col-md-3">
        <input type="text" class="form-control" i class="bx bx-search" placeholder="Search contact..." aria-label="Search..." aria-describedby="basic-addon-search31" />
-          
+
       </div>
       <div class="col-md-3">
-       
+
         <select class="form-select placement-dropdown" id="selectPlacement">
           <option value="top-0 start-0">Top left</option>
           <option value="top-0 start-50 translate-middle-x">Top center</option>
@@ -328,10 +328,10 @@
         </select>
       </div>
 
-  
+
       <div class="card-body">
         <div class="mt-3 mb-9">
-          
+
           <select id="largeSelect" class="form-select form-select-lg">
             <b><option><h2>Information sur le compte</h2></option></b>
             <option value="1">information1</option>
@@ -340,10 +340,10 @@
           </select>
         </div><br><br>
 
-  
+
 
         <div class="card">
- 
+
   <div class="table-responsive text-nowrap">
     <table class="table">
       <thead>
@@ -356,13 +356,13 @@
           <th>Lus</th>
           <th>Erreur</th>
           <th>Desinscrit</th>
-          
+
         </tr>
       </thead>
       <tbody>
         <tr>
           <th scope="row">1</th>
-          
+
           <td>Table cell</td>
           <td>Table cell</td>
           <td>Table cell</td>
@@ -373,7 +373,7 @@
         </tr>
         <tr>
           <th scope="row">2</th>
-         
+
           <td>Table cell</td>
           <td>Table cell</td>
           <td>Table cell</td>
@@ -384,7 +384,7 @@
         </tr>
         <tr>
           <th scope="row">3</th>
-         
+
           <td></td>
           <td></td>
           <td></td>
