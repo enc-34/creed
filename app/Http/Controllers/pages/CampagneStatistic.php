@@ -8,7 +8,7 @@ use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class CampagneBord extends Controller
+class CampagneStatistic extends Controller
 {
   public function index(Request $request)
   {
@@ -24,7 +24,7 @@ class CampagneBord extends Controller
     $campaigns = DB::select('select *from campaigns');
     $user1s = DB::select('select *from user1s');
     $listContactsBlogs = DB::select ('select *from list_contact_blogs');
-    return view('content.pages.pages-campagne-bord')->with('campaigns',$campaigns)->with('user1s',$user1s)->with('listContactBlogs',$listContactsBlogs)->with('currentUsersAccount',$currentUsersAccount)->with('currentUser',$currentUser);
+    return view('content.pages.pages-campagne-statistic')->with('campaigns',$campaigns)->with('user1s',$user1s)->with('listContactBlogs',$listContactsBlogs)->with('currentUsersAccount',$currentUsersAccount)->with('currentUser',$currentUser);
   }
   public function store(Request $request)
   {
@@ -35,7 +35,7 @@ class CampagneBord extends Controller
       'objectif' => ['required'],
       'userList' => ['required'],
       'campaignName' => ['required'],
-  ]);
+    ]);
     $campaign = campaign::create([
       'planning' =>new DateTime(),
       'campaignContenu' =>$request->input('contenue'),

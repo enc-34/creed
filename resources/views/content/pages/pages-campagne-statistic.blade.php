@@ -1,10 +1,10 @@
 @extends('layouts/contentNavbarLayout')
 
-@section('title', 'Campagne bord - Pages')
+@section('title', 'Campagne statistic - Pages')
 
 @section('content')
 <h4 class="fw-bold py-3 mb-4">
-  <span class="text-muted fw-light"> Tableau Bord  </span> Campagne
+  <span class="text-muted fw-light"> Statistic  </span> Campaign
 </h4>
 
 <style>
@@ -89,8 +89,8 @@
           </button>
 
           <!-- Modal -->
-          <form action="{{route('pages-campagne-bord-log')}}" method="post">
-          <form action="{{route('pages-campagne-bord-log')}}" method="post">
+          <form action="{{route('pages-campagne-statistic-log')}}" method="post">
+          
           <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
@@ -150,7 +150,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary">Save changes</button>
+                  <button type="submit" class="btn btn-primary">Send</button>
                 </div>
                 
               </div>

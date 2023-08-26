@@ -29,6 +29,7 @@ class Campaign extends Model
         'compaignObjective',
         'userList',
         'campaignName',
+        'template',
     ];
 
     /*

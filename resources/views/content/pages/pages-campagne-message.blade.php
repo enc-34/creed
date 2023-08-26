@@ -4,7 +4,7 @@
 
 @section('content')
 <h4 class="fw-bold py-3 mb-4">
-  <span class="text-muted fw-light">messages/</span> Notifications
+  <span class="text-muted fw-light">messages/</span> Campaign
 </h4>
 
 <hr class="m-0"/> <br><br>
@@ -166,7 +166,7 @@
         <h5 class="mb-0">SMS</h5> <small class="text-muted float-end">Whatsapp automation</small>
       </div>
       <div class="card-body">
-        <form>
+      <form  action="{{route('pages-campagne-message-multiple')}}" method="post">
           <div class="mb-3">
             <label class="form-label" for="basic-default-fullname">Campaign name</label>
             <input type="text" class="form-control" id="basic-default-fullname" placeholder="John Doe" />
@@ -200,6 +200,7 @@
               </select>
             </div>
           <button type="submit" class="btn btn-primary">Send</button>
+                
         </form>
       </div>
     </div>
@@ -208,5 +209,6 @@
       </div>
     </div>
   </div>
-    
+  
+   
 @endsection

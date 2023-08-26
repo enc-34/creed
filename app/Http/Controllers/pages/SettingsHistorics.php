@@ -5,7 +5,7 @@ namespace App\Http\Controllers\pages;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class AccountSettingsAccount extends Controller
+class SettingsHistorics extends Controller
 {
   public function index(Request $request)
   {
@@ -17,6 +17,6 @@ class AccountSettingsAccount extends Controller
          $currentUser = session('currentUser');
       }
      }
-    return view('content.pages.pages-account-settings-account')->with('currentUsersAccount',$currentUsersAccount)->with('currentUser',$currentUser);
+    return view('content.pages.pages-settings-historics')->with('currentUsersAccount',$currentUsersAccount)->with('currentUser',$currentUser);
   }
 }

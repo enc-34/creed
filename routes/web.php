@@ -28,14 +28,29 @@ Route::get('/layouts/container', $controller_path . '\layouts\Container@index')-
 Route::get('/layouts/blank', $controller_path . '\layouts\Blank@index')->name('layouts-blank');
 
 // pages
-Route::get('/pages/account-settings-account', $controller_path . '\pages\AccountSettingsAccount@index')->name('pages-account-settings-account');
-Route::get('/pages/account-settings-notifications', $controller_path . '\pages\AccountSettingsNotifications@index')->name('pages-account-settings-notifications');
-Route::get('/pages/account-settings-connections', $controller_path . '\pages\AccountSettingsConnections@index')->name('pages-account-settings-connections');
-Route::get('/pages/campagne-bord', $controller_path . '\pages\CampagneBord@index')->name('pages-campagne-bord');
-Route::post('/pages/campagne-bord', $controller_path . '\pages\CampagneBord@store')->name('pages-campagne-bord-log');
+Route::get('/pages/account-settings-profil', $controller_path . '\pages\AccountSettingsProfil@index')->name('pages-account-settings-profil');
+Route::get('/pages/account-settings-role', $controller_path . '\pages\AccountSettingsRole@index')->name('pages-account-settings-role');
+Route::get('/pages/account-settings-members', $controller_path . '\pages\AccountSettingsMembers@index')->name('pages-account-settings-members');
+Route::get('/pages/account-settings-meta-business', $controller_path . '\pages\AccountSettingsMetaBusiness@index')->name('pages-account-settings-meta-business');
+Route::get('/pages/account-settings-email', $controller_path . '\pages\AccountSettingsEmail@index')->name('pages-account-settings-email');
+Route::get('/pages/account-settings-SMS', $controller_path . '\pages\AccountSettingsSMS@index')->name('pages-account-settings-SMS');
+Route::get('/pages/settings-paiement', $controller_path . '\pages\SettingsPaiement@index')->name('pages-settings-paiement');
+Route::get('/pages/settings-historics', $controller_path . '\pages\SettingsHistorics@index')->name('pages-settings-historics');
+Route::get('/pages/settings-credit', $controller_path . '\pages\SettingsCredit@index')->name('pages-settings-credit');
+
+
+
+Route::get('/pages/campagne-statistic', $controller_path . '\pages\CampagneStatistic@index')->name('pages-campagne-statistic');
+Route::post('/pages/campagne-statistic', $controller_path . '\pages\CampagneStatistic@store')->name('pages-campagne-statistic-log');
 Route::get('/pages/campagne-email', $controller_path . '\pages\CampagneEmail@index')->name('pages-campagne-email');
 Route::get('/pages/campagne-whatsapp', $controller_path . '\pages\CampagneWhatsapp@index')->name('pages-campagne-whatsapp');
+//Route::post('/pages/campagne-whatsapp', $controller_path . '\pages\CampagneWhatsapp@sendCreateTemplateWhatsapp')->name('pages-campagne-whatsapp-campaign');
+Route::post('/pages/campagne-whatsapp', $controller_path . '\pages\CampagneWhatsapp@sendMessageWhatsapp')->name('pages-campagne-whatsapp-send-message');
+
+
 Route::get('/pages/campagne-message', $controller_path . '\pages\CampagneMessage@index')->name('pages-campagne-message');
+//Route::get('/pages/campagne-message', $controller_path . '\pages\CampagneMessage@sendWhatsappMessage')->name('pages-campagne-message');
+Route::post('/pages/campagne-message', $controller_path . '\pages\CampagneMessage@sendWhatsappMultiMessage')->name('pages-campagne-message-multiple');
 
 Route::get('/pages/contacts-list-folder', $controller_path . '\pages\ContactsListFolder@index')->name('pages-contacts-list-folder');
 Route::post('/pages/contacts-list-folder', $controller_path . '\pages\ContactsListFolder@store')->name('pages-contacts-list-folder-log');

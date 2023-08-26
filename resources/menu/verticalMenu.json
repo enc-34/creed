@@ -6,41 +6,9 @@
       "icon": "menu-icon tf-icons bx bx-home-circle",
       "slug": "dashboard-analytics"
     },
+   
     {
-      "name": "Layouts",
-      "icon": "menu-icon tf-icons bx bx-layout",
-      "slug": "layouts",
-      "submenu": [
-        {
-          "url": "/layouts/without-menu",
-          "name": "Without menu",
-          "slug": "layouts-without-menu"
-        },
-        {
-          "url": "/layouts/without-navbar",
-          "name": "Without navbar",
-          "slug": "layouts-without-navbar"
-        },
-        {
-          "url": "/layouts/container",
-          "name": "Container",
-          "slug": "layouts-container"
-        },
-        {
-          "url": "/layouts/fluid",
-          "name": "Fluid",
-          "slug": "layouts-fluid"
-        },
-        {
-          "url": "/layouts/blank",
-          "name": "Blank",
-          "slug": "layouts-blank",
-          "target": "_blank"
-        }
-      ]
-    },
-    {
-      "menuHeader": "Contact Manager"
+      "menuHeader": "Campaign"
     },
     {
       "name": "Campaign",
@@ -48,9 +16,9 @@
       "slug": "pages-campagne",
       "submenu": [
         {
-          "url": "/pages/campagne-bord",
-          "name": "Tableau de bord",
-          "slug": "pages-campagne-bord"
+          "url": "/pages/campagne-statistic",
+          "name": "Global statistic",
+          "slug": "pages-campagne-statistic"
         },
         {
           "url": "/pages/campagne-email",
@@ -70,26 +38,106 @@
       ]
     },
     {
-      "name": "Account Settings",
+      "menuHeader": "Contacts"
+    },
+    {
+      "name": "Contacts",
+      "icon": "menu-icon tf-icons bx bx-cube-alt",
+      "slug": "pages-contacts",
+      "submenu": [
+        {
+          "url": "/pages/contacts-list-folder",
+          "name": " List and folder",
+          "icon": "menu-icon tf-icons bx bx-cube-alt",
+          "slug": "pages-contacts-list-folder",
+          "target": "_blank"
+        },
+        {
+          "url": "/pages/contacts-contact",
+          "name": "contact",
+          "icon": "menu-icon tf-icons bx bx-cube-alt",
+          "slug": "pages-contacts-contact",
+          "target": "_blank"
+        }
+      ]
+    },
+    {
+      "menuHeader": "Accounts"
+    },
+    {
+      "name": "Account",
       "icon": "menu-icon tf-icons bx bx bx-dock-top",
       "slug": "pages-account-settings",
       "submenu": [
         {
-          "url": "/pages/account-settings-account",
-          "name": "Account",
-          "slug": "pages-account-settings-account"
+          "url": "/pages/account-settings-profil",
+          "name": "Profil",
+          "slug": "pages-account-settings-profil"
         },
         {
-          "url": "/pages/account-settings-notifications",
-          "name": "Notifications",
-          "slug": "pages-account-settings-notifications"
+          "url": "/pages/account-settings-role",
+          "name": "Role",
+          "slug": "pages-account-settings-role"
         },
         {
-          "url": "/pages/account-settings-connections",
-          "name": "Connections",
-          "slug": "pages-account-settings-connections"
+          "url": "/pages/account-settings-members",
+          "name": "Members",
+          "slug": "pages-account-settings-members"
         }
       ]
+    },
+    {
+      "menuHeader": "Advanced Setting"
+    },
+    {
+      "name": "Advanced setting",
+      "icon": "menu-icon tf-icons bx bx bx-dock-top",
+      "slug": "pages-account-settings",
+      "submenu": [
+        {
+          "url": "/pages/account-settings-meta-business",
+          "name": "MetaBusiness",
+          "slug": "pages-account-settings-meta-business"
+        },
+        {
+          "url": "/pages/account-settings-email",
+          "name": "Email",
+          "slug": "pages-account-settings-email"
+        },
+        {
+          "url": "/pages/account-settings-SMS",
+          "name": "SMS",
+          "slug": "pages-account-settings-SMS"
+        }
+      ]
+    },
+    {
+      "menuHeader": "Setting"
+    },
+    {
+      "name": "Settings",
+      "icon": "menu-icon tf-icons bx bx bx-dock-top",
+      "slug": "pages-settings",
+      "submenu": [
+        {
+          "url": "/pages/settings-paiement",
+          "name": "Paiement",
+          "slug": "pages-settings-paiement"
+        },
+        {
+          "url": "/pages/settings-historics",
+          "name": "Historics",
+          "slug": "pages-settings-historics"
+        },
+        {
+          "url": "/pages/settings-credit",
+          "name": "Credit",
+          "slug": "pages-settings-credit"
+        }
+      ]
+    },
+    {
+      "menuHeader": "Authentications"
     },
     {
       "name": "Authentications",
@@ -112,25 +160,6 @@
           "url": "/auth/forgot-password-basic",
           "name": "Forgot Password",
           "slug": "auth-forgot-password-basic",
-          "target": "_blank"
-        }
-      ]
-    },
-    {
-      "name": "Contacts",
-      "icon": "menu-icon tf-icons bx bx-cube-alt",
-      "slug": "pages-contacts",
-      "submenu": [
-        {
-          "url": "/pages/contacts-list-folder",
-          "name": " List and folder",
-          "slug": "pages-contacts-list-folder",
-          "target": "_blank"
-        },
-        {
-          "url": "/pages/contacts-contact",
-          "name": "contact",
-          "slug": "pages-contacts-contact",
           "target": "_blank"
         }
       ]
@@ -311,6 +340,39 @@
       "icon": "menu-icon tf-icons bx bx-table",
       "name": "Statistics",
       "slug": "tables-statistics"
+    },
+    {
+      "name": "Layouts",
+      "icon": "menu-icon tf-icons bx bx-layout",
+      "slug": "layouts",
+      "submenu": [
+        {
+          "url": "/layouts/without-menu",
+          "name": "Without menu",
+          "slug": "layouts-without-menu"
+        },
+        {
+          "url": "/layouts/without-navbar",
+          "name": "Without navbar",
+          "slug": "layouts-without-navbar"
+        },
+        {
+          "url": "/layouts/container",
+          "name": "Container",
+          "slug": "layouts-container"
+        },
+        {
+          "url": "/layouts/fluid",
+          "name": "Fluid",
+          "slug": "layouts-fluid"
+        },
+        {
+          "url": "/layouts/blank",
+          "name": "Blank",
+          "slug": "layouts-blank",
+          "target": "_blank"
+        }
+      ]
     },
     {
       "menuHeader": "Misc"

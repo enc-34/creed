@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('compaignObjective');
             $table->string('userList');
             $table->string('campaignName');
+            $table->string('template');
             $table->timestamps();
         });
     }

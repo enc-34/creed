@@ -231,23 +231,20 @@ body{
 <div class="first">
 
         
-        <div class="mt-3">
-          <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBackdrop" aria-controls="offcanvasBackdrop">Modifier les attributs d'une colone</button>
-          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasBackdrop" aria-labelledby="offcanvasBackdropLabel">
-            <div class="offcanvas-header">
-              <h5 id="offcanvasBackdropLabel" class="offcanvas-title">Modifier les attributs d'une colone</h5>
-              <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body my-auto mx-0 flex-grow-0">
-              <p class="text-center">Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.</p>
-              <button type="button" class="btn btn-primary mb-2 d-grid w-100">Continue</button>
-              <button type="button" class="btn btn-outline-secondary d-grid w-100" data-bs-dismiss="offcanvas">Cancel</button>
-            </div>
-          </div>
-          <div class="input-group input-group-merge">
-          <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
-          <input type="text" class="form-control" placeholder="Search a contact, email..." aria-label="Search..." aria-describedby="basic-addon-search31" />
-        </div>
+<div class="btn-group">
+          <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Action</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="javascript:void(0);">Delete</a></li>
+            <li><a class="dropdown-item" href="javascript:void(0);">Import a list</a></li>
+            <li><a class="dropdown-item" href="javascript:void(0);">Dupliquate</a></li>
+            <li><a class="dropdown-item" href="javascript:void(0);">Rename</a></li>
+            <li><a class="dropdown-item" href="javascript:void(0);">Copy/paste</a></li>
+            <li><a class="dropdown-item" href="javascript:void(0);">Add a contact</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="javascript:void(0);">Separated link</a></li>
+          </ul>
         </div>
         
       </div>

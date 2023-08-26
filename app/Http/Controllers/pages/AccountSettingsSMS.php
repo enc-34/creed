@@ -5,7 +5,7 @@ namespace App\Http\Controllers\pages;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class AccountSettingsNotifications extends Controller
+class AccountSettingsSMS extends Controller
 {
   public function index(Request $request)
   {
@@ -17,6 +17,6 @@ class AccountSettingsNotifications extends Controller
          $currentUser = session('currentUser');
       }
      }
-    return view('content.pages.pages-account-settings-notifications')->with('currentUsersAccount',$currentUsersAccount)->with('currentUser',$currentUser);
+    return view('content.pages.pages-account-settings-SMS')->with('currentUsersAccount',$currentUsersAccount)->with('currentUser',$currentUser);
   }
 }

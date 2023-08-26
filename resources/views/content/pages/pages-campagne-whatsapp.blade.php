@@ -1,10 +1,10 @@
 @extends('layouts/contentNavbarLayout')
 
-@section('title', 'Campagne whatsapp - Pages')
+@section('title', 'Campaign whatsapp - Pages')
 
 @section('content')
 <h4 class="fw-bold py-3 mb-4">
-  <span class="text-muted fw-light">whatsapp /</span> Notifications
+  <span class="text-muted fw-light">whatsapp /</span> Campaign
 </h4>
 
 <style>
@@ -219,42 +219,82 @@
   <div class="col-xl">
     <div class="card mb-4">
       <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="mb-0">SMS</h5> <small class="text-muted float-end">Whatsapp automation</small>
+      
+      <div class="mt-3">
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTop">
+          Simple message
+          </button>
+
+          <!-- Modal -->
+          <div class="modal modal-top fade" id="modalTop" tabindex="-1">
+            <div class="modal-dialog">
+              <form class="modal-content" action="{{route('pages-campagne-whatsapp-send-message')}}" method="post">
+                <div class="modal-header">
+                  
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col mb-3">
+                      <label for="nameSlideTop" class="form-label">Campaign Name</label>
+                      <input type="text" id="nameSlideTop" class="form-control" placeholder="Enter Name">
+                    </div>
+                  </div>
+                  
+                    <div class="col mb-0">
+                      <label for="emailSlideTop" class="form-label">Phone Number</label>
+                      <input type="text" id="emailSlideTop" class="form-control" placeholder="237695458781">
+                    </div>
+                    <div class="col mb-0">
+                      <label for="dobSlideTop" class="form-label">Template</label>
+                      
+                        <select class="form-select form-select-lg" id="inlineFormCustomSelect" name="select">
+                         @foreach($whatsappBusinessTemplate as $data)
+                          <option value="{{$data['name']}}">{{$data['name']}}</option>
+                         @endforeach
+                        </select>
+          
+                    </div>
+                  
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Send</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      
+      
+      <small class="text-muted float-end">Whatsapp automation</small>
       </div>
       <div class="card-body">
-        <form>
-          <div class="mb-3">
+      <form  action="{{route('pages-campagne-whatsapp-send-message')}}" method="post">
+      @csrf
+      <div class="mb-3">
             <label class="form-label" for="basic-default-fullname">Campaign name</label>
-            <input type="text" class="form-control" id="basic-default-fullname" placeholder="John Doe" />
+            <input type="text" class="form-control" name="campaignName" id="basic-default-fullname" placeholder="John Doe" />
           </div>
           <div class="mb-3">
-            <label class="form-label" for="basic-default-company">sender</label>
-            <input type="text" class="form-control" id="basic-default-company" placeholder="ACME Inc." />
-          </div>
-          <div class="mb-3">
-            <label class="form-label" for="basic-default-email">Email</label>
-            <div class="input-group input-group-merge">
-              <input type="text" id="basic-default-email" class="form-control" placeholder="john.doe" aria-label="john.doe" aria-describedby="basic-default-email2" />
-              <span class="input-group-text" id="basic-default-email2">@example.com</span>
-            </div>
-            <div class="form-text"> You can use letters, numbers & periods </div>
-          </div>
-          <div class="mb-3">
-            <label class="form-label" for="basic-default-phone">Phone No</label>
-            <input type="text" id="basic-default-phone" class="form-control phone-mask" placeholder="658 799 8941" />
-          </div>
-          <div class="mb-3">
-            <label class="form-label" for="basic-default-message">Message</label>
-            <textarea id="basic-default-message" class="form-control" placeholder="Hi, Do you have a moment to talk Joe?"></textarea>
-          </div>
-          <div class="mb-3">
-          <label class="form-label" for="basic-default-message">Choice list</label>
-              <select class="form-select form-select-lg" id="inlineFormCustomSelect" name="select">
-              
-                  <option value="">list</option>
-               
+            <label class="form-label" for="basic-default-company">List contact</label>
+            <select class="form-select form-select-lg" id="inlineFormCustomSelect" name="selectListContact">
+                @foreach($listContactBlogs as $itemList)
+                  <option value="{{$itemList->id}}">{{$itemList->listName}}</option>
+                @endforeach
               </select>
-            </div>
+          </div>
+         
+          <div class="mb-3">
+            <label class="form-label" for="basic-default-company">Template</label>
+                        <select class="form-select form-select-lg" id="inlineFormCustomSelect" name="selectTemplate">
+                         @foreach($whatsappBusinessTemplate as $data)
+                          <option value="{{$data['name']}}">{{$data['name']}}</option>
+                         @endforeach
+                        </select>
+          </div>
+          
           <button type="submit" class="btn btn-primary">Send</button>
         </form>
       </div>

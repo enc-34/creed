@@ -104,7 +104,55 @@
   <div class="col-xl">
     <div class="card mb-4">
       <div class="card-header d-flex justify-content-between align-items-center">
-        <h5 class="mb-0">SMS</h5> <small class="text-muted float-end">Whatsapp automation</small>
+         
+     <!-- Toggle Between Modals -->
+     <div class="col-lg-4 col-md-6">
+        <small class="text-light fw-semibold">Toggle Between Modals</small>
+        <div class="mt-3">
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalToggle">
+            Launch modal
+          </button>
+
+          <!-- Modal 1-->
+          <div class="modal fade" id="modalToggle" aria-labelledby="modalToggleLabel" tabindex="-1" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="modalToggleLabel">Modal 1</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  Show a second modal and hide this one with the button below.
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-primary" data-bs-target="#modalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Open second modal</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Modal 2-->
+          <div class="modal fade" id="modalToggle2" aria-hidden="true" aria-labelledby="modalToggleLabel2" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="modalToggleLabel2">Modal 2</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  Hide this modal and show the first with the button below.
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-primary" data-bs-target="#modalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">Back to first</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+      
+      <small class="text-muted float-end">Whatsapp automation</small>
       </div>
       <div class="card-body">
         <form>

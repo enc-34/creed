@@ -23,6 +23,7 @@ class CampaignFactory extends Factory
             'compaignObjective'=>"Booster le CA par des ventes",
             'userList'=>"[]",
             'campaignName'=>"Let's GO",
+            'template'=>"hello_word",
         ];
     }
 }
