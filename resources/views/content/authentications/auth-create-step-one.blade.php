@@ -24,21 +24,21 @@
                         </a>
                     </div>
                     <!-- /Logo -->
-                    <h4 class="mb-2">Adventure starts here 🚀</h4>
-                    <p class="mb-4">Make your app management easy and fun!</p>
+                    <h4 class="mb-2">Adventure starts here 🚀 with you</h4>
+                    <p class="mb-4">Make managing your digital marketing easy and fun!</p>
                     <form action="{{ route('auth-register-basic-create-step-one-post') }}" method="POST">
                         @csrf
-                        
+
                         <div class="card">
-                            <div class="card-header">Step 1: Basic Info</div>
+                            <div class="card-header">Step 1: Personal information</div>
                             @if($errors->any())
                                 {!! implode('', $errors->all('<div class="text-red">:message</div>')) !!}
                              @endif
-        
+
                             <div class="card-body">
-        
-                                   
-        
+
+
+
                                     <div class="mb-3">
                                         <label for="firstName" class="form-label">First Name</label>
                                         <input type="text" class="form-control @error('firstName') is-invalid @enderror" id="firstName" name="firstName" value="{{ old('firstName') }}" placeholder="Enter User First Name" autofocus >
@@ -56,16 +56,16 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
-                                    </div>                        
-                                              
+                                    </div>
+
                                 </div>
-    
+
                                 <div class="card-footer text-right">
                                     <button type="submit" class="btn btn-primary">Next</button>
                                 </div>
                             </div>
                         </form>
-                    
+
                 </div>
             </div>
         </div>

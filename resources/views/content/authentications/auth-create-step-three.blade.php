@@ -24,20 +24,20 @@
             </a>
           </div>
           <!-- /Logo -->
-          <h4 class="mb-2">Adventure starts here 🚀</h4>
-          <p class="mb-4">Make your app management easy and fun!</p>
+          <h4 class="mb-2">Adventure starts here 🚀with your Business</h4>
+          <p class="mb-4">Your business will reach its potential through the use of the best tools!!</p>
           <form action="{{ route('auth-register-basic-create-step-three-post') }}" method="POST">
                 @csrf
-                
+
                 <div class="card">
-                    <div class="card-header">Step 3: company</div>
+                    <div class="card-header">Step 3: Business Information</div>
                     @if($errors->any())
                         {!! implode('', $errors->all('<div class="text-red">:message</div>')) !!}
                     @endif
-  
+
                     <div class="card-body">
-  
-                           
+
+
                         <div class="mb-3">
                             <label for="campanyActivity" class="form-label">Campany Activity</label>
                             <input type="text" class="form-control @error('campanyActivity') is-invalid @enderror" id="campanyActivity" name="campanyActivity" value="{{ old('campanyActivity') }}" placeholder="Enter your Company Activity" autofocus >
@@ -91,7 +91,7 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
-                            </div> 
+                            </div>
                             <div class="mb-3">
                             <label for="country" class="form-label">Country</label>
                             <select class="form-select" id="country" name="country">
@@ -357,7 +357,7 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
-                        </div>          
+                        </div>
                             <div class="mb-3">
                                 <label for="picture" class="form-label">User Picture</label>
                                 <input type="text" class="form-control @error('picture') is-invalid @enderror" id="picture" name="picture" value="{{ old('picture') }}" placeholder="" autofocus>
@@ -366,8 +366,8 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
-                            </div>       
-  
+                            </div>
+
                         </div>
                     <div class="card-footer">
                         <div class="row">
@@ -389,7 +389,7 @@
             <button class="btn btn-primary d-grid w-100">
               Sign up
             </button>
-                           
+
                         </div>
                     </div>
                 </div>

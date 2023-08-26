@@ -28,7 +28,7 @@ class ContactsListFolder extends Controller
   public function store(Request $request)
   {
     //dd('bommmmm');
-    
+
     $contactListSaveEve =$request->input('submitContactListButtonSave');
     $contactFolderSaveEve =$request->input('submitFolderButtonSave');
    if (isset($contactListSaveEve))
@@ -36,7 +36,7 @@ class ContactsListFolder extends Controller
      # Publish-button was clicked
      $validate=$request->validate([
       'listName' => ['bail','required'],
-      'selectFolder' => ['required'],
+      'selectFolder' => '',
       'description' => ['required'],
      ]);
      $list_contact_blog=new listContactBlog();
@@ -49,7 +49,7 @@ class ContactsListFolder extends Controller
      $list_contact_blog->folders()->attach($idfold);
 
 
- 
+
      return redirect()->back()->with('success', 'your message,here');     }
 
    elseif (isset($contactFolderSaveEve)) {
@@ -57,7 +57,7 @@ class ContactsListFolder extends Controller
      $validate=$request->validate([
       'folderDescription' => ['required'],
       'foldername' => ['required'],
-      'selectListContact' => ['required'],
+      'selectListContact' => '',
     ]);
      $folder=new folder();
      $folder= folder::create([
@@ -71,5 +71,5 @@ class ContactsListFolder extends Controller
     return redirect()->back()->with('success', 'your message,here');     }
   }
 
-  
+
 }

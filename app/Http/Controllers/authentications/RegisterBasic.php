@@ -11,19 +11,19 @@ use Illuminate\Validation\Rules\Password;
 
 class RegisterBasic extends Controller
 {
-  
+
   public function index(Request $request)
   {
      $request->session()->forget(['currentUsersAccount', 'currentUser','account','firstName','lastName']);
      return view('content.authentications.auth-create-step-one');
-  } 
+  }
   public function createStepOne(Request $request)
   {
 
     return view('content.authentications.auth-create-step-two');
   }
   public function postCreateStepOne(Request $request)
-  { 
+  {
     $validated = $request->validate([
       'firstName' => 'required',
       'lastName' => 'required',
@@ -48,19 +48,19 @@ class RegisterBasic extends Controller
       'username' => ['required', 'string', 'max:255', 'unique:accounts', 'regex:/^\S*$/u'],
       'email'=> ['email:rfc','unique:accounts'],
       'userPhoneNumber' => ['required','regex:/^([0-9\s\-\+\(\)]*)$/','min:5','unique:accounts'],
-  ]); 
+  ]);
   $account = new Account();
   if($request->input('password')==$request->input('password_confirmation')and $request->input('username')!=
   '' and $request->input('email')!=''){
     $account-> userPhoneNumber= $request->input('userPhoneNumber');
     $account->userName= $request->input('username');
     $account->email= $request->input('email');
-    $account-> password= $request->input('password'); 
+    $account-> password= $request->input('password');
   }
   $account-> isActive= true;
   $account-> isPremiumAccount= true;
   $account-> role='Admin';
-    if(empty($request->session()->get('account'))){ 
+    if(empty($request->session()->get('account'))){
       //$product->fill($validatedData);
       $request->session()->put('account', $account);
     }else{
@@ -114,67 +114,31 @@ class RegisterBasic extends Controller
           'address'=> $request->input('address'),
           'accountId'=> $account->id,
         ]);
+        $defaulFolder=new folder();
+        $defaulFolder= folder::create([
+         'description'=> 'Defaul Folder',
+         'FolderName'=> 'Defaul Folder',
+         'contactList'=> '',
+        ]);
+        $defaulLlist= listContactBlog::create([
+          'listName'=> 'Defaul List',
+          'folderList'=> '',
+          'description'=> 'My Custom contact list',
+          ]);
+          $idfold=$defaulFolder->id;
+          $defaulLlist->folders()->attach($idfold);
         //dd($account->id);
         $request->session()->regenerate();
         session(['currentUsersAccount' => $account]);
         session(['currentUser' => $user]);
             return redirect()->route('dashboard-analytics')
             ->withSuccess('You have successfully registered & logged in!');
-  } 
+  }
 
   public function store(Request $request)
- 
-  {  
-   /* table->boolean('isPremiumAccount');
-            $table->string('role');
-            $table->string('modelUser');
-            $table->string('userName');
-            $table->string('password');
-            $table->boolean('isActive');
-            */
-    /* $table->id();
-            $table->unsignedBigInteger('accountId');
-            $table->foreign('accountId')->references('id')->on('accounts');
-            $table->string('campanyActivity');
-            $table->string('companyName');
-            $table->string('companyUrl');
-            $table->string('picture');
-            $table->string('professionalCode');
-            $table->string('postalCode');
-            $table->string('country');
-            $table->string('firstName');
-            $table->string('lastName');
-            $table->string('phoneNumber');
-            $table->string('address');
-            */
-    
-    /* $account = Account::create([
-      'userName'=> $request->input('username'),
-      'email'=> $request->input('email'),
-      'password'=> $request->input('password'),
-      'isActive'=> true,
-      'isPremiumAccount'=> false,
-      'role'=> 'Admin',
-      'modelUser'=> '',
-    ]); 
-    $user = User1::create([
-      'campanyActivity'=> $request->input('campanyActivity'),
-      'companyName'=> $request->input('companyName'),
-      'companyUrl'=> $request->input('companyUrl'),
-      'picture'=> $request->input('picture'),
-      'professionalCode'=> $request->input('professionalCode'),
-      'postalCode'=> $request->input('postalCode'),
-      'country'=> $request->input('country'),
-      'firstName'=> $request->input('firstName'),
-      'lastName'=> $request->input('lastName'),
-      'phoneNumber'=> $request->input('phoneNumber'),
-      'address'=> $request->input('address'),
-      'accountId'=> $account->id,
-    ]);  */
-    /* $request->session()->regenerate();
-    session(['currentUsersAccount' => $account]);
-        return redirect()->route('dashboard-analytics')
-        ->withSuccess('You have successfully registered & logged in!'); */
-    
+
+  {
+
+
   }
 }

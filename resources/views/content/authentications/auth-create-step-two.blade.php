@@ -24,21 +24,21 @@
             </a>
           </div>
           <!-- /Logo -->
-          <h4 class="mb-2">Adventure starts here 🚀</h4>
-          <p class="mb-4">Make your app management easy and fun!</p>
+          <h4 class="mb-2">Your success will also depend on it</h4>
+          <p class="mb-4">your safety and that of your customers are very important to us!</p>
           <form action="{{ route('auth-register-basic-create-step-two-post') }}" method="POST">
                 @csrf
-                
+
                 <div class="card">
                 @if($errors->any())
                     {!! implode('', $errors->all('<div class="text-red">:message</div>')) !!}
                 @endif
-                    <div class="card-header">Step 2: Status & Stock</div>
-  
+                    <div class="card-header">Step 2: Account Information</div>
+
                     <div class="card-body">
-  
-                           
-  
+
+
+
                         <div class="mb-3">
                             <label for="username" class="form-label">Username</label>
                             <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" name="username" value="{{ old('username') }}" placeholder="Enter your username" autofocus >
