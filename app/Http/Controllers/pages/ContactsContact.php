@@ -21,11 +21,11 @@ class ContactsContact extends Controller
         $currentUsersAccount = session('currentUsersAccount');
          $currentUser = session('currentUser');
       }
-    } 
+    }
     $contacts = DB::select ('select *from contacts');
     $listContactsBlogs = DB::select ('select *from list_contact_blogs');
    return view('content.pages.pages-contacts-contact')->with('contacts',$contacts)->with('listContactBlogs',$listContactsBlogs)->with('currentUsersAccount',$currentUsersAccount)->with('currentUser',$currentUser);
-  
+
   }
   public function store(Request $request)
   {
@@ -48,24 +48,42 @@ class ContactsContact extends Controller
       'phoneNumber'=>$request->input('sms'),
       'whatsapp'=>$request->input('whatsapp')
     ]);
-    $idlist=$request->input('select');
+    $idlist=$request->input('selectListContactAddOne');
     $contact->listcontactblogs()->attach($idlist);
-      
+
    // Pour terminer, on affiche "Bonjour, Homer !";
-   return redirect()->back()->with('success', 'your message,here'); 
-   
+   return redirect()->back()->with('success', 'your message,here');
+
   }
   elseif (isset($contactImport)) {
 
-   Excel::import(new ContactImport, $request->file('contactFile'));
+   $importedContact=Excel::toArray(new ContactImport, $request->file('contactFile'));
+   //dd($importedContact);
+   $idlist=$request->input('selectListAtach');
+  foreach($importedContact as $contactItemLevel1){
+    foreach($contactItemLevel1 as $contactItem){
+      $contact=new contact();
+      //dd($contactItem);
+      $contact = contact::create([
+      'email' =>$contactItem['email'],
+      'contactName' =>$contactItem['name'],
+      'phoneNumber'=>$contactItem['phone'],
+      'whatsapp'=>$contactItem['whatsapp']
+      ]);
+      $contact->listcontactblogs()->attach($idlist);
+    }
+
+  }
+
+   //dd($importedContact);
    return redirect()->back()->with('success', 'L\'importation des contacts a été effectuée avec succès.');
    // Pour terminer, on affiche "Bonjour, Homer !";
    //return back()->with('success', 'Les données ont été enregistrées avec succès.');
 
    }
-  
+
   }
 
- 
- 
+
+
 }

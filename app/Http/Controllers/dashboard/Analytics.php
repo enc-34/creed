@@ -16,13 +16,12 @@ class Analytics extends Controller
         // The key exists in the session.
         $currentUsersAccount = session('currentUsersAccount');
          $currentUser = session('currentUser');
+         return view('content.dashboard.dashboards-analytics',['currentUsersAccount'=>$currentUsersAccount],['currentUser'=>$currentUser]);
       }
+     }else{
+      $this->logout($request);
      }
-    
-    //dd($currentUser);
-   // $firstName=$currentUser[0]->firstName;
-    //dd($currentUser);
-    return view('content.dashboard.dashboards-analytics',['currentUsersAccount'=>$currentUsersAccount],['currentUser'=>$currentUser]);
+
   }
   public function logout(Request $request)
   {
