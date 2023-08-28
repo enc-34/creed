@@ -386,9 +386,7 @@
                 </label>
               </div>
             </div>
-            <button class="btn btn-primary d-grid w-100">
-              Sign up
-            </button>
+
 
                         </div>
                     </div>

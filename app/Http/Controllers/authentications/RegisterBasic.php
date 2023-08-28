@@ -57,7 +57,7 @@ class RegisterBasic extends Controller
     $account-> userPhoneNumber= $request->input('userPhoneNumber');
     $account->userName= $request->input('username');
     $account->email= $request->input('email');
-    $account-> password= $request->input('password');
+    $account-> password= Hash::make($request->input('password'));
   }
   $account-> isActive= true;
   $account-> isPremiumAccount= true;

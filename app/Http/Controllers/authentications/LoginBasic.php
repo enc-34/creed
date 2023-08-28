@@ -13,7 +13,7 @@ use Illuminate\Validation\Rules\Password;
 class LoginBasic extends Controller
 {
  public function index(Request $request)
- { 
+ {
   if ($request->session()->has('currentUsersAccount')) {
     // The key exists in the session.
     if ($request->session()->has('currentUser')) {
@@ -23,7 +23,7 @@ class LoginBasic extends Controller
     }
    }
   return view('content.authentications.auth-login-basic');
-  
+
  }
  public function authenticate(Request $request)
     {
@@ -40,8 +40,7 @@ class LoginBasic extends Controller
      $account=DB::select('select * from accounts where email="'.$request->email.'"'.'or userName="'.$request->email.'"');
      if(count($account) > 0) {
        $currentAccountUsers=$account[0];
-       if($request->password==$currentAccountUsers->password)
-       {
+       if (Hash::check($request->password, $currentAccountUsers->password)) { 
        // $request->session()->flush();
          $request->session()->regenerate();
          session(['currentUsersAccount' => $account[0]]);
@@ -49,10 +48,10 @@ class LoginBasic extends Controller
          session(['currentUser' => $users[0]]);
          return redirect()->route('dashboard-analytics')->withSuccess('You have successfully logged in!');
        }
-      } 
+      }
 
     return back()->withErrors([  'email' => 'Your provided credentials do not match in our records.',
     ])->onlyInput('email');
-        
-  }   
+
+  }
 }
