@@ -42,6 +42,15 @@ Route::get('/pages/settings-credit', $controller_path . '\pages\SettingsCredit@i
 
 Route::get('/pages/campagne-statistic', $controller_path . '\pages\CampagneStatistic@index')->name('pages-campagne-statistic');
 Route::post('/pages/campagne-statistic', $controller_path . '\pages\CampagneStatistic@store')->name('pages-campagne-statistic-log');
+
+Route::get('/pages/campagne-template', $controller_path . '\pages\CampagneTemplate@index')->name('pages-campagne-template'); 
+
+Route::get('/pages/campagne-template-one', $controller_path . '\pages\CampagneTemplate@campagneTemplateOne')->name('pages-campagne-template-one'); 
+Route::post('/pages/campagne-template-one', $controller_path . '\pages\CampagneTemplate@postCampagneTemplateOne')->name('pages-campagne-template-one-post'); 
+
+Route::get('/pages/campagne-template-two', $controller_path . '\pages\CampagneTemplate@campagneTemplateTwo')->name('pages-campagne-template-two'); 
+Route::post('/pages/campagne-template-two', $controller_path . '\pages\CampagneTemplate@postCampagneTemplateTwo')->name('pages-campagne-template-two-post'); 
+
 Route::get('/pages/campagne-email', $controller_path . '\pages\CampagneEmail@index')->name('pages-campagne-email');
 Route::get('/pages/campagne-whatsapp', $controller_path . '\pages\CampagneWhatsapp@index')->name('pages-campagne-whatsapp');
 //Route::post('/pages/campagne-whatsapp', $controller_path . '\pages\CampagneWhatsapp@sendCreateTemplateWhatsapp')->name('pages-campagne-whatsapp-campaign');

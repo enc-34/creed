@@ -21,6 +21,11 @@
           "slug": "pages-campagne-statistic"
         },
         {
+          "url": "/pages/campagne-template",
+          "name": "WhatsApp message template",
+          "slug": "pages-campagne-template"
+        },
+        {
           "url": "/pages/campagne-email",
           "name": "Email",
           "slug": "pages-campagne-email"

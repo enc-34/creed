@@ -7,8 +7,16 @@ use Illuminate\Http\Request;
 
 class Progress extends Controller
 {
-  public function index()
+  public function index(Request $request)
   {
-    return view('content.user-interface.ui-progress');
+    if ($request->session()->has('currentUsersAccount')) {
+      // The key exists in the session.
+      if ($request->session()->has('currentUser')) {
+        // The key exists in the session.
+        $currentUsersAccount = session('currentUsersAccount');
+         $currentUser = session('currentUser');
+      }
+     }
+    return view('content.user-interface.ui-progress')->with('currentUsersAccount',$currentUsersAccount)->with('currentUser',$currentUser);
   }
 }
