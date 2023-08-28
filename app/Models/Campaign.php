@@ -27,7 +27,6 @@ class Campaign extends Model
         'planning',
         'campaignContenu',
         'compaignObjective',
-        'userList',
         'campaignName',
         'template',
     ];

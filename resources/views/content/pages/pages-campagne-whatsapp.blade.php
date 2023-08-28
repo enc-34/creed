@@ -317,6 +317,24 @@
                                         <input type="text" class="form-control" name="campaignName"
                                             id="basic-default-fullname" placeholder="John Doe" />
                                     </div>
+                                    <div class="row">
+                    <div class="col mb-3">
+                      <label for="nameWithTitle" class="form-label">campaignContenue</label>
+                      <input type="text" name="contenue"  id="nameWithTitle" class="@error('contenue') is-invalid @enderror form-control" placeholder="Enter contenue">
+                      @error('contenue')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                       @enderror
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col mb-3">
+                      <label for="nameWithTitle" class="form-label">campaignObjectif</label>
+                      <input type="text" name="objectif"  id="nameWithTitle" class="@error('objectif') is-invalid @enderror form-control" placeholder="Enter objectif">
+                      @error('objectif')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                      @enderror
+                    </div>
+                  </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="basic-default-company">List contact</label>
                                         <select class="form-select form-select-lg" id="inlineFormCustomSelect"

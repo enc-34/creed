@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\authentications;
 use App\Models\Account;
 use App\Models\User1;
+use App\Models\Folder;
+use App\Models\ListContactBlog;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

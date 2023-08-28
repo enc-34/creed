@@ -21,7 +21,6 @@ class CampaignFactory extends Factory
             'planning'=>new DateTime(),
             'campaignContenu'=>"GOOD TO GREAT WITH CREED",
             'compaignObjective'=>"Booster le CA par des ventes",
-            'userList'=>"[]",
             'campaignName'=>"Let's GO",
             'template'=>"hello_word",
         ];

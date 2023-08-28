@@ -18,7 +18,6 @@ return new class extends Migration
             $table->dateTime('planning');
             $table->string('campaignContenu');
             $table->string('compaignObjective');
-            $table->string('userList');
             $table->string('campaignName');
             $table->string('template');
             $table->timestamps();
