@@ -118,7 +118,7 @@ class RegisterBasic extends Controller
           'address'=> $request->input('address'),
           'accountId'=> $account->id,
         ]);
-        dd($user);
+        //dd($user);
         $defaulFolder=new folder();
         $defaulFolder= folder::create([
          'description'=> 'Defaul Folder',

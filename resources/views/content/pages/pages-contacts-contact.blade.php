@@ -104,7 +104,7 @@
                                         <span class="input-group-text"><i class="bx bx-envelope"></i></span>
                                         <input type="text" name="email" id="basic-icon-default-email"
                                             class=" @error('email') is-invalid @enderror form-control"
-                                            placeholder="john.doe" aria-label="rh@creed.com"
+                                            placeholder="" aria-label="rh@creed.com"
                                             aria-describedby="basic-icon-default-email2" />
                                         @error('email')
                                             <div class="invalid-feedback">{{ $message }}</div>
@@ -121,7 +121,7 @@
                                       <span id="basic-icon-default-phone" class="input-group-text"><i
                                         class="bx bx-phone"></i></span>
                                         <input type="tel" name="whatsapp" id="phone"
-                                        class="@error('email') is-invalid @enderror form-control phone-mask"
+                                        class="@error('whatsapp') is-invalid @enderror form-control phone-mask"
                                             placeholder="" aria-label=""
                                             aria-describedby="basic-icon-default-whatsapp" />
                                             <span id="valid-msg" class="hide">✓ Valid</span>
@@ -137,13 +137,13 @@
                                         <span id="basic-icon-default-phone" class="input-group-text"><i
                                                 class="bx bx-phone"></i></span>
                                         <input type="tel" name="sms" id="sms"
-                                            class="@error('email') is-invalid @enderror form-control phone-mask"
+                                            class="@error('sms') is-invalid @enderror form-control phone-mask"
                                             placeholder="" aria-label=""
                                             aria-describedby="basic-icon-default-phone" />
-                                            <span id="valid-msg" class="hide">✓ Valid</span>
-					                                  <span id="error-msg" class="hide"></span>
+                                            <span id="valid-msgsms" class="hide">✓ Valid</span>
+					                                  <span id="error-msgsms" class="hide"></span>
 
-                                        @error('company')
+                                        @error('sms')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -153,7 +153,7 @@
                                     <div class="input-group input-group-merge">
                                         <span id="basic-icon-default-message2" class="input-group-text"><i
                                                 class="bx bx-comment"></i></span>
-                                        <textarea id="basic-icon-default-message" name="content1" class="form-control  @error('email') is-invalid @enderror"
+                                        <textarea id="basic-icon-default-message" name="content1" class="form-control  @error('content1') is-invalid @enderror"
                                             placeholder="Hi, Do you have a moment to talk Joe?" aria-label="Hi, Do you have a moment to talk Joe?"
                                             aria-describedby="basic-icon-default-message2"></textarea>
 
@@ -409,18 +409,23 @@
 <script>
   const input = document.querySelector("#phone");
   const inputsms = document.querySelector("#sms");
-const errorMsg = document.querySelector("#error-msg");
-const validMsg = document.querySelector("#valid-msg");
-
+  const errorMsg = document.querySelector("#error-msg");
+  const validMsg = document.querySelector("#valid-msg");
+  const errorMsgsms = document.querySelector("#error-msgsms");
+  const validMsgsms = document.querySelector("#valid-msgsms");
 // here, the index maps to the error code returned from getValidationError - see readme
 const errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"];
 
 // initialise plugin
 const iti = window.intlTelInput(input, {
-	utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js"
+	utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js",
+  hiddenInput: "full_phone",
+  preferredCountries: ["cm","ru","us", "co", "in", "de"],
 });
 const itisms = window.intlTelInput(inputsms, {
-	utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js"
+	utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js",
+  hiddenInput: "full_phone2",
+  preferredCountries: ["cm","ru","us", "co", "in", "de"],
 });
 
 const reset = () => {
@@ -449,12 +454,12 @@ inputsms.addEventListener('blur', () => {
 	reset();
 	if (inputsms.value.trim()) {
 		if (iti.isValidNumber()) {
-			validMsg.classList.remove("hide");
+			validMsgsms.classList.remove("hide");
 		} else {
 			inputsms.classList.add("error");
 			const errorCode = iti.getValidationError();
-			errorMsg.innerHTML = errorMap[errorCode];
-			errorMsg.classList.remove("hide");
+			errorMsgsms.innerHTML = errorMap[errorCode];
+			errorMsgsms.classList.remove("hide");
 		}
 	}
 });
