@@ -51,16 +51,18 @@ class RegisterBasic extends Controller
       'email'=> ['email:rfc','unique:accounts'],
       'userPhoneNumber' => ['required','regex:/^([0-9\s\-\+\(\)]*)$/','min:5','unique:accounts'],
   ]);
+
   $account = new Account();
   if($request->input('password')==$request->input('password_confirmation')and $request->input('username')!=
   '' and $request->input('email')!=''){
-    $account-> userPhoneNumber= $request->input('userPhoneNumber');
+    $account-> userPhoneNumber= $request->input('full_phone');
     $account->userName= $request->input('username');
     $account->email= $request->input('email');
     $account-> password= Hash::make($request->input('password'));
   }
   $account-> isActive= true;
   $account-> isPremiumAccount= true;
+  //dd($account);
   $account-> role='Admin';
     if(empty($request->session()->get('account'))){
       //$product->fill($validatedData);
@@ -90,7 +92,7 @@ class RegisterBasic extends Controller
         $account = $request->session()->get('account');
         $currentUser1 = $request->session()->get('user1');
 
-        //dd($account);
+
         $account = Account::create([
         'userName'=> $account->userName,
         'email'=> $account->email,
@@ -112,10 +114,11 @@ class RegisterBasic extends Controller
           'country'=> $request->input('country'),
           'firstName'=> $request->session()->get('firstName'),
           'lastName'=> $request->session()->get('lastName'),
-          'businessPhoneNumber'=> $request->input('businessPhoneNumber'),
+          'businessPhoneNumber'=> $request->input('full_phone'),
           'address'=> $request->input('address'),
           'accountId'=> $account->id,
         ]);
+        dd($user);
         $defaulFolder=new folder();
         $defaulFolder= folder::create([
          'description'=> 'Defaul Folder',

@@ -4,6 +4,7 @@
 
 @section('page-script')
     <script src="{{ asset('assets/js/pages-account-settings-account.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
 @endsection
 
 @section('content')
@@ -31,6 +32,13 @@
             justify-content: right;
             text-align: right;
         }
+        .hide {
+          display: none;
+        }
+        #valid-msg {
+          color: #00c900;
+        }
+
     </style>
 
 
@@ -107,34 +115,38 @@
                                     <div class="form-text"> You can use letters, numbers & periods </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label" for="basic-icon-default-phone">Phone number</label>
-                                    <div class="input-group input-group-merge">
-                                        <span id="basic-icon-default-phone2" class="input-group-text"><i
-                                                class="bx bx-phone"></i></span>
-                                        <input type="text" name="sms" id="basic-icon-default-phone"
-                                            class="@error('email') is-invalid @enderror form-control phone-mask"
-                                            placeholder="+237690861311" aria-label="658 799 8941"
-                                            aria-describedby="basic-icon-default-phone2" />
 
-                                        @error('company')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <label class="form-label" for="basic-icon-default-phone">WhatsApp</label>
-                                    <div class="input-group input-group-merge">
-                                        <span id="basic-icon-default-whatsapp" class="input-group-text"><i
-                                                class="bx bx-phone"></i></span>
-                                        <input type="text" name="whatsapp" id="basic-icon-default-whatsapp"
-                                            class="form-control phone-mask  @error('email') is-invalid @enderror"
-                                            placeholder="+237681978368" aria-label="658 799 8941"
-                                            aria-describedby="basic-icon-default-phone2" />
+                                    <label class="form-label" for="basic-icon-default-whatsapp">WhatsApp</label>
+                                    <div class="input-group mb-3">
+                                      <span id="basic-icon-default-phone" class="input-group-text"><i
+                                        class="bx bx-phone"></i></span>
+                                        <input type="tel" name="whatsapp" id="phone"
+                                        class="@error('email') is-invalid @enderror form-control phone-mask"
+                                            placeholder="" aria-label=""
+                                            aria-describedby="basic-icon-default-whatsapp" />
+                                            <span id="valid-msg" class="hide">✓ Valid</span>
+					                                  <span id="error-msg" class="hide"></span>
 
                                         @error('whatsapp')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
 
                                     </div>
+                                    <label class="form-label" for="basic-icon-default-phone">SMS</label>
+                                    <div class="input-group mb-3">
+                                        <span id="basic-icon-default-phone" class="input-group-text"><i
+                                                class="bx bx-phone"></i></span>
+                                        <input type="tel" name="sms" id="sms"
+                                            class="@error('email') is-invalid @enderror form-control phone-mask"
+                                            placeholder="" aria-label=""
+                                            aria-describedby="basic-icon-default-phone" />
+                                            <span id="valid-msg" class="hide">✓ Valid</span>
+					                                  <span id="error-msg" class="hide"></span>
 
+                                        @error('company')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="basic-icon-default-message">Description</label>
@@ -394,5 +406,63 @@
     </div>
     </div>
 
+<script>
+  const input = document.querySelector("#phone");
+  const inputsms = document.querySelector("#sms");
+const errorMsg = document.querySelector("#error-msg");
+const validMsg = document.querySelector("#valid-msg");
 
+// here, the index maps to the error code returned from getValidationError - see readme
+const errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"];
+
+// initialise plugin
+const iti = window.intlTelInput(input, {
+	utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js"
+});
+const itisms = window.intlTelInput(inputsms, {
+	utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js"
+});
+
+const reset = () => {
+	input.classList.remove("error");
+	inputsms.classList.remove("error");
+	errorMsg.innerHTML = "";
+	errorMsg.classList.add("hide");
+	validMsg.classList.add("hide");
+};
+
+// on blur: validate
+input.addEventListener('blur', () => {
+	reset();
+	if (input.value.trim()) {
+		if (iti.isValidNumber()) {
+			validMsg.classList.remove("hide");
+		} else {
+			input.classList.add("error");
+			const errorCode = iti.getValidationError();
+			errorMsg.innerHTML = errorMap[errorCode];
+			errorMsg.classList.remove("hide");
+		}
+	}
+});
+inputsms.addEventListener('blur', () => {
+	reset();
+	if (inputsms.value.trim()) {
+		if (iti.isValidNumber()) {
+			validMsg.classList.remove("hide");
+		} else {
+			inputsms.classList.add("error");
+			const errorCode = iti.getValidationError();
+			errorMsg.innerHTML = errorMap[errorCode];
+			errorMsg.classList.remove("hide");
+		}
+	}
+});
+
+// on keyup / change flag: reset
+input.addEventListener('change', reset);
+input.addEventListener('keyup', reset);
+inputsms.addEventListener('change', reset);
+inputsms.addEventListener('keyup', reset);
+</script>
 @endsection
