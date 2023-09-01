@@ -3,21 +3,39 @@
 @section('title', 'Campagne statistic - Pages')
 
 @section('content')
+ <b><h4 class="fw-bold py-3 mb-4">
+        Modèles de message 
+    </h4>
+ </b>
+ <style>
+  .collapse{
+    justify-content: right;
+            text-align: right;
+  }
+  
+  .p-3{
+    background-color: gray;
+  }
+  .first{
+    justify-content: left;
+            text-align: left
+  }
+</style>
+
+<br><br>
+<div class="col-xxl">
+  
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
-  <div class="container-fluid">
-  <form class="d-flex" onsubmit="return false">
-  <div class="nav-item d-flex align-items-center">
-            <i class="bx bx-search fs-4 lh-0"></i>
-            <input type="text" class="form-control border-0 shadow-none" placeholder="Search..." aria-label="Search...">
-          </div>
-      
-      </form>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-       
-        <li class="nav-item dropdown">
-        <div class="btn-group">
-        <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Warning</button>
+  
+   <form class="form-inline my-2 my-lg-0">
+     <div class="btn-group">
+      <i class="bx bx-search"></i>
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+     </div>
+    </form>
+  
+  <div class="btn-group">
+        <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Categories</button>
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" href="javascript:void(0);">Action</a></li>
           <li><a class="dropdown-item" href="javascript:void(0);">Another action</a></li>
@@ -27,39 +45,10 @@
           </li>
           <li><a class="dropdown-item" href="javascript:void(0);">Separated link</a></li>
         </ul>
-      </div>
-        </li>
-        <li class="nav-item dropdown">
-        <div class="btn-group">
-        <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Warning</button>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="javascript:void(0);">Action</a></li>
-          <li><a class="dropdown-item" href="javascript:void(0);">Another action</a></li>
-          <li><a class="dropdown-item" href="javascript:void(0);">Something else here</a></li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
-          <li><a class="dropdown-item" href="javascript:void(0);">Separated link</a></li>
-        </ul>
-      </div>
-        </li>
-        <li class="nav-item dropdown">
-        <div class="btn-group">
-        <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Warning</button>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="javascript:void(0);">Action</a></li>
-          <li><a class="dropdown-item" href="javascript:void(0);">Another action</a></li>
-          <li><a class="dropdown-item" href="javascript:void(0);">Something else here</a></li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
-          <li><a class="dropdown-item" href="javascript:void(0);">Separated link</a></li>
-        </ul>
-      </div></li>
+    </div>
 
-      <li class="nav-item dropdown">
-        <div class="btn-group">
-        <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Warning</button>
+    <div class="btn-group">
+        <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Langues</button>
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" href="javascript:void(0);">Action</a></li>
           <li><a class="dropdown-item" href="javascript:void(0);">Another action</a></li>
@@ -69,120 +58,282 @@
           </li>
           <li><a class="dropdown-item" href="javascript:void(0);">Separated link</a></li>
         </ul>
-      </div></li>
+    </div>
+
+    <div class="btn-group">
+        <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Option select</button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="javascript:void(0);">Action</a></li>
+          <li><a class="dropdown-item" href="javascript:void(0);">Another action</a></li>
+          <li><a class="dropdown-item" href="javascript:void(0);">Something else here</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" href="javascript:void(0);">Separated link</a></li>
+        </ul>
+    </div>
+
+    <div class="btn-group">
+        <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">30 derniers jours</button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="javascript:void(0);">Action</a></li>
+          <li><a class="dropdown-item" href="javascript:void(0);">Another action</a></li>
+          <li><a class="dropdown-item" href="javascript:void(0);">Something else here</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" href="javascript:void(0);">Separated link</a></li>
+        </ul>
+    </div>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      
+      <li class="nav-item">
+
     
-<li>
-     <div class="row gy-3">
       <!-- Modal Sizes -->
       <div class="col-lg-4 col-md-6">
-      
+        
         <!-- Small Modal -->
         <div class="modal fade" id="smallModal" tabindex="-1" aria-hidden="true">
           <div class="modal-dialog modal-sm" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel2">Modal title</h5>
+                
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
                 <div class="row">
                   <div class="col mb-3">
-                    <label for="nameSmall" class="form-label">Name</label>
+                    <label for="nameSmall" class="form-label">Espace pour le nom du modèle </label>
                     <input type="text" id="nameSmall" class="form-control" placeholder="Enter Name">
-                  </div>
-                </div>
-                <div class="row g-2">
-                  <div class="col mb-0">
-                    <label class="form-label" for="emailSmall">Email</label>
-                    <input type="text" class="form-control" id="emailSmall" placeholder="xxxx@xxx.xx">
-                  </div>
-                  <div class="col mb-0">
-                    <label for="dobSmall" class="form-label">DOB</label>
-                    <input id="dobSmall" type="text" class="form-control" placeholder="DD / MM / YY">
                   </div>
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary">Copier</button>
               </div>
             </div>
           </div>
         </div>
-     
-
+       
+        
         <div class="demo-inline-spacing">
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#smallModal">
-            Espace de nom
+          <button type="button" class="btn btn-outline-success my-2 my-sm-0" data-bs-toggle="modal" data-bs-target="#smallModal">
+            Nom
           </button>
-
-         
-        </div>
-      </div>
-
-      </li>
-      
-      <li>
-     <div class="row gy-3">
-      <!-- Modal Sizes -->
-      <div class="col-lg-4 col-md-6">
-      
-        <!-- Small Modal -->
-        <div class="modal fade" id="smallModal" tabindex="-1" aria-hidden="true">
-          <div class="modal-dialog modal-sm" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel2">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <div class="row">
-                  <div class="col mb-3">
-                    <label for="nameSmall" class="form-label">Name</label>
-                    <input type="text" id="nameSmall" class="form-control" placeholder="Enter Name">
-                  </div>
-                </div>
-                <div class="row g-2">
-                  <div class="col mb-0">
-                    <label class="form-label" for="emailSmall">Email</label>
-                    <input type="text" class="form-control" id="emailSmall" placeholder="xxxx@xxx.xx">
-                  </div>
-                  <div class="col mb-0">
-                    <label for="dobSmall" class="form-label">DOB</label>
-                    <input id="dobSmall" type="text" class="form-control" placeholder="DD / MM / YY">
-                  </div>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-              </div>
-            </div>
-          </div>
         </div>
      
+        </div>
+      
+      </li>
+     
+      <li class="nav-item">
 
-        <div class="demo-inline-spacing">
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#smallModal" >
+    
+      <!-- Modal Sizes -->
+      <div class="col-lg-4 col-md-6">
+        
+        
+      <!-- Fullscreen Modal -->
+      <div class="col-lg-4 col-md-6">
+        <div class="mt-3">
+          <button type="button" class="btn btn-outline-success my-2 my-sm-0" data-bs-toggle="modal" data-bs-target="#fullscreenModal">
             Comparer
           </button>
 
-         
-        </div>
+          <!-- Modal -->
+          <div class="modal fade" id="fullscreenModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="modalFullTitle">Comparer les Modèles</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                <nav class="navbar navbar-light bg-light rounded">
+                    
+                        <span>Comparer par:</span>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+  <div class="btn-group">
+        <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Taux de blocage</button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="javascript:void(0);">Action</a></li>
+          <li><a class="dropdown-item" href="javascript:void(0);">Another action</a></li>
+          <li><a class="dropdown-item" href="javascript:void(0);">Something else here</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" href="javascript:void(0);">Separated link</a></li>
+        </ul>
+    </div>
+      <div class="btn-group">
+        <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">7 derniers jours</button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="javascript:void(0);">Action</a></li>
+          <li><a class="dropdown-item" href="javascript:void(0);">Another action</a></li>
+          <li><a class="dropdown-item" href="javascript:void(0);">Something else here</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" href="javascript:void(0);">Separated link</a></li>
+        </ul>
       </div>
 
-      </li>
-        
-      </ul>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+      
+          <li class="nav-item">
+            <a class="dropdown-item" href="#"><i class="bx bx-question-mark"></i>Page d'aide</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Retour</button>
+        </form>
+      </div>
+ </nav><br>
+ <div class="row">
+
+
+  <!-- Headings -->
+  <div class="col-lg-9">
+
+    <div class="card mb-3">
     
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Modèle</th>
+      <th scope="col">Position</th>
+      <th scope="col">Langues</th>
+      <th scope="col">Statut</th>
+      <th scope="col">Messages envoyés<i class="bx bx-error-circle"></i></th>
+      <th scope="col">Messages ouvert<i class="bx bx-error-circle"></i></th>
+      <th scope="col">Motif principal<i class="bx bx-error-circle"></i></th>
+    </tr>
+  </thead>
+  
+</table>
+
+
+<table class="table">
+  <thead>
+  <tr>
+          <td class="py-3">
+                    <div class="btn-group">
+                <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">7 derniers jours</button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="javascript:void(0);">Action</a></li>
+                  <li><a class="dropdown-item" href="javascript:void(0);">Another action</a></li>
+                  <li><a class="dropdown-item" href="javascript:void(0);">Something else here</a></li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+                  <li><a class="dropdown-item" href="javascript:void(0);">Separated link</a></li>
+                </ul>
+              </div>
+          </td>
+          </tr> 
+  </thead>
+  
+</table>
+
+      <table class="table table-borderless">
+          <tr>
+          <td class="py-3">
+                    <div class="btn-group">
+                <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">7 derniers jours</button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="javascript:void(0);">Action</a></li>
+                  <li><a class="dropdown-item" href="javascript:void(0);">Another action</a></li>
+                  <li><a class="dropdown-item" href="javascript:void(0);">Something else here</a></li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+                  <li><a class="dropdown-item" href="javascript:void(0);">Separated link</a></li>
+                </ul>
+              </div>
+          </td>
+          </tr>                            
+      </table>
     </div>
+  </div>
+  <!-- Customizing headings -->
+
+  
+  
+  
+
+    
+
+  <div class=" col">
+    <div class="card mb-4">
+      <h5 class="card-header">Aperçu du message <small class="text-muted ms-1">Default</small></h5>
+      <table class="table table-borderless"><hr class="dropdown-divider">
+        <tbody>
+          <tr>
+            <td class="align-middle"><small class="text-light fw-semibold">Heading 1</small></td>
+            <td class="py-3">
+              <h1 class="mb-0">Bootstrap <small class="text-muted">heading</small></h1>
+            </td>
+          </tr>
+          <tr>
+            <td class="align-middle"><small class="text-light fw-semibold">Heading 2</small></td>
+            <td class="py-3">
+              <h2 class="mb-0">Bootstrap <small class="text-muted">heading</small></h2>
+            </td>
+          </tr>
+          <tr>
+            <td><small class="text-light fw-semibold">Heading 3</small></td>
+            <td class="py-3">
+              <h3 class="mb-0">Bootstrap <small class="text-muted">heading</small></h3>
+            </td>
+          </tr>
+          <tr>
+            <td><small class="text-light fw-semibold">Heading 4</small></td>
+            <td class="py-3">
+              <h4 class="mb-0">Bootstrap <small class="text-muted">heading</small></h4>
+            </td>
+          </tr>
+         
+          </tbody>
+        </table>
+      </div>
+    </div>
+   </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+     
+     </div>
+      
+      </li>
+      
+
+    <li>
+           <button type="submit" class="btn btn-outline-success "><a class="dropdown-item" href="{{ route('pages-campagne-template-one') }}">create model</a></button>
+       </a>
+    </li>
+ 
+    </ul>
+   
   </div>
 </nav>
 
-<div class="container">
-  <table class="table table-hover">
-    <thead>
-      <tr>
+<table class="table table-dark table-striped">
+   <thead>
+   <tr>
         <th>Nom du modele</th>
         <th>Langue</th>
         <th>Status</th>
@@ -192,45 +343,39 @@
         <th> Derniere mise a jour</th>
 
       </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-        <td>John</td>
-        <td>Doe</td>
-        <td>John</td>
-        <td>john@example.com</td>
-      </tr>
-      <tr>
-        <td>Mary</td>
-        <td>Moe</td>
-        <td>mary@example.com</td>
-        <td>John</td>
-        <td>Doe</td>
-        <td>John</td>
-        <td>john@example.com</td>
-      </tr>
-      <tr>
-        <td>July</td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
-        <td>John</td>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-      </tr>
-    </tbody>
-  </table>
+   </thead>
+   <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td colspan="2">Larry the Bird</td>
+      <td>@twitter</td>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+  </tbody>
+</table>
 </div>
 
-<div class="card-footer text-right">
-  
-     <a class="dropdown-item" href="{{ route('pages-campagne-template-one') }}">
-      <button type="submit" class="btn btn-primary">Create model</button>
-</a>
-  
-</div>
+
+
 
 @endsection
