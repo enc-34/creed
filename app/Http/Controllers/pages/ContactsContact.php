@@ -40,13 +40,14 @@ class ContactsContact extends Controller
       'sms' => ['required'],
       'contactName' => ['required'],
     ]);
+
     $contact=new contact();
     $contact = contact::create([
       'list' =>$request->input('content'),
       'email' =>$request->input('email'),
       'contactName' =>$request-> input('contactName'),
-      'phoneNumber'=>$request->input('sms'),
-      'whatsapp'=>$request->input('whatsapp')
+      'phoneNumber'=>$request->input('full_phone2'),
+      'whatsapp'=>$request->input('full_phone')
     ]);
     $idlist=$request->input('selectListContactAddOne');
     $contact->listcontactblogs()->attach($idlist);
