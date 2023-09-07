@@ -132,12 +132,13 @@ class RegisterBasic extends Controller
           ]);
           $idfold=$defaulFolder->id;
           $defaulLlist->folders()->attach($idfold);
+          $user->folders()->attach($idfold);
         //dd($account->id);
         $request->session()->regenerate();
         session(['currentUsersAccount' => $account]);
         session(['currentUser' => $user]);
             return redirect()->route('dashboard-analytics')
-            ->withSuccess('You have successfully registered & logged in!');
+            ->withSuccess('You have successfully registered & logged in!')->with('currentUsersAccount', $account)->with('currentUser',  $user);
   }
 
   public function store(Request $request)

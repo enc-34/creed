@@ -22,13 +22,42 @@ class ContactsContact extends Controller
          $currentUser = session('currentUser');
       }
     }
-    $contacts = DB::select ('select *from contacts');
-    $listContactsBlogs = DB::select ('select *from list_contact_blogs');
+
+  $contacts=[];
+  $listContactsBlogs=[];
+    $folders=DB::select( 'SELECT *
+      FROM folders
+      WHERE id IN (
+      SELECT folder_id
+      FROM folder_user1
+      WHERE user1_id =' .$currentUser->id.')');
+     // dd($folders);
+    foreach($folders as $folder){
+      $listContactsBlogs = DB::select( 'SELECT *
+      FROM list_contact_blogs
+      WHERE id IN (
+          SELECT list_contact_blog_id
+          FROM folder_list_contact_blog
+          WHERE folder_id ='.$folder->id.'
+        )');
+        //dd($listContactsBlogs);
+      foreach($listContactsBlogs as $list){
+        $contacts = array_merge($contacts,DB::select( 'SELECT *
+        FROM contacts
+        WHERE id IN (
+            SELECT contact_id
+            FROM contact_list_contact_blog
+            WHERE list_contact_blog_id =' .$list->id.
+         ' )'));
+
+      }
+      //dd($contacts);
+    }
    return view('content.pages.pages-contacts-contact')->with('contacts',$contacts)->with('listContactBlogs',$listContactsBlogs)->with('currentUsersAccount',$currentUsersAccount)->with('currentUser',$currentUser);
 
   }
   public function store(Request $request)
-  {
+{
     $contactAdd =$request->input('submitContactButtonSave');
     $contactImport =$request->input('Upload');
     if (isset($contactAdd))
@@ -84,7 +113,5 @@ class ContactsContact extends Controller
    }
 
   }
-
-
 
 }

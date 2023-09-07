@@ -19,10 +19,26 @@ class ContactsListFolder extends Controller
         $currentUsersAccount = session('currentUsersAccount');
          $currentUser = session('currentUser');
       }
-     }
-    $list_contact_blogs = DB::select('select *from list_contact_blogs');
-    $folders = DB::select('select *from folders');
-    return view('content.pages.pages-contacts-list-folder')->with('list_contact_blogs',$list_contact_blogs)->with('folders',$folders)->with('currentUsersAccount',$currentUsersAccount)->with('currentUser',$currentUser);
+    }
+    $listContactsBlogs=[];
+    $folders=DB::select( 'SELECT *
+      FROM folders
+      WHERE id IN (
+      SELECT folder_id
+      FROM folder_user1
+      WHERE user1_id =' .$currentUser->id.')');
+     // dd($folders);
+    foreach($folders as $folder){
+      $listContactsBlogs = DB::select( 'SELECT *
+      FROM list_contact_blogs
+      WHERE id IN (
+          SELECT list_contact_blog_id
+          FROM folder_list_contact_blog
+          WHERE folder_id ='.$folder->id.'
+        )');
+    }
+
+    return view('content.pages.pages-contacts-list-folder')->with('list_contact_blogs',$listContactsBlogs)->with('folders',$folders)->with('currentUsersAccount',$currentUsersAccount)->with('currentUser',$currentUser);
   }
 
   public function store(Request $request)
@@ -67,6 +83,8 @@ class ContactsListFolder extends Controller
      ]);
      $idlist=$request->input('selectListContact');
     $folder->listcontactblogs()->attach($idlist);
+    $currentUser = session('currentUser');
+    $folder->user1s()->attach($currentUser->id);
 
     return redirect()->back()->with('success', 'your message,here');     }
   }
