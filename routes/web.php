@@ -51,6 +51,9 @@ Route::post('/pages/campagne-template-one', $controller_path . '\pages\CampagneT
 Route::get('/pages/campagne-template-two', $controller_path . '\pages\CampagneTemplate@campagneTemplateTwo')->name('pages-campagne-template-two'); 
 Route::post('/pages/campagne-template-two', $controller_path . '\pages\CampagneTemplate@postCampagneTemplateTwo')->name('pages-campagne-template-two-post'); 
 
+Route::get('/pages/campagne-template-three', $controller_path . '\pages\CampagneTemplate@campagneTemplateThree')->name('pages-campagne-template-three'); 
+Route::post('/pages/campagne-template-three', $controller_path . '\pages\CampagneTemplate@postCampagneTemplateThree')->name('pages-campagne-template-three-post');
+
 Route::get('/pages/campagne-email', $controller_path . '\pages\CampagneEmail@index')->name('pages-campagne-email');
 Route::get('/pages/campagne-whatsapp', $controller_path . '\pages\CampagneWhatsapp@index')->name('pages-campagne-whatsapp');
 //Route::post('/pages/campagne-whatsapp', $controller_path . '\pages\CampagneWhatsapp@sendCreateTemplateWhatsapp')->name('pages-campagne-whatsapp-campaign');

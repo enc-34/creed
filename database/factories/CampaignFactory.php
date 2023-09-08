@@ -20,7 +20,7 @@ class CampaignFactory extends Factory
         return [
             'planning'=>new DateTime(),
             'campaignContenu'=>"GOOD TO GREAT WITH CREED",
-            'compaignObjective'=>"Booster le CA par des ventes",
+            'campaignObjective'=>"Booster le CA par des ventes",
             'campaignName'=>"Let's GO",
             'template'=>"hello_word",
         ];

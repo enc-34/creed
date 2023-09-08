@@ -159,7 +159,7 @@
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                       <span class="navbar-toggler-icon"></span>
                     </button>
-  <div class="btn-group">
+      <div class="btn-group">
         <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Taux de blocage</button>
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" href="javascript:void(0);">Action</a></li>
@@ -193,7 +193,7 @@
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Retour</button>
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><a class="dropdown-item" href="{{ route('pages-campagne-template') }}">Retour</a></button>
         </form>
       </div>
  </nav><br>

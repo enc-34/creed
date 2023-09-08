@@ -1,7 +1,9 @@
 @extends('layouts/contentNavbarLayout')
 
 @section('title', 'Campagne statistic - Pages')
-
+@section('page-script')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+@endsection
 @section('content')
 
 <b><h4 class="fw-bold py-3 mb-4">
@@ -49,10 +51,12 @@
           <li class="nav-item">
             <a class="dropdown-item" href="#"><i class="bx bx-question-mark"></i>Page d'aide</a>
           </li>
+
+          <li>
+               <button  class="btn btn-outline-success my-2 my-sm-0" type="submit" id="submit" ><a class="dropdown-item" href="{{ route('pages-campagne-template-one') }}">Retour</a></button>
+          </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Retour</button>
-        </form>
+       
       </div>
  </nav><br><br><br>
 
@@ -91,7 +95,7 @@
           <!-- Input Sizing -->
   
      <div class="card mb-4">
-      <h5 class="card-header">Modifier le modele <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Envoyer</button>
+      <h5 class="card-header">Modifier le modele <button class="btn btn-outline-success my-2 my-sm-0" type="submit" disabled="disabled">Envoyer</button>
       </h5>
       <div class="card-body">
 
@@ -186,5 +190,25 @@
     </div>
   </div>
 </div>
+
+
+<script>
+      let inputElt = document.getElementById('exampleFormControlInput1');
+        let btn = document.getElementById('submit');
+      // on commence par desactiver le bouton quand le javascript se charge
+      btn.disabled = true;
+
+      // ajout d'une fonction appelee des qu'une touche est enfoncee
+      
+      function changement()
+          {
+          if ((document.getElementById('flexRadioDefault1').checked || document.getElementById('flexRadioDefault2').checked) && (inputElt.value != "") && (document.getElementById('choix1')||document.getElementById('choix2')||document.getElementById('choix3'))){
+            btn.disabled = false;
+          }
+           else {
+          btn.disabled = true;
+        } 
+      } 
+</script>
 
 @endsection
