@@ -3,6 +3,7 @@
  */
 
 'use strict';
+//require('jquery');
 
 let menu, animate;
 

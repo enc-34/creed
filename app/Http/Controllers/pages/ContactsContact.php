@@ -20,6 +20,7 @@ class ContactsContact extends Controller
         // The key exists in the session.
         $currentUsersAccount = session('currentUsersAccount');
          $currentUser = session('currentUser');
+         
       }
     }
 
@@ -107,9 +108,6 @@ class ContactsContact extends Controller
 
    //dd($importedContact);
    return redirect()->back()->with('success', 'L\'importation des contacts a été effectuée avec succès.');
-   // Pour terminer, on affiche "Bonjour, Homer !";
-   //return back()->with('success', 'Les données ont été enregistrées avec succès.');
-
    }
 
   }

@@ -20,7 +20,8 @@
     "jquery": "~3.5.1",
     "jquery.emojiarea.js": "^0.1.8-beta",
     "masonry-layout": "~4.2.1",
-    "perfect-scrollbar": "~1.5.1"
+    "perfect-scrollbar": "~1.5.1",
+    "select2": "^4.1.0-rc.0"
   },
   "devDependencies": {
     "axios": "^0.25",

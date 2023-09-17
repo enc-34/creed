@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
-
+use App\Models\contact;
 class RegisterBasic extends Controller
 {
 
@@ -133,6 +133,14 @@ class RegisterBasic extends Controller
           $idfold=$defaulFolder->id;
           $defaulLlist->folders()->attach($idfold);
           $user->folders()->attach($idfold);
+          $contact=new contact();
+          $contact = contact::create([
+            'email' =>$request->input('professionalCode'),
+            'contactName' =>$request-> input('companyName'),
+            'phoneNumber'=>$request->input('full_phone'),
+            'whatsapp'=>$request->input('full_phone')
+          ]);
+          $contact->listcontactblogs()->attach($defaulLlist->id);
         //dd($account->id);
         $request->session()->regenerate();
         session(['currentUsersAccount' => $account]);
