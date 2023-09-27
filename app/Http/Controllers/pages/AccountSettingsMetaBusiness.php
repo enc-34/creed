@@ -16,6 +16,8 @@ class AccountSettingsMetaBusiness extends Controller
         $currentUsersAccount = session('currentUsersAccount');
          $currentUser = session('currentUser');
       }
+     }else{
+      return view('content.authentications.auth-login-basic');
      }
     return view('content.pages.pages-account-settings-meta-business')->with('currentUsersAccount',$currentUsersAccount)->with('currentUser',$currentUser);
   }

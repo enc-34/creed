@@ -19,7 +19,9 @@ class ContactsListFolder extends Controller
         $currentUsersAccount = session('currentUsersAccount');
          $currentUser = session('currentUser');
       }
-    }
+    }else{
+      return view('content.authentications.auth-login-basic');
+     }
     $listContactsBlogs=[];
     $folders=DB::select( 'SELECT *
       FROM folders

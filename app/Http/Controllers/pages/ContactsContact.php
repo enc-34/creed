@@ -20,9 +20,11 @@ class ContactsContact extends Controller
         // The key exists in the session.
         $currentUsersAccount = session('currentUsersAccount');
          $currentUser = session('currentUser');
-         
+
       }
-    }
+    }else{
+      return view('content.authentications.auth-login-basic');
+     }
 
   $contacts=[];
   $listContactsBlogs=[];

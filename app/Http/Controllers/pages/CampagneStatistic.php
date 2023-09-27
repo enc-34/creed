@@ -19,6 +19,8 @@ class CampagneStatistic extends Controller
         $currentUsersAccount = session('currentUsersAccount');
          $currentUser = session('currentUser');
       }
+     }else{
+      return view('content.authentications.auth-login-basic');
      }
 
     $campaigns = DB::select('select *from campaigns');
@@ -42,7 +44,7 @@ class CampagneStatistic extends Controller
       'compaignObjective' =>$request-> input('objectif'),
       'userList'=>$request->input('userList'),
       'campaignName'=>$request->input('campaignName'),
-     
+
     ]);
 
     $idlist=$request->input('userList');
@@ -50,7 +52,7 @@ class CampagneStatistic extends Controller
     $currentUser = session('currentUser');
     $iduser=$currentUser->id;
    // $campaign->user1s()->attach($iduser);
-      
+
   // Pour terminer, on affiche "Bonjour, Homer !";
   return back()->with('success', 'Les données ont été enregistrées avec succès.');
 

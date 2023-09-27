@@ -17,6 +17,8 @@ class CampagneMessage extends Controller
         $currentUsersAccount = session('currentUsersAccount');
          $currentUser = session('currentUser');
       }
+     }else{
+      return view('content.authentications.auth-login-basic');
      }
      //$this->sendWhatsappMultiMessage( $request);
     return view('content.pages.pages-campagne-message')->with('currentUsersAccount',$currentUsersAccount)->with('currentUser',$currentUser);
@@ -53,7 +55,7 @@ class CampagneMessage extends Controller
 
       $url = "https://graph.facebook.com/v17.0/109528645513854/messages" ;
      foreach($contactArray as $contact){
-      $params = [  
+      $params = [
         "messaging_product" => "whatsapp",
         "to" => $contact,
         "type" => "template",
@@ -67,11 +69,11 @@ class CampagneMessage extends Controller
       $headers = ["Authorization" => "Bearer EAAJHMOd6SJcBO4oZAD4fKnOk3yYr9WlJPiX2bXRKvL3ct8vRUAZA5EIbFD0aCmakw6uaGev8wqXHhdOQOLPgBQnpRo8nzf25HGXZAaRfkdxftilLElZA7NyJDudwm6KR6D9SH7B4vBEnkI1mBJ4seDM2f54XyRsvl3dvCKaP8TM9RSZAEUqwTqnQjkCODJIglPnpd6DtyU8ON2FzLez4ZD" ];
 
       $client = new \GuzzleHttp\Client();
-  
+
       //dd($params);
-  
+
       $response = $client->request('POST', $url, ["headers" => $headers, "json" => $params]);
-    
+
      }
     $data = json_decode($response->getBody(), true);
     Log::Info($data);

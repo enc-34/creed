@@ -16,6 +16,8 @@ class AccountSettingsRole extends Controller
         $currentUsersAccount = session('currentUsersAccount');
          $currentUser = session('currentUser');
       }
+     }else{
+      return view('content.authentications.auth-login-basic');
      }
     return view('content.pages.pages-account-settings-role')->with('currentUsersAccount',$currentUsersAccount)->with('currentUser',$currentUser);
   }

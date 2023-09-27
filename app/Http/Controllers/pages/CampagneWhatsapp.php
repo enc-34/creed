@@ -35,7 +35,9 @@ class CampagneWhatsapp extends Controller
 
         $data = json_decode($response->getBody(), true);
         Log::Info($data);
-      }
+      }else{
+        return view('content.authentications.auth-login-basic');
+       }
     }
     $listContactsBlogs = DB::select ('select *from list_contact_blogs');
 
@@ -97,7 +99,7 @@ class CampagneWhatsapp extends Controller
       foreach($selectListContact as $itemList){
         $campaign->listcontactblogs()->attach($itemList);
       }
-     
+
 
       return back()->with('success', 'Les données ont été enregistrées avec succès.');
     }

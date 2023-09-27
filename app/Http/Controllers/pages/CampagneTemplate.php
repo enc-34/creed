@@ -7,6 +7,10 @@ use App\Models\campaign;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rules\File;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 
 class CampagneTemplate extends Controller
@@ -20,8 +24,11 @@ class CampagneTemplate extends Controller
         $currentUsersAccount = session('currentUsersAccount');
          $currentUser = session('currentUser');
       }
+      return view('content.pages.pages-campagne-template')->with('currentUsersAccount',$currentUsersAccount)->with('currentUser',$currentUser);
+
+     }else{
+      return view('content.authentications.auth-login-basic');
      }
-    return view('content.pages.pages-campagne-template')->with('currentUsersAccount',$currentUsersAccount)->with('currentUser',$currentUser);
   }
   public function campagneTemplateOne(Request $request)
   {
@@ -31,7 +38,9 @@ class CampagneTemplate extends Controller
         // The key exists in the session.
         $currentUsersAccount = session('currentUsersAccount');
          $currentUser = session('currentUser');
-      }
+      }else{
+        return view('content.authentications.auth-login-basic');
+       }
      }
     return view('content.pages.pages-campagne-template-one')->with('currentUsersAccount',$currentUsersAccount)->with('currentUser',$currentUser);
   }
@@ -47,7 +56,9 @@ class CampagneTemplate extends Controller
         // The key exists in the session.
         $currentUsersAccount = session('currentUsersAccount');
          $currentUser = session('currentUser');
-      }
+      }else{
+        return view('content.authentications.auth-login-basic');
+       }
      }
     return view('content.pages.pages-campagne-template-two')->with('currentUsersAccount',$currentUsersAccount)->with('currentUser',$currentUser);
   }
@@ -64,11 +75,51 @@ class CampagneTemplate extends Controller
         $currentUsersAccount = session('currentUsersAccount');
          $currentUser = session('currentUser');
       }
+     }else{
+      return view('content.authentications.auth-login-basic');
      }
     return view('content.pages.pages-campagne-template-three')->with('currentUsersAccount',$currentUsersAccount)->with('currentUser',$currentUser);
   }
-  public function postCampagneTemplateThree()
+  public function postCampagneTemplateThree(Request $request)
   {
+//important: https://www.scratchcode.io/laravel-video-upload-tutorial-with-example/
+// https://www.laravelia.com/post/laravel-10-validate-any-type-of-file-example
+//https://medium.com/swlh/upload-video-in-chunks-with-preview-and-progress-bar-using-javascript-5eb95745f9c5
+    $submitVideo =$request->formFilVideoSubmit;
+    $imageSubmit =$request->formFilImageSubmit;
+    if (isset($imageSubmit)){
+
+      request()->validate([
+        'formFileImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    ]);
+
+    if ($files = $request->file('formFileImage')) {
+      $currentUser = session('currentUser');
+      $currentDate = new DateTime();
+      $fileName =  "CREED-images-".$currentUser->id.'-'.time(). '.' . $request->formFileImage->getClientOriginalExtension();
+    $request->formFileImage->storeAs('images', $fileName);
+      return response()->json(["image" => $fileName])->with('success','Image has been successfully uploaded');
+    }
+    }elseif(isset($submitVideo)){
+      Validator::validate($request->all(), [
+        'formFileVideo' => [
+            'required',
+            File::types(['mp3', 'mp4'])
+                ->min(50)
+                ->max(20000),
+        ]
+    ]);
+
+    $currentUser = session('currentUser');
+    $currentDate = new DateTime();
+    $fileName =  "CREED-videos-".$currentUser->id.'-'.time(). '.'. $request->formFileVideo->getClientOriginalExtension();
+    $filePath =  'videos/'.$fileName;
+    $isFileUploaded = Storage::disk('public')->put($filePath, file_get_contents($request->formFileVideo));
+    // File URL to access the video in frontend
+        $url = Storage::disk('public')->url($filePath);
+        return back()
+        ->with('success','Video has been successfully uploaded');
 
   }
+}
 }

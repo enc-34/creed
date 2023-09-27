@@ -16,6 +16,8 @@ class AccountSettingsMembers extends Controller
         $currentUsersAccount = session('currentUsersAccount');
          $currentUser = session('currentUser');
       }
+     }else{
+      return view('content.authentications.auth-login-basic');
      }
     return view('content.pages.pages-account-settings-members')->with('currentUsersAccount',$currentUsersAccount)->with('currentUser',$currentUser);
   }
