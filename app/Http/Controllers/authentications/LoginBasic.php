@@ -28,7 +28,7 @@ class LoginBasic extends Controller
  public function authenticate(Request $request)
     {
       $validated = $request->validate([
-        'email' => ['required','email'],
+        'email' => ['required'],
         'password' => ['required', Password::min(8)
         ->letters()
         ->mixedCase()
@@ -40,7 +40,7 @@ class LoginBasic extends Controller
      $account=DB::select('select * from accounts where email="'.$request->email.'"'.'or userName="'.$request->email.'"');
      if(count($account) > 0) {
        $currentAccountUsers=$account[0];
-       if (Hash::check($request->password, $currentAccountUsers->password)) { 
+       if (Hash::check($request->password, $currentAccountUsers->password)) {
        // $request->session()->flush();
          $request->session()->regenerate();
          session(['currentUsersAccount' => $account[0]]);

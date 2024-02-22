@@ -24,7 +24,7 @@ class CampagneWhatsapp extends Controller
 
         $url = "https://graph.facebook.com/v17.0/115801141548544/message_templates?fields=name,status&limit=3";
 
-        $headers = ["Authorization" => "Bearer EAAJHMOd6SJcBO9uVafyTgO30v2tZBrYG7JZAksJmng1Ef2xy9q5G56ERJicAtpIDjFfsHCAKU0nhiz3Is5kB2mZCoULPRZCb9sODio2Jy0scgWlisxK61jzZCNJYbkYrOAkkD9a90ZBmJAFZBjYI2EnGUAQkxdXeEreYlsLSQa67TWFsWZAdSvBW3vrJ06BLC97RE2v7yDZA83uoouVSkErAZD"
+        $headers = ["Authorization" => env('ACCESS_TOKEN')
       ,  "content-type"=> "application/json",
                     ];
 

@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 $controller_path = 'App\Http\Controllers';
 
 // Main Page Route
-Route::get('/', $controller_path . '\authentications\LoginBasic@index')->name('dashboard-analytics');
+Route::get('/', $controller_path . '\authentications\LoginBasic@index')->name('signin');
 Route::get('/dashboard-analytics', $controller_path . '\dashboard\Analytics@index')->name('dashboard-analytics');
 Route::get('/layouts/navbar', $controller_path . '\dashboard\Analytics@logout')->name('dashboard-analytics-logout');
 
@@ -43,15 +43,15 @@ Route::get('/pages/settings-credit', $controller_path . '\pages\SettingsCredit@i
 Route::get('/pages/campagne-statistic', $controller_path . '\pages\CampagneStatistic@index')->name('pages-campagne-statistic');
 Route::post('/pages/campagne-statistic', $controller_path . '\pages\CampagneStatistic@store')->name('pages-campagne-statistic-log');
 
-Route::get('/pages/campagne-template', $controller_path . '\pages\CampagneTemplate@index')->name('pages-campagne-template'); 
+Route::get('/pages/campagne-template', $controller_path . '\pages\CampagneTemplate@index')->name('pages-campagne-template');
 
-Route::get('/pages/campagne-template-one', $controller_path . '\pages\CampagneTemplate@campagneTemplateOne')->name('pages-campagne-template-one'); 
-Route::post('/pages/campagne-template-one', $controller_path . '\pages\CampagneTemplate@postCampagneTemplateOne')->name('pages-campagne-template-one-post'); 
+Route::get('/pages/campagne-template-one', $controller_path . '\pages\CampagneTemplate@campagneTemplateOne')->name('pages-campagne-template-one');
+Route::post('/pages/campagne-template-one', $controller_path . '\pages\CampagneTemplate@postCampagneTemplateOne')->name('pages-campagne-template-one-post');
 
-Route::get('/pages/campagne-template-two', $controller_path . '\pages\CampagneTemplate@campagneTemplateTwo')->name('pages-campagne-template-two'); 
-Route::post('/pages/campagne-template-two', $controller_path . '\pages\CampagneTemplate@postCampagneTemplateTwo')->name('pages-campagne-template-two-post'); 
+Route::get('/pages/campagne-template-two', $controller_path . '\pages\CampagneTemplate@campagneTemplateTwo')->name('pages-campagne-template-two');
+Route::post('/pages/campagne-template-two', $controller_path . '\pages\CampagneTemplate@postCampagneTemplateTwo')->name('createTemplateStepTwo');
 
-Route::get('/pages/campagne-template-three', $controller_path . '\pages\CampagneTemplate@campagneTemplateThree')->name('pages-campagne-template-three'); 
+Route::get('/pages/campagne-template-three', $controller_path . '\pages\CampagneTemplate@campagneTemplateThree')->name('pages-campagne-template-three');
 Route::post('/pages/campagne-template-three', $controller_path . '\pages\CampagneTemplate@postCampagneTemplateThree')->name('pages-campagne-template-three-post');
 
 Route::get('/pages/campagne-email', $controller_path . '\pages\CampagneEmail@index')->name('pages-campagne-email');

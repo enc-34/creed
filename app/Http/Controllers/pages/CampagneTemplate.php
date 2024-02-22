@@ -42,12 +42,41 @@ class CampagneTemplate extends Controller
         return view('content.authentications.auth-login-basic');
        }
      }
-    return view('content.pages.pages-campagne-template-one')->with('currentUsersAccount',$currentUsersAccount)->with('currentUser',$currentUser);
+
+
+    return view('content.pages.pages-campagne-template-one')->with('currentUsersAccount',session('currentUsersAccount'))->with('currentUser',session('currentUser'));
   }
-  public function postCampagneTemplateOne()
+
+  public function postCampagneTemplateOne(Request $request)
   {
 
-  }
+    if ($request->session()->has('currentUsersAccount')) {
+      // The key exists in the session.
+      if ($request->session()->has('currentUser')) {
+        // The key exists in the session.
+        $currentUsersAccount = session('currentUsersAccount');
+         $currentUser = session('currentUser');
+      }else{
+        return view('content.authentications.auth-login-basic');
+       }
+     }
+     $request->validate([
+      'categoryTemplate' =>['required'],
+      'nameTemplate' => ['required'],
+      'languages' => ['required'],
+    ]);
+
+     $categoryTemplate=$request->input('categoryTemplate');
+     $typeOffre=$request->input('typeOffre');
+     $nameTemplate=$request->input('nameTemplate');
+     $languageTemplate=$request->input('languages');
+
+     $request->session()->put('categoryTemplate', $categoryTemplate);
+     $request->session()->put('typeOffre', $typeOffre);
+     $request->session()->put('nameTemplate', $nameTemplate);
+     $request->session()->put('languages', $languageTemplate);
+     return redirect()->route('createTemplateStepTwo')->with('currentUsersAccount',session('currentUsersAccount'))->with('currentUser',session('currentUser'))->with('nameTemplate',session('nameTemplate'));
+    }
   public function campagneTemplateTwo(Request $request)
   {
     if ($request->session()->has('currentUsersAccount')) {
@@ -62,7 +91,7 @@ class CampagneTemplate extends Controller
      }
     return view('content.pages.pages-campagne-template-two')->with('currentUsersAccount',$currentUsersAccount)->with('currentUser',$currentUser);
   }
-  public function postCampagneTemplateTwo()
+  public function postCampagneTemplateTwo(Request $request)
   {
 
   }
@@ -90,7 +119,7 @@ class CampagneTemplate extends Controller
     if (isset($imageSubmit)){
 
       request()->validate([
-        'formFileImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'formFileImage' => 'required|image|mimes:jpeg,png,jpg|max:5120',
     ]);
 
     if ($files = $request->file('formFileImage')) {
@@ -104,9 +133,9 @@ class CampagneTemplate extends Controller
       Validator::validate($request->all(), [
         'formFileVideo' => [
             'required',
-            File::types(['mp3', 'mp4'])
+            File::types(['mp4'])
                 ->min(50)
-                ->max(20000),
+                ->max(16000),
         ]
     ]);
 

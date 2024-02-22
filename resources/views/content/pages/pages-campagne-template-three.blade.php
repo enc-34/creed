@@ -3,6 +3,15 @@
 @section('title', 'Campagne statistic - Pages')
 <meta name="csrf-token" content="{{ csrf_token() }}">
 @section('page-script')
+<script src="
+https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js
+"></script>
+<link href="
+https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.min.css
+" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.15/css/intlTelInput.css" integrity="sha512-gxWow8Mo6q6pLa1XH/CcH8JyiSDEtiwJV78E+D+QP0EVasFs8wKXq16G8CLD4CJ2SnonHr4Lm/yY2fSI2+cbmw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" />
 
 @endsection
 @section('content')
@@ -14,6 +23,8 @@
     </b>
 
     <style>
+
+
         .collapse {
             justify-content: right;
             text-align: right;
@@ -45,6 +56,7 @@
         .emoji-button {
             cursor: pointer;
             margin: 5px;
+
         }
 
         .emoji-editor {
@@ -94,13 +106,145 @@
             overflow-y: scroll;
             padding: 3px;
         }
+        .first {
+            justify-content: right;
+            text-align: right;
+        }
+        .hide {
+          display: none;
+        }
+        #valid-msg {
+          color: #00c900;
+        }
     </style>
+    <style>
+@import "node_modules/font-awesome/scss/font-awesome.scss";
+$light-violet: #fbcffc;
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: $blue;
+  display: flex;
+}
+html,
+body,
+input,
+button {
+  font-family: "Sen", sans-serif;
+}
+i:hover {
+  color: #be79df;
+}
+.d-none {
+  display: none !important;
+}
+.others-show{
+  top:-55px !important;
+  z-index:10 !important;
+}
+
+button {
+  border: 0;
+  outline: none;
+}
+img {
+  width: 100%;
+  object-fit: cover;
+}
+.avatar-wrapper {
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.chat-box {
+  width: 350px;
+  margin: auto;
+  min-height: 600px;
+  max-height: 800px;
+  border-radius: 32px;
+  border: 8px solid #3e3e3e;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0px 17px 20px rgba(0, 0, 0, 0.15);
+  background-image: url('{{URL::asset('images/whatsapp.png')}}');
+  background-repeat: no-repeat;
+  .header {
+    display: flex;
+    align-items: center;
+    background-color: blue;
+    border-radius: 20px 20px 0 0;
+    padding: 15px;
+    border-left: 0px solid #f7f9fb;
+    .avatar-big {
+      width: 35px;
+      height: 35px;
+    }
+    .name {
+      margin-left: 20px;
+      font-size: 20px;
+      font-weight: 500;
+      color: black;
+      font-weight: bold;
+    }
+    .options {
+      font-size: 20px;
+      color: lightgrey;
+      margin-left: auto;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+  }
+  .chat-room {
+    height: 100%;
+    padding: 15px;
+    .avatar-small {
+      width: 25px;
+      height: 25px;
+    }
+    .message {
+      margin-bottom: 15px;
+      display: flex;
+      flex-direction: column;
+    }
+    .message-left {
+      align-items: flex-start;
+      .bubble {
+        border-radius: 0 5px 5px 5px;
+      }
+    }
+    .message-right {
+      align-items: flex-end;
+      .bubble {
+        border-radius: 5px 0 5px 5px;
+      }
+    }
+    .bubble {
+      padding: 10px;
+      font-size: 14px;
+      margin-top: 5px;
+      display: inline-block;
+    }
+    .bubble-light {
+      background-color: #fbcffc;
+    }
+    .bubble-dark {
+      color: #fff;
+      background-color: #be79df;
+    }
+  }
+
+}
+  </style>
     <br>
 
     <div class="row">
 
         <nav class="layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme" id="layout-navbar">
-            <a class="navbar-brand" href="#"><i class="bx bxs-pencil">Campagne Janvier</i></a>
+            <a class="navbar-brand" href="#"><i class="bx bxs-pencil">{{$nameTemplate}}</i></a>
             <span></span>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -112,7 +256,7 @@
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="javascript:void(0);">Marketing</a></li>
                     <li><a class="dropdown-item" href="javascript:void(0);">Services</a></li>
-                    <li><a class="dropdown-item" href="javascript:void(0);">Authentification/a></li>
+                    <li><a class="dropdown-item" href="javascript:void(0);">Authentification</a></li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>
@@ -129,7 +273,7 @@
 
                     <li>
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="submit"><a
-                                class="dropdown-item" href="{{ route('pages-campagne-template-one') }}">Return</a></button>
+                                class="dropdown-item" href="{{ route('pages-campagne-template-two') }}">Return</a></button>
                     </li>
                 </ul>
 
@@ -137,7 +281,7 @@
         </nav><br><br><br>
 
         <!-- Headings -->
-        <div class="col">
+       <!--  <div class="col">
 
             <div class="card mb-3">
                 <h5 class="card-header">Langues</h5>
@@ -304,12 +448,12 @@
                     </tbody>
                 </table>
             </div>
-        </div>
+        </div>-->
         <!-- Customizing headings -->
 
 
 
-        <div class="col-lg-5 ">
+        <div class="col ">
             <!-- Input Sizing -->
 
             <div class="card mb-4  ">
@@ -325,10 +469,10 @@
                     Add a title or choose what media type you will use for this title.
 
                     @if ($message = Session::get('success'))
-                    <div class="alert alert-success alert-block">
-                       <button type="button" class="close" data-dismiss="alert">×</button>
-                       <strong>{{ $message }}</strong>
-                    </div>
+                        <div class="alert alert-success alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <strong>{{ $message }}</strong>
+                        </div>
                     @endif
                     <div class="p-3 mb-2 bg-light text-dark $gray-500">
                         <div class="mb-3">
@@ -366,7 +510,7 @@
                             <div class="card" id="imageTitleIdCard">
                                 <h5 class="card-header">Upload Image</h5>
                                 <div class="card-body">
-                                  @csrf
+                                    @csrf
                                     <form method="POST" enctype="multipart/form-data" id="upload_image_form"
                                         action="javascript:void(0)">
                                         <span class="alert displaynone" id="responseMsg"></span>
@@ -384,7 +528,8 @@
                                         </div>
                                         <div class="mb-3">
                                             <button type="submit" class="btn btn-outline-success my-2 my-sm-0"
-                                                id="formFileImageSubmit" value="formFileImageSubmit" name="formFileImageSubmit">VALID
+                                                id="formFileImageSubmit" value="formFileImageSubmit"
+                                                name="formFileImageSubmit">VALID
                                                 IMAGE</button>
                                             <br>
                                         </div>
@@ -396,7 +541,8 @@
 
                                 <div class="card-body">
 
-                                    <form id="upload_video_form" method="POST" action="{{ route('pages-campagne-template-three-post') }}"
+                                    <form id="upload_video_form" method="POST"
+                                        action="{{ route('pages-campagne-template-three-post') }}"
                                         enctype="multipart/form-data">
                                         @csrf
                                         <div id="videoSourceWrapper" class="col-md-12 mb-2">
@@ -415,7 +561,8 @@
                                         </div>
                                         <div class="mb-3">
                                             <button type="submit" class="btn btn-outline-success my-2 my-sm-0"
-                                                value="formFileVideoSubmit" id="formFileVideoSubmit" name="formFilVideoSubmit">VALID
+                                                value="formFileVideoSubmit" id="formFileVideoSubmit"
+                                                name="formFilVideoSubmit">VALID
                                                 VIDEO</button>
                                             <br>
                                         </div>
@@ -436,37 +583,56 @@
                     </div>
                     <h5 class="fw-bold py-3 mb-4">
                         Footer <span class="text-muted fw-light"><small> Optional</small></span>
-                    </h5>
-                    Add a small line of text at the bottom of your message template. If you add the
-                    unsubscribe button for marketing communications, the footer will be displayed here by default.
+                        <style>
+                            .switch.ios,
+                            .switch-on.ios,
+                            .switch-off.ios {
+                                border-radius: 20rem;
+                            }
 
-                    <div class="p-3 mb-2 bg-light text-dark $gray-500">
-                        <div class="mb-3">
-                            <input id="defaultInput" class="form-control" type="text"
-                                placeholder="Saisie le texte dans French" />
-                        </div>
-                        <br>
-                    </div>
-                    <h5 class="fw-bold py-3 mb-4">
-                        Boutons <span class="text-muted fw-light"><small> Optionnal</small></span>
+                            .switch.ios .switch-handle {
+                                border-radius: 20rem;
+                            }
+                        </style>
+                        <input type="checkbox" data-toggle="switchbutton" checked data-style="ios" id="switch-event" data-onlabel="With Footer" data-offlabel="Without Footer">
                     </h5>
-                    Create buttons that allow customers to respond to your message or take an action. <br>
-                    <div class="mb-3">
-                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                            <option selected>Ajouter une bouton</option>
-                            <option value="1">Appel</option>
-                            <option value="2">Message</option>
-                            <option value="3">Link</option>
-                        </select>
+                    <div id="footerId">
+                        Add a small line of text at the bottom of your message template. If you add the
+                        unsubscribe button for marketing communications, the footer will be displayed here by default.
+                        <div id="console-event"></div>
+                        <div class="p-3 mb-2 bg-light text-dark $gray-500">
+                            <div class="mb-3">
+                                <input id="defaultInput" class="form-control" type="text"
+                                    placeholder="Saisie le texte dans French" />
+                            </div>
+                            <br>
+                        </div>
+                        <h5 class="fw-bold py-3 mb-4">
+                            Boutons <span class="text-muted fw-light"><small> Optionnal</small></span>
+                        </h5>
+                        Create buttons that allow customers to respond to your message or take an action. <br>
+                        <div class="mb-3" >
+                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="calltoactiontypeid">
+                                <option selected>Button Type</option>
+                                <option value="Call">Call</option>
+                                <option value="Message">Message</option>
+                                <option value="Link">Link</option>
+                            </select>
+                        </div>
+
+                        <button id="addRow" type="button" class="btn btn-info">Add New Button</button>
+                        <br/>
+                        <div id="newRow"></div>
+
+                        <i class="bx bx-bulb"></i>If you add more than 3 buttons, they will appear in a list.
                     </div>
-                    <i class="bx bx-bulb"></i>If you add more than 3 buttons, they will appear in a list.
                 </div>
 
             </div>
 
         </div>
 
-        <div class="col">
+        <div class="col-lg-5">
 
             <div class="card mb-3">
                 <h5 class="card-header">Message preview </h5>
@@ -481,10 +647,41 @@
 
                         <tr>
 
+<div class=" chat-box ">
+          <div class="header">
+            <div class="avatar-wrapper avatar-big">
+              <img src="https://znews-photo.zadn.vn/w660/Uploaded/pnbcuhbatgunb/2020_03_23/i13863960814_1.jpg" alt="avatar" />
+            </div>
+            <span class="name">Crush</span>
 
-                            <div class="form-group has-warning" id="form-message-apercu">
+            <span class="options">
+              <i class="fas fa-video"></i>
+            </span>
+            <span class="options">
+              <i class="fas fa-phone"></i>
+            </span>
+             <span class="options">
+              <i class="fas fa-ellipsis-v"></i>
+            </span>
+          </div>
+          <div class="chat-room">
+            <div class="message message-right">
 
-                            </div>
+
+
+              <div class="bubble bubble-light">
+                <img src="https://images.caradisiac.com/images/8/7/3/2/198732/S8-les-nouvelles-voitures-chinoises-sont-elles-trop-cheres-732118.jpg" alt="avatar" />
+                <div class="form-group has-warning" id="form-message-apercu">
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+
+        </div>
+
 
                         </tr>
 
@@ -492,7 +689,6 @@
                 </table>
             </div>
         </div>
-
 
     </div>
 
@@ -504,6 +700,139 @@
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/css/bootstrap-switch-button.min.css"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/dist/bootstrap-switch-button.min.js">
+    </script>
+    <script src="
+    https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js
+    "></script>
+    <link href="
+    https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.min.css
+    " rel="stylesheet">
+
+    <script type="text/javascript">
+
+      var maxField = 2;
+        var x = 0; // add row
+        let callExist=false;
+        let linkExist=false;
+      $("#addRow").click(function () {
+        var selected_option = $('#calltoactiontypeid').val();
+
+        if((selected_option ==='Call' && x < maxField) && callExist == false){
+          var htmlCall = '';
+          x++;
+          callExist=true;
+          htmlCall += '<div class="input-group" id="inputFormRow">';
+          htmlCall += '<button id="removeRow" type="button" class="btn btn-danger">Remove</button>';
+          htmlCall += '<input type="text" aria-label="Label to Call Button" class="form-control " placeholder="Button name">';
+          htmlCall += '<span id="basic-icon-default-phone" class="input-group-text">';
+          htmlCall += '<i class="bx bx-phone"></i></span>';
+          htmlCall += '<input type="tel" aria-label="Call number" class="form-control phone-mask" placeholder="Phone Number"  name="call" id="call" aria-describedby="basic-icon-default-phone">';
+          htmlCall += '<span id="valid-msgcall" class="hide">✓ Valid</span> <span id="error-msgcall" class="hide"></span>';
+          htmlCall += '</div>';
+          htmlCall += '<br/>';
+
+          $('#newRow').append(htmlCall);
+        }else if((selected_option ==='Link' && x < maxField) && linkExist == false){
+          var htmlLink = '';
+          x++;
+          linkExist=true;
+          htmlLink += '<div class="input-group" id="inputFormRow">';
+          htmlLink += '<button id="removeRow" type="button" class="btn btn-danger">Remove</button>';
+          htmlLink += '<input type="text" aria-label="Label Button" class="form-control" placeholder="Button name">';
+          htmlLink += '<input type="text" aria-label="Link URL" class="form-control" placeholder="URL">';
+          htmlLink += '</div>';
+          htmlLink += '<br/>';
+
+          $('#newRow').append(htmlLink);
+        }else{
+          if(x >= maxField){
+            alert('A maximum of '+maxField+' fields are allowed to be added. ');
+          }else if(linkExist == true){
+            alert('Select other Button type. ');
+          } else if(callExist == true){
+            alert('Select other Button type. ');
+          }else{
+            alert('Select Call or Link Option. ');
+          }
+         }
+
+
+
+      });
+
+      // remove row
+      $(document).on('click', '#removeRow', function () {
+        x--;
+        $(this).closest('#inputFormRow').remove();
+        if(linkExist == true){
+          linkExist = false;
+        }
+        if(callExist == true){
+          callExist = false;
+        }
+      });
+  const inputcall = document.querySelector("#call");
+  const errorMsgcall = document.querySelector("#error-msgcall");
+  const validMsgcall = document.querySelector("#valid-msgcall");
+// here, the index maps to the error code returned from getValidationError - see readme
+const errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"];
+
+// initialise plugin
+const iticall = window.intlTelInput(inputcall, {
+	utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js",
+  hiddenInput: "full_phone",
+  preferredCountries: ["cm","ru","us", "co", "in", "de"],
+});
+
+const reset = () => {
+	inputcall.classList.remove("error");
+	errorMsgcall.innerHTML = "";
+	errorMsgcall.classList.add("hide");
+	validMsgcall.classList.add("hide");
+};
+
+// on blur: validate
+inputcall.addEventListener('blur', () => {
+	reset();
+	if (inputcall.value.trim()) {
+		if (iticall.isValidNumber()) {
+			validMsgcall.classList.remove("hide");
+		} else {
+			inputcall.classList.add("error");
+			const errorCode = iticall.getValidationError();
+			errorMsgcall.innerHTML = errorMap[errorCode];
+			errorMsgcall.classList.remove("hide");
+		}
+	}
+});
+
+// on keyup / change flag: reset
+inputcall.addEventListener('change', reset);
+inputcall.addEventListener('keyup', reset);
+  </script>
+    <script>
+        $(function() {
+            $('#switch-event').change(function() {
+                $('#console-event').html('Switch-Button: ' + $(this).prop('checked'))
+            })
+        });
+        document.getElementById('switch-event').switchButton('off', true);
+        $("#footerId").hide();
+        $(document).ready(function() {
+            $("#switch-event").change(function() {
+                var selected_option = $(this).prop('checked');
+                //alert(selected_option);
+                if (selected_option === true) {
+                    $('#footerId').show();
+                } else {
+                    $("#footerId").hide();
+                }
+            });
+        });
     </script>
     <script>
         $('#uploadVideoFile').on('change',
@@ -526,90 +855,7 @@
                 }
             }
         );
-       /*  $('#upload_video_form').submit(function(e) {
-            var fileInput = document.getElementById("uploadVideoFile");
-            var files = $("#uploadVideoFile")[0].files;
 
-            if ('files' in fileInput) {
-                if (fileInput.files.length === 0) {
-                    alert("Select a file to upload");
-                } else {
-                    var loaded = 0;
-                    var chunkSize = 500000;
-                    var total = fileInput.files[0].size;
-                    console.log('Started uploading fille Size"' + total + '"');
-
-                    var reader = new FileReader();
-                    var slice = fileInput.files[0].slice(0, chunkSize);
-
-                    var formData = new FormData(document.getElementById("upload_video_form"));
-                    var CSRF_TOKEN = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
-                    //var files = $('#formFileImage')[0].files;
-                    formData.append('_token', CSRF_TOKEN);
-                    formData.append('formFileVideo', slice);
-                    formData.append('extension', fileInput.files[0].name.split('.').pop());
-                    // Reading a chunk to invoke the 'onload' event
-                    reader.readAsBinaryString(slice);
-                    console.log('Started uploading file level 2"' + fileInput.files[0].name + '"');
-                    $.ajax({
-                            url: "{{ route('pages-campagne-template-three-post') }}",
-                            type: "POST",
-                            data: formData,
-                            processData: false,
-                            contentType: false,
-                            dataType: 'json',
-                            xhr: function(){
-//upload Progress
-var xhr = $.ajaxSettings.xhr();
-if (xhr.upload) {
-xhr.upload.addEventListener('progress', function(event) {
-var percent = 0;
-var position = event.loaded || event.position;
-var total = event.total;
-if (event.lengthComputable)
-{
-percent = Math.ceil(position / total * 100);
-}
-//update progressbar
-$("#uploadVideoProgressBar").css("width", + percent +"%");
-$(".status").text(percent +"%");
-}, true);
-}
-return xhr;
-},
-                            success: (data) => {
-                                console.log(data);
-                                alert('Success');
-                            },
-                            error: (function(errorData) {
-                                console.log(errorData);
-                                alert("Video Upload Failed");
-                            })
-                        }); */
-                   /*  reader.onload = function(e) {
-                        loaded += chunkSize;
-                        var percentLoaded = Math.min((loaded / total) * 100, 100);
-                        console.log('Uploaded ' + Math.floor(percentLoaded) + '% of file "' + fileInput.files[0]
-                            .name + '"');
-                        $('#uploadVideoProgressBar').width(percentLoaded + "%");
-
-                        //Read the next chunk and call 'onload' event again
-                        if (loaded <= total) {
-                            slice = fileInput.files[0].slice(loaded, loaded + chunkSize);
-                            reader.readAsBinaryString(slice);
-                        } else {
-                            loaded = total;
-                            console.log('File "' + fileInput.files[0].name + '" uploaded successfully!');
-                        }
-                        //Send the sliced chunk to the REST API
-
-                    } */
-          /*       }
-            } else {
-                console.log('No found "files" property');
-            }
-
-        }); */
     </script>
     <script>
         $(document).ready(function(e) {
